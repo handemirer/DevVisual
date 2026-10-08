@@ -1,6 +1,6 @@
 # DevVisual
 
-Türkçe, dark mode, statik Git eğitim platformu. React + TypeScript + Vite + Tailwind CSS + Zustand + React Flow. Backend, hesap veya harici API yok.
+Türkçe, dark mode, statik Git ve C# eğitim platformu. React + TypeScript + Vite + Tailwind CSS + Zustand + React Flow. Backend, hesap veya harici API yok.
 
 ## Çalıştırma
 
@@ -26,18 +26,39 @@ Ana sayfadan Git öğrenme yoluna girin. Öğrenme yolu 5 seviyede 60 ders, 184 
 
 Son adıma ulaşılan ders tamamlandı olarak işaretlenir. Son adımdaki “Dersi tamamla” düğmesi dersin kazanımlarını ve toplam ilerlemeyi gösteren bitirme ekranını açar; devam düğmesi sıradaki tamamlanmamış derse gider. 60 dersin tümü tamamlandığında “Bu konudaki tüm dersleri tamamladınız!” ekranı ve beş seviyenin özeti görünür. Son derse atlamak tek başına tüm yolu tamamlamaz. Tamamlanan yolun bitirme ekranı yan menüden yeniden açılabilir. Ders/adım ve tamamlanan dersler localStorage içinde tutulur; görseller bu bilgilerden yeniden oluşturulur. Önceki sürümün öğrenme ilerlemesi korunur. Sunucuya veri gönderilmez. Tarayıcı verilerini silmek ilerlemeyi de siler.
 
+## C# öğrenme yolu
+
+Katalogdaki **C# · Dil, bellek & runtime** kartı veya üst menüden `#/csharp` yoluna girin. Onaylanan müfredatın tamamı **10 seviye, 42 ders grubu ve 466 konu** olarak eklenmiştir. Seviye başına konu sayıları: 54, 50, 57, 34, 41, 41, 53, 54, 45 ve 37. Kapsamın okunabilir kaydı [docs/csharp-mufredat.md](docs/csharp-mufredat.md) içindedir.
+
+Her konu ayrı açıklanır. Her ders grubunda **gerçek hayat senaryosu, açıklamalı kod örneği, üç önemli ipucu, alıştırma, kontrol ölçütleri ve kaynak bağlantıları** bulunur. Toplam 126 ipucu ve 10 seviye projesi vardır. Konu menüsü, seviye filtresi ve tüm seviyelerde başlık/açıklama/kod/ipucu/senaryo araması kullanılabilir. Anlatım, Kod örneği, Önemli ipuçları ve Uygulama görünümleri ders içeriğini ayırır. Seviye özeti bütün projeleri ve kontrol ölçütlerini gösterir.
+
+“Okundu işaretle” veya “Oku ve ilerle” mevcut konuyu kaydeder. Ders ancak bütün konuları okundu işaretlendiğinde tamamlanır; son konuya atlamak yeterli değildir. Önceki düğmesi kayıtları değiştirmez. Ders/konu ve okuma işaretleri `devvisual-csharp-v1` localStorage kaydında, Git’ten ayrı saklanır. Yenilemede kaldığınız konu açılır; mevcut ders, seviye veya tüm C# kapsamını sıfırlamak için etkilenecek kayıt sayısını gösteren pencere kullanılabilir. Okuma tamamlanması uygulamalı yeterlilik belgesi değildir; projeler ayrıca yapılmalıdır.
+
+Kod örnekleri tarayıcıda çalıştırılmaz. Yerel denemeler için uygun .NET SDK gerekir; Roslyn ve BenchmarkDotNet örnekleri ek paket, unsafe örneği proje ayarı ister. Bazı örnekler tam program yerine bir tip/metot veya teşhis komutu gösterir. Ortama bağlı byte ve süre sonuçlarına sabit değer atanmamıştır. Bu çalışma ortamında .NET SDK bulunmadığından C# örnekleri yerel derleyiciyle çalıştırılmadı; web uygulamasının TypeScript/üretim derlemesi, içerik kapsamı ve ilerleme davranışı doğrulandı.
+
+```sh
+npm run check:csharp
+npm run build
+```
+
+Kapsam kontrolü 10 seviye ve 466 konu başlığını bağımsız kapsam kaydıyla karşılaştırır; açıklama, senaryo, ipucu, kod, uygulama ve kaynak alanlarının varlığını kontrol eder. İlerleme kontrolü gerçek tarayıcı verisine dokunmadan seçim sınırlarını, yinelenen kayıtları, kapsamlı sıfırlamayı, kayıt normalizasyonunu ve Git izolasyonunu doğrular.
+
 ## GitHub Pages
 
 1. Bu klasörün içeriğini GitHub deposuna koyun ve `main` branch’ine gönderin.
 2. Depoda **Settings → Pages → Source → GitHub Actions** seçin.
 3. Dahil edilen `.github/workflows/deploy.yml` derler ve Pages’e yayınlar. Actions sekmesinden elle de başlatabilirsiniz.
 
-Vite `base: './'` ve hash yönlendirmesi (`#/git`, `#/courses`) sayesinde proje ve kullanıcı Pages adreslerinde dosyalar ve sayfa yenileme çalışır. `dist/` bağımsız statik yayın çıktısıdır; dosyaları HTTP üzerinden servis edin. Canlı yayın için bir GitHub deposu ve Pages etkinleştirmesi gerekir.
+Vite `base: './'` ve hash yönlendirmesi (`#/git`, `#/csharp`, `#/courses`) sayesinde proje ve kullanıcı Pages adreslerinde dosyalar ve sayfa yenileme çalışır. `dist/` bağımsız statik yayın çıktısıdır; dosyaları HTTP üzerinden servis edin. Canlı yayın için bir GitHub deposu ve Pages etkinleştirmesi gerekir.
 
 ## Yapı ve kapsam
 
 - `src/modules/git/engine`: React’ten bağımsız, immutable Git motoru; working tree, index, commit snapshots, branch/HEAD, merge.
 - `src/modules/git/lessons`: 60 dersin içerikleri, başlangıç durumları ve adımları. `curriculum.json` 55 yeni dersin açıklamalarını, işlemlerini, şema kartlarını, ipuçlarını ve kaynaklarını taşır; `lessons.ts` özgün beş grafik dersini bu içerikle birleştirir.
+- `src/modules/csharp`: 10 seviyenin içerik verisi, ders/katalog arayüzü ve responsive düzen.
+- `src/stores/useCSharp.ts`: Git’ten bağımsız konu bazlı okuma ilerlemesi.
+- `docs/csharp-mufredat.md`: onaylanan 466 konunun kapsam kaydı.
+- `scripts/check-csharp*.mjs`: içerik bütünlüğü ve ilerleme doğrulaması.
 - `src/core/lesson-engine`: yeni modüllerde de kullanılabilecek sade ders tanımları.
 - `src/stores`: ders akışı ve Zustand persistence.
 - `src/modules/git/visualizations`: dahili durumdan üretilen commit grafiği ve adımlara ait açıklamalı kavram şemaları.

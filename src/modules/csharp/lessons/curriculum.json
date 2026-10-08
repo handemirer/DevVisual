@@ -419,7 +419,7 @@
         {
           "id": "operator-donusum-03",
           "title": "Bit operatörleri ve bit kaydırma",
-          "explanation": "&, yazılan dikey çizgi operatörü, ^ ve ~ bitleri işler; kaydırmalar bit konumlarını değiştirir. Bool operatörleriyle tam sayı bit işlemlerini ayır."
+          "explanation": "&, |, ^ ve ~ bitleri işler; kaydırmalar bit konumlarını değiştirir. Bool operatörleriyle tam sayı bit işlemlerini ayır."
         },
         {
           "id": "operator-donusum-04",
@@ -429,7 +429,7 @@
         {
           "id": "operator-donusum-05",
           "title": "Kısa devre değerlendirme",
-          "explanation": "&& ve çift dikey çizgi operatörü sağ tarafı gerekmedikçe değerlendirmez. Null kontrolünden sonra üyeye erişmek bu davranıştan yararlanır."
+          "explanation": "&& ve || sağ tarafı gerekmedikçe değerlendirmez. Null kontrolünden sonra üyeye erişmek bu davranıştan yararlanır."
         },
         {
           "id": "operator-donusum-06",
@@ -975,7 +975,7 @@
         {
           "id": "null-esitlik-pattern-13",
           "title": "Pattern birleştirme",
-          "explanation": "and, or ve not ile desenler birleşir. Pattern önceliğini parantezlerle okunur kıl."
+          "explanation": "and, or ve not ile desenler birleşir. Pattern önceliğini parantezlerle okunur kıl. Örneğin >= 0 and <= 100 aralığı iki koşulu tek pattern içinde ifade eder."
         },
         {
           "id": "null-esitlik-pattern-14",
@@ -1070,7 +1070,7 @@
         "Overload çoğunlukla statik tiplerle seçilir.",
         "Variance yalnız desteklenen interface/delegate konumlarında geçerlidir."
       ],
-      "code": "static string Sec(object x) => \"object\";\nstatic string Sec(string x) => \"string\";\nobject ad = \"Ada\";\nConsole.WriteLine(Sec(ad));         // object\nConsole.WriteLine(Sec((string)ad)); // string",
+      "code": "public static class Program\n{\n    static string Sec(object x) => \"object\";\n    static string Sec(string x) => \"string\";\n    public static void Main()\n    {\n        object ad = \"Ada\";\n        Console.WriteLine(Sec(ad));         // object\n        Console.WriteLine(Sec((string)ad)); // string\n    }\n}",
       "walkthrough": "Aynı runtime string nesnesi iki çağrıda da kullanılır; argümanın statik tipi overload seçimini değiştirir.",
       "exercise": "Generic bir filtreye gerekli constraint’i ekle; iki belirsiz overload çağrısını düzelt.",
       "acceptance": [
@@ -2387,7 +2387,7 @@
         {
           "id": "async-akis-16",
           "title": "await foreach",
-          "explanation": "Async enumerator’ı tüketir. Erken çıkışta temizleme yolunu ve token aktarımını incele."
+          "explanation": "Async enumerator’ı tüketir. Erken çıkışta temizleme yolunu ve token aktarımını incele. Enumerator iptalinin ReadAllAsync token’ı veya WithCancellation üzerinden nasıl aktarıldığını kontrol et."
         },
         {
           "id": "async-akis-17",
@@ -2858,7 +2858,7 @@
         {
           "id": "assembly-yukleme-01",
           "title": "AssemblyLoadContext",
-          "explanation": "Assembly yükleme ve bağımlılık izolasyonu bağlamı sağlar. Güvenlik sandbox’ı değildir."
+          "explanation": "Assembly yükleme ve bağımlılık izolasyonu bağlamı sağlar. Güvenlik sandbox’ı değildir. Güvenilmeyen plugin kodunu yalnız ayrı context yükleyerek izole etmiş olmazsın."
         },
         {
           "id": "assembly-yukleme-02",
@@ -3521,7 +3521,7 @@
         {
           "id": "roslyn-07",
           "title": "Code fix geliştirme",
-          "explanation": "Tanıya uygulanabilir kaynak dönüşümü sunar. Formatting, trivia ve FixAll davranışını koru."
+          "explanation": "Tanıya uygulanabilir kaynak dönüşümü sunar. Formatting, trivia ve FixAll davranışını koru. Fix uygulanınca semantic davranışın korunmasını ve yeniden diagnostic üretmemesini test et."
         },
         {
           "id": "roslyn-08",
