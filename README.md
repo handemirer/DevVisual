@@ -28,20 +28,20 @@ Son adıma ulaşılan ders tamamlandı olarak işaretlenir. Son adımdaki “Der
 
 ## C# öğrenme yolu
 
-Katalogdaki **C# · Dil, bellek & runtime** kartı veya üst menüden `#/csharp` yoluna girin. Onaylanan müfredatın tamamı **10 seviye, 42 ders grubu ve 466 konu** olarak eklenmiştir. Seviye başına konu sayıları: 54, 50, 57, 34, 41, 41, 53, 54, 45 ve 37. Kapsamın okunabilir kaydı [docs/csharp-mufredat.md](docs/csharp-mufredat.md) içindedir.
+Katalogdaki **C# · Derinlemesine uzmanlık** kartı veya üst menüden `#/csharp` yoluna girin. Genişletilen müfredat **15 seviye, 57 ders grubu ve 556 konu** içerir. İlk 10 seviye ve 466 konu korunmuştur. Yeni seviyeler: tasarım kalıpları ve uygulama mimarisi; ASP.NET Core ve güvenli API; EF Core ve veri mühendisliği; güvenilir servisler ve dağıtık sistemler; test, gözlemlenebilirlik ve üretim mühendisliği. Seviye başına konu sayıları: 54, 50, 57, 34, 41, 41, 53, 54, 45, 37, 18, 18, 18, 18 ve 18. Kapsamın okunabilir kaydı [docs/csharp-mufredat.md](docs/csharp-mufredat.md) içindedir.
 
-Her konu ayrı açıklanır. Her ders grubunda **gerçek hayat senaryosu, açıklamalı kod örneği, üç önemli ipucu, alıştırma, kontrol ölçütleri ve kaynak bağlantıları** bulunur. Toplam 126 ipucu ve 10 seviye projesi vardır. Konu menüsü, seviye filtresi ve tüm seviyelerde başlık/açıklama/kod/ipucu/senaryo araması kullanılabilir. Anlatım, Kod örneği, Önemli ipuçları ve Uygulama görünümleri ders içeriğini ayırır. Seviye özeti bütün projeleri ve kontrol ölçütlerini gösterir.
+Her konu ayrı açıklanır. Her ders grubunda **gerçek hayat senaryosu, açıklamalı kod örneği, üç önemli ipucu, alıştırma, kontrol ölçütleri ve kaynak bağlantıları** bulunur. Toplam 171 ipucu ve 15 seviye projesi vardır. Yeni 15 derste hata üretme ve düzeltme alıştırmaları, kontrol ölçütleri, açıklamalı kod ve resmî kaynaklar bulunur. Önkoşul sırası kapsam kaydında belirtilmiştir. Konu menüsü, seviye filtresi ve tüm seviyelerde başlık/açıklama/kod/ipucu/senaryo araması kullanılabilir. Anlatım, Kod örneği, Önemli ipuçları ve Uygulama görünümleri ders içeriğini ayırır. Seviye özeti bütün projeleri ve kontrol ölçütlerini gösterir.
 
 “Okundu işaretle” veya “Oku ve ilerle” mevcut konuyu kaydeder. Ders ancak bütün konuları okundu işaretlendiğinde tamamlanır; son konuya atlamak yeterli değildir. Önceki düğmesi kayıtları değiştirmez. Ders/konu ve okuma işaretleri `devvisual-csharp-v1` localStorage kaydında, Git’ten ayrı saklanır. Yenilemede kaldığınız konu açılır; mevcut ders, seviye veya tüm C# kapsamını sıfırlamak için etkilenecek kayıt sayısını gösteren pencere kullanılabilir. Okuma tamamlanması uygulamalı yeterlilik belgesi değildir; projeler ayrıca yapılmalıdır.
 
-Kod örnekleri tarayıcıda çalıştırılmaz. Yerel denemeler için uygun .NET SDK gerekir; Roslyn ve BenchmarkDotNet örnekleri ek paket, unsafe örneği proje ayarı ister. Bazı örnekler tam program yerine bir tip/metot veya teşhis komutu gösterir. Ortama bağlı byte ve süre sonuçlarına sabit değer atanmamıştır. Bu çalışma ortamında .NET SDK bulunmadığından C# örnekleri yerel derleyiciyle çalıştırılmadı; web uygulamasının TypeScript/üretim derlemesi, içerik kapsamı ve ilerleme davranışı doğrulandı.
+Kod örnekleri tarayıcıda çalıştırılmaz. Yerel denemeler için uygun .NET SDK gerekir; Roslyn, BenchmarkDotNet, EF Core, hosting, resilience ve xUnit örnekleri ek paket, unsafe örneği proje ayarı ister. Web örnekleri ASP.NET Core projesi gerektirir; kısmi bileşenler ve demo sınırları kod yorumlarında açıklanır. Yeni backend konuları eğitim içeriğidir; platform statik çalışmaya devam eder. Bazı örnekler tam program yerine bir tip/metot veya teşhis komutu gösterir. Ortama bağlı byte ve süre sonuçlarına sabit değer atanmamıştır. Bu çalışma ortamında .NET SDK bulunmadığından C# örnekleri yerel derleyiciyle çalıştırılmadı; web uygulamasının TypeScript/üretim derlemesi, içerik kapsamı ve ilerleme davranışı doğrulandı.
 
 ```sh
 npm run check:csharp
 npm run build
 ```
 
-Kapsam kontrolü 10 seviye ve 466 konu başlığını bağımsız kapsam kaydıyla karşılaştırır; açıklama, senaryo, ipucu, kod, uygulama ve kaynak alanlarının varlığını kontrol eder. İlerleme kontrolü gerçek tarayıcı verisine dokunmadan seçim sınırlarını, yinelenen kayıtları, kapsamlı sıfırlamayı, kayıt normalizasyonunu ve Git izolasyonunu doğrular.
+Kapsam kontrolü 15 seviye ve 556 konu başlığını bağımsız kapsam kaydıyla karşılaştırır; açıklama, senaryo, ipucu, kod, uygulama ve kaynak alanlarının varlığını kontrol eder. İlerleme kontrolü gerçek tarayıcı verisine dokunmadan seçim sınırlarını, yinelenen kayıtları, kapsamlı sıfırlamayı, kayıt normalizasyonunu, eski ilerlemenin yeni seviyelerle birlikte korunmasını ve Git izolasyonunu doğrular.
 
 ## GitHub Pages
 
@@ -55,9 +55,9 @@ Vite `base: './'` ve hash yönlendirmesi (`#/git`, `#/csharp`, `#/courses`) saye
 
 - `src/modules/git/engine`: React’ten bağımsız, immutable Git motoru; working tree, index, commit snapshots, branch/HEAD, merge.
 - `src/modules/git/lessons`: 60 dersin içerikleri, başlangıç durumları ve adımları. `curriculum.json` 55 yeni dersin açıklamalarını, işlemlerini, şema kartlarını, ipuçlarını ve kaynaklarını taşır; `lessons.ts` özgün beş grafik dersini bu içerikle birleştirir.
-- `src/modules/csharp`: 10 seviyenin içerik verisi, ders/katalog arayüzü ve responsive düzen.
+- `src/modules/csharp`: 15 seviyenin içerik verisi, ders/katalog arayüzü ve responsive düzen.
 - `src/stores/useCSharp.ts`: Git’ten bağımsız konu bazlı okuma ilerlemesi.
-- `docs/csharp-mufredat.md`: onaylanan 466 konunun kapsam kaydı.
+- `docs/csharp-mufredat.md`: ilk 466 konuyu ve yeni 90 konuyu içeren kapsam kaydı.
 - `scripts/check-csharp*.mjs`: içerik bütünlüğü ve ilerleme doğrulaması.
 - `src/core/lesson-engine`: yeni modüllerde de kullanılabilecek sade ders tanımları.
 - `src/stores`: ders akışı ve Zustand persistence.

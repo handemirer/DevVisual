@@ -246,6 +246,136 @@
           "API uyumluluğu ve performans bütçesi raporlanır"
         ]
       }
+    },
+    {
+      "number": 11,
+      "title": "Tasarım kalıpları ve uygulama mimarisi",
+      "goal": "İş kurallarını altyapıdan ayırmak, bağımlılık ve transaction sınırlarını gerekçelendirmek.",
+      "model": [
+        "İş kuralı",
+        "Uygulama sınırı",
+        "Altyapı adaptörü"
+      ],
+      "project": {
+        "title": "Modüler sipariş uygulaması",
+        "scenario": "Sipariş, stok ve fiyatlandırma kuralları aynı uygulamada bağımsız değişmeli; testler ağ veya veritabanı olmadan çalışabilmeli.",
+        "tasks": [
+          "Domain, application ve infrastructure bağımlılıklarını çiz",
+          "Fiyat politikasını Strategy ile değiştir",
+          "DI kapsamlarını doğrula ve modüllerin veri sahipliğini belirle",
+          "Bir kullanım senaryosunu bağımsız test et"
+        ],
+        "acceptance": [
+          "Domain katmanı EF Core veya HTTP tiplerine bağlı değildir",
+          "Singleton bir scoped servisi doğrudan tutmaz",
+          "Modüller birbirinin tablolarını doğrudan değiştirmez",
+          "Her soyutlamanın çözdüğü somut değişim ihtiyacı açıklanır"
+        ]
+      }
+    },
+    {
+      "number": 12,
+      "title": "ASP.NET Core ve güvenli API tasarımı",
+      "goal": "İstek hattını, HTTP sözleşmesini ve nesne düzeyindeki erişim kurallarını uçtan uca tasarlamak.",
+      "model": [
+        "HTTP isteği",
+        "Güvenlik ve uygulama",
+        "Sözleşmeli yanıt"
+      ],
+      "project": {
+        "title": "Çok kullanıcılı sipariş API’si",
+        "scenario": "Bir müşteri yalnızca kendi siparişlerine erişebilmeli; bozuk girdiler ve servis kesintileri tutarlı HTTP yanıtları üretmeli.",
+        "tasks": [
+          "Middleware sırasını kur ve hata yanıtlarını standartlaştır",
+          "Kimlik ve kaynak yetkilendirmesini ayrı test et",
+          "DTO, pagination ve iptal sözleşmelerini tanımla",
+          "Gövde boyutu, rate limit ve secret yönetimini yapılandır"
+        ],
+        "acceptance": [
+          "Başka kullanıcının siparişine erişim engellenir",
+          "Geçersiz girdiler kararlaştırılmış ProblemDetails yanıtını verir",
+          "Token, parola ve ham istek gövdesi loglanmaz",
+          "İptal sinyali veri erişimine kadar taşınır"
+        ]
+      }
+    },
+    {
+      "number": 13,
+      "title": "EF Core ve veri mühendisliği",
+      "goal": "SQL çevirisini, transaction sınırını ve eşzamanlı güncellemeleri gerçek veritabanı üzerinde doğrulamak.",
+      "model": [
+        "LINQ sorgusu",
+        "SQL ve transaction",
+        "Tutarlı veri"
+      ],
+      "project": {
+        "title": "Eşzamanlı stok rezervasyonu",
+        "scenario": "İki müşteri son ürünü aynı anda satın almak istiyor; okuma performansı artarken stok tutarlılığı korunmalı.",
+        "tasks": [
+          "Gerçek ilişkisel veritabanıyla integration testi kur",
+          "Projection ve keyset pagination uygula",
+          "Concurrency token ile yarışan güncellemeyi işle",
+          "Migration ve indeks değişikliğinin planını ölç"
+        ],
+        "acceptance": [
+          "İki yarışan işlem negatif stok oluşturmaz",
+          "Sayfalama sırası benzersiz anahtarla kararlıdır",
+          "SQL komut sayısı ve execution plan raporlanır",
+          "Transaction başarısızlığında kısmi veri kalmaz"
+        ]
+      }
+    },
+    {
+      "number": 14,
+      "title": "Güvenilir servisler ve dağıtık sistemler",
+      "goal": "Timeout, tekrar teslim ve kısmi başarısızlık altında iş kurallarını koruyan servisler geliştirmek.",
+      "model": [
+        "Başarısızlık modeli",
+        "Dayanıklı işlem",
+        "Uzlaştırma"
+      ],
+      "project": {
+        "title": "Dayanıklı sipariş ve bildirim akışı",
+        "scenario": "Sipariş kaydedilirken mesaj kuyruğu kapanabilir; worker yeniden başlayabilir ve aynı olay birden fazla teslim edilebilir.",
+        "tasks": [
+          "Toplam süre bütçesini ve retry politikasını belirle",
+          "Sipariş ve outbox kaydını tek transaction içinde yaz",
+          "Inbox/deduplication ile yinelenen mesajı işle",
+          "Worker kapanışını, backlog ve hata kuyruğunu gözlemle"
+        ],
+        "acceptance": [
+          "Kalıcı siparişin olayı kesinti sonrası yeniden gönderilir",
+          "Aynı mesaj iş etkisini ikinci kez uygulamaz",
+          "Retry sayısı ve toplam süre sınırlıdır",
+          "Yarım kalan işler için uzlaştırma ve replay yolu vardır"
+        ]
+      }
+    },
+    {
+      "number": 15,
+      "title": "Test, gözlemlenebilirlik ve üretim mühendisliği",
+      "goal": "Doğruluğu, servis hedeflerini ve güvenli dağıtımı otomatik kanıtlarla birlikte değerlendirmek.",
+      "model": [
+        "Davranış kanıtı",
+        "Üretim sinyali",
+        "Güvenli dağıtım"
+      ],
+      "project": {
+        "title": "Üretime hazır bitirme projesi",
+        "scenario": "Önceki seviyelerdeki sipariş sistemi gerçek bir dağıtıma hazırlanıyor; hatalı sürümler ve bağımlılık kesintileri erken fark edilmeli.",
+        "tasks": [
+          "Unit, integration ve contract testlerini CI aşamalarına yerleştir",
+          "Trace, metric ve log korelasyonunu kur",
+          "Container, readiness ve graceful shutdown yapılandır",
+          "Yük testi yap; SLO ve rollback tatbikatı hazırla"
+        ],
+        "acceptance": [
+          "CI başarısız testte artifact yayınlamaz",
+          "Yavaş isteğin bağımlılık zinciri trace ile bulunur",
+          "Hazır olmayan instance trafik almaz",
+          "Geri dönüş planı şema uyumluluğunu korur"
+        ]
+      }
     }
   ],
   "lessons": [
@@ -3709,6 +3839,923 @@
         {
           "title": "Roslyn ve derleyici API",
           "url": "https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/"
+        }
+      ]
+    },
+    {
+      "id": "tasarim-kaliplari",
+      "level": 11,
+      "title": "SOLID ve tasarım kalıplarını problem üzerinden seçme",
+      "topics": [
+        {
+          "id": "tasarim-kaliplari-01",
+          "title": "SOLID ve değişim eksenleri",
+          "explanation": "Tek sorumluluğu sınıfın satır sayısıyla değil, değişme nedenleriyle değerlendir. Fiyat hesabı ve e-posta gönderimi farklı nedenlerle değişir. Liskov ilkesinde alt tip, üst tipin önkoşullarını güçlendirmemeli ve vaat ettiği sonucu zayıflatmamalıdır; sözleşmeyi davranış testleriyle doğrula."
+        },
+        {
+          "id": "tasarim-kaliplari-02",
+          "title": "Strategy ve politika bileşimi",
+          "explanation": "Değişen algoritmayı bir sözleşmenin arkasına yerleştir; kampanya hesabı bunun somut örneğidir. Politikanın girdisini ve yan etkilerini açık tut. Yeni bir sınıf eklemek her durumda daha iyi değildir: iki sabit durum için basit bir switch okunabilirliğini karşılaştır."
+        },
+        {
+          "id": "tasarim-kaliplari-03",
+          "title": "Factory ve nesne oluşturma sınırı",
+          "explanation": "Factory, oluşturma sırasında seçim veya sahiplik kararı olduğunda anlamlıdır. Üretilen IDisposable nesneyi kimin kapatacağını sözleşmeye ekle. Her constructor için factory yazmak yerine bağlantı, belge biçimi veya tenant gibi gerçek seçim ihtiyacını göster."
+        },
+        {
+          "id": "tasarim-kaliplari-04",
+          "title": "Decorator ve çapraz kesen davranışlar",
+          "explanation": "Decorator aynı arayüzü sararak ölçüm, cache veya doğrulama ekler. Sıralama davranışı değiştirir: cache dışındaki ölçüm tüm çağrıları, içindeki ölçüm yalnızca cache miss durumunu sayar. Hata ve CancellationToken akışının sarıcı boyunca korunmasını denetle."
+        },
+        {
+          "id": "tasarim-kaliplari-05",
+          "title": "Observer ve abonelik ömrü",
+          "explanation": "Event yayıncısı abonelerine referans tutabilir; yayıncı daha uzun yaşadığında abone bellekte kalır. Aboneliğin sahibini ve kapatma anını belirle. Yerel event ile kalıcı mesaj kuyruğunu aynı teslim garantisine sahip kabul etme; işlem sırasında exception ve yeniden giriş davranışını tanımla."
+        },
+        {
+          "id": "tasarim-kaliplari-06",
+          "title": "Refactoring ve soyutlama maliyeti",
+          "explanation": "Önce tekrarlayan iş kuralını ve değişim ihtiyacını görünür kıl, sonra soyutlamayı çıkar. Aşırı generic bir çerçeve debugging ve kullanım maliyetini büyütebilir. Refactoring sırasında mevcut davranışı koruyan testlerle küçük adımlar at; sınıf sayısını başarı ölçütü olarak kullanma."
+        }
+      ],
+      "scenario": "Fiyat hesaplama kodunda kampanya koşulları, loglama ve nesne oluşturma birbirine karışmış; yeni kampanya eklemek mevcut hesapları bozuyor.",
+      "code": "// .NET konsol projesi; harici paket gerekmez.\nusing System;\n\nIPricePolicy policy = new MeasuredPrice(new PercentageDiscount(0.10m));\nConsole.WriteLine(policy.Calculate(200m)); // 180\n\npublic interface IPricePolicy { decimal Calculate(decimal subtotal); }\npublic sealed class PercentageDiscount(decimal rate) : IPricePolicy\n{\n    public decimal Calculate(decimal subtotal)\n    {\n        if (rate is < 0m or > 1m || subtotal < 0m)\n            throw new ArgumentOutOfRangeException();\n        return subtotal * (1m - rate);\n    }\n}\npublic sealed class MeasuredPrice(IPricePolicy inner) : IPricePolicy\n{\n    public decimal Calculate(decimal subtotal)\n    {\n        var started = System.Diagnostics.Stopwatch.StartNew();\n        try { return inner.Calculate(subtotal); }\n        finally { Console.WriteLine($\"Süre: {started.Elapsed}\"); }\n    }\n}",
+      "walkthrough": "PercentageDiscount değişen hesabı, MeasuredPrice ise ölçüm davranışını taşır. Decorator sonucu ve exception akışını değiştirmeden finally içinde ölçüm yapar. Aynı sözleşmeye yeni politika takılabilir. Bu ayrımın amacı her işleme arayüz eklemek değil, bağımsız değişen davranışları görünür kılmaktır.",
+      "tips": [
+        "Decorator sırasını değiştirip ölçülen kapsamın neden değiştiğini açıkla.",
+        "Politikanın geçersiz girdideki davranışını bütün uygulamalarda tutarlı tut.",
+        "Event abonelikleri için deterministik abonelikten çıkma yolu tasarla."
+      ],
+      "exercise": "Ücretsiz teslimat ve kademeli indirim politikalarını ekle; önce switch, sonra Strategy sürümünü yaz. Ölçüm decorator’ını koruyarak iki tasarımın değişim maliyetini ve testlerini karşılaştır.",
+      "acceptance": [
+        "Negatif tutar ve sınır indirim oranları test edilir",
+        "Decorator sonuç veya exception türünü değiştirmez",
+        "Soyutlama seçimi gerçek bir değişim örneğiyle gerekçelendirilir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: mimari ilkeler",
+          "url": "https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles"
+        }
+      ]
+    },
+    {
+      "id": "di-yasam",
+      "level": 11,
+      "title": "Dependency Injection, scope ve yapılandırma",
+      "topics": [
+        {
+          "id": "di-yasam-01",
+          "title": "Composition root ve constructor injection",
+          "explanation": "Bağımlılık grafiğini uygulamanın girişinde kur; iş kodu servisleri container’dan tek tek aramasın. Constructor zorunlu bağımlılıkları görünür kılar. Aynı iş akışını gerçek adaptör veya test double ile kurabildiğini göster; container kullanımını uygulamanın her katmanına yayma."
+        },
+        {
+          "id": "di-yasam-02",
+          "title": "Transient, scoped ve singleton yaşam süreleri",
+          "explanation": "Transient her çözümlemede, scoped aynı kapsam içinde, singleton container ömrü boyunca paylaşılır. Singleton bağımlılığının thread-safe olmasını kendiliğinden sağlamaz. Nesnenin paylaşılan durumunu ve kaynak ömrünü düşünerek yaşam süresi seç; her request’in ayrı scope aldığı web modelini worker ile karıştırma."
+        },
+        {
+          "id": "di-yasam-03",
+          "title": "Captive dependency ve scope doğrulaması",
+          "explanation": "Singleton içine scoped DbContext almak kısa ömürlü bağımlılığı uzun süre tutar. ValidateScopes ve ValidateOnBuild bu sınıftaki bazı hataları başlangıçta görünür yapar; factory içinde saklanan tüm hataları kanıtlayamaz. Başlangıç doğrulamasına ek olarak eşzamanlı kullanım ve disposal davranışını test et."
+        },
+        {
+          "id": "di-yasam-04",
+          "title": "BackgroundService içinde async scope",
+          "explanation": "Hosted service uzun ömürlüdür; her iş birimi için IServiceScopeFactory ile kapsam aç. Async disposable bağımlılıklarda CreateAsyncScope ve await using kullan. Kapsamı işi beklemeden kapatma; scope içindeki servisi sonraki iterasyona veya başıboş task’a taşıma."
+        },
+        {
+          "id": "di-yasam-05",
+          "title": "Options pattern ve başlangıç doğrulaması",
+          "explanation": "Yapılandırmayı güçlü tipli options nesnesine bağla ve sınırlarını doğrula. IOptionsSnapshot scoped, IOptionsMonitor değişiklik takibi için uygundur; yeniden yükleme desteği configuration sağlayıcısına bağlıdır. Geçersiz timeout veya kapasite değerini ilk isteği beklemeden ValidateOnStart ile yakala."
+        },
+        {
+          "id": "di-yasam-06",
+          "title": "Container sahipliği ve disposable bağımlılıklar",
+          "explanation": "Container’ın oluşturduğu disposable servisler ilgili kapsam kapanınca temizlenir; dışarıdan verdiğin instance’ın sahipliğini ayrıca belirle. Her çözümleme için yeni root provider üretmek singleton paylaşımını ve cleanup’ı bozar. IAsyncDisposable kaynakların kapanmasını host yaşam döngüsüne bağla."
+        }
+      ],
+      "scenario": "Gece çalışan aktarım worker’ı aynı scoped servisi saatlerce saklıyor; kaynaklar kapanmıyor ve yapılandırma hatası yalnızca iş gelince ortaya çıkıyor.",
+      "code": "// Konsol projesi: dotnet add package Microsoft.Extensions.Hosting\nusing Microsoft.Extensions.DependencyInjection;\nusing Microsoft.Extensions.Hosting;\nusing Microsoft.Extensions.Options;\n\nvar builder = Host.CreateApplicationBuilder(args);\nbuilder.Services.AddOptions<BatchOptions>()\n    .Configure(o => o.Limit = 100)\n    .Validate(o => o.Limit is > 0 and <= 1000, \"Limit 1..1000 olmalı\")\n    .ValidateOnStart();\nbuilder.Services.AddScoped<BatchJob>();\nbuilder.Services.AddHostedService<Worker>();\nusing var host = builder.Build();\nawait host.RunAsync();\n\npublic sealed class BatchOptions { public int Limit { get; set; } }\npublic sealed class BatchJob(IOptions<BatchOptions> options)\n{\n    public Task RunAsync(CancellationToken ct) =>\n        Task.Delay(options.Value.Limit, ct);\n}\npublic sealed class Worker(IServiceScopeFactory scopes) : BackgroundService\n{\n    protected override async Task ExecuteAsync(CancellationToken stoppingToken)\n    {\n        while (!stoppingToken.IsCancellationRequested)\n        {\n            await using var scope = scopes.CreateAsyncScope();\n            await scope.ServiceProvider.GetRequiredService<BatchJob>()\n                .RunAsync(stoppingToken);\n            await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);\n        }\n    }\n}",
+      "walkthrough": "Worker singleton olarak barınır ancak BatchJob’u kendi constructor’ında tutmaz. Her iterasyonda ayrı async scope açılır, iş tamamlanınca kapsam kapanır. Options doğrulaması host başlangıcında çalışır. Gecikmeler iptal edilebilir; örnekte gerçek veri erişimi yerine bekleme kullanılmıştır.",
+      "tips": [
+        "DbContext örneğini eşzamanlı işler arasında paylaşma; her iş için ayrı kapsam kullan.",
+        "Bağımlılık ömrünü servis kayıt satırından başlayıp gerçek çağrı zincirinde takip et.",
+        "Options değişikliğinde devam eden işin eski mi yeni mi snapshot kullanacağını tanımla."
+      ],
+      "exercise": "BatchJob’a IAsyncDisposable bir test kaynağı ekle. İki iterasyonun farklı instance kullandığını ve iptal sırasında kaynakların kapandığını kaydet; geçersiz Limit ile host başlangıcının başarısız olduğunu doğrula.",
+      "acceptance": [
+        "Her iş ayrı scope kullanır",
+        "İş await edilmeden kapsam kapanmaz",
+        "Geçersiz yapılandırma başlangıçta reddedilir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: Dependency Injection",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection/overview"
+        },
+        {
+          "title": "Microsoft: options",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/options"
+        }
+      ]
+    },
+    {
+      "id": "domain-mimari",
+      "level": 11,
+      "title": "Clean Architecture, DDD ve CQRS sınırları",
+      "topics": [
+        {
+          "id": "domain-mimari-01",
+          "title": "Katman bağımlılıkları ve ports/adapters",
+          "explanation": "İş kuralları HTTP ve veritabanı ayrıntılarına değil, kendi ihtiyaçlarını ifade eden sözleşmelere bağlı olsun. Application kullanım senaryosunu koordine eder; infrastructure sözleşmeleri uygular. Proje referanslarını çizerek bağımlılık yönünü doğrula; yalnızca klasör isimlerini değiştirmek mimari sınır oluşturmaz."
+        },
+        {
+          "id": "domain-mimari-02",
+          "title": "Entity, value object ve invariant",
+          "explanation": "Entity kimliğiyle, value object değerleriyle tanınır. Aggregate geçerli durum geçişlerini metotlarıyla korur; herkese açık setter iş kurallarını atlatabilir. Para birimi, miktar ve yuvarlama kuralını modele taşı; record kullanmanın iç içe değişebilir nesneleri otomatik değişmez yapmadığını denetle."
+        },
+        {
+          "id": "domain-mimari-03",
+          "title": "Aggregate ve transaction sınırı",
+          "explanation": "Aggregate aynı işlemde korunması gereken tutarlılık sınırıdır; bütün sistemi tek nesne grafiğine dönüştürme. İki aggregate arasında anlık tutarlılık gerekip gerekmediğini iş gereksinimi belirler. Transaction sınırını repository veya handler isminden değil, korunacak invariant’tan çıkar."
+        },
+        {
+          "id": "domain-mimari-04",
+          "title": "Domain events ve integration events",
+          "explanation": "Domain event model içindeki gerçekleşmiş bir olayı anlatır. Integration event başka modüllere veya servislere yayımlanan sürümlenmiş sözleşmedir. Commit öncesi ve sonrası handler çalıştırmanın hata davranışları farklıdır; kalıcı dış yayın için transaction ile mesaj arasındaki boşluğu outbox seviyesinde ele al."
+        },
+        {
+          "id": "domain-mimari-05",
+          "title": "CQRS ve okuma/yazma modelleri",
+          "explanation": "Command durumu değiştirir, query bilgi döndürür; bu ayrım iki veritabanı veya bir mediator paketi gerektirmez. Okuma DTO’sunu rapor ihtiyacına göre şekillendir. Ayrı read model kullanıldığında güncelleme gecikmesini, yeniden oluşturmayı ve kullanıcının kendi yazdığını görme beklentisini tanımla."
+        },
+        {
+          "id": "domain-mimari-06",
+          "title": "Modüler monolit ve servis çıkarma",
+          "explanation": "Sipariş ve stok modülleri tek dağıtım içinde kendi veri ve sözleşmelerine sahip olabilir. İç çağrıları açık API üzerinden yap; başka modülün tablosuna gelişigüzel yazma. Mikroservise ayırmayı bağımsız dağıtım, ekip ve ölçek ihtiyacıyla gerekçelendir; ağın getirdiği kısmi başarısızlık maliyetini hesaba kat."
+        }
+      ],
+      "scenario": "Sipariş durumu controller, SQL ve UI içinde ayrı ayrı değiştiriliyor; stok modülüyle sınır belirsiz olduğu için aynı kural üç yerde bozuluyor.",
+      "code": "// .NET konsol projesi; domain modeli altyapı paketi gerektirmez.\nvar order = new Order(Guid.NewGuid());\norder.Add(2, 50m);\norder.Confirm();\nConsole.WriteLine($\"{order.Id}: {order.Total}\");\n\npublic sealed class Order(Guid id)\n{\n    public Guid Id { get; } = id;\n    public decimal Total { get; private set; }\n    public bool IsConfirmed { get; private set; }\n    public void Add(int quantity, decimal unitPrice)\n    {\n        if (IsConfirmed) throw new InvalidOperationException(\"Sipariş kapandı\");\n        if (quantity <= 0 || unitPrice < 0m)\n            throw new ArgumentOutOfRangeException();\n        Total += quantity * unitPrice;\n    }\n    public void Confirm()\n    {\n        if (IsConfirmed || Total <= 0m)\n            throw new InvalidOperationException(\"Onaylanamaz\");\n        IsConfirmed = true;\n    }\n}\n// Üretimde para birimi, satırlar ve eşzamanlı kayıt kontrolü ayrıca modellenir.",
+      "walkthrough": "Order geçerli değişimleri Add ve Confirm üzerinden sınırlar. Controller veya EF Core referansı olmadan kural denenebilir. Bu örnek aggregate davranışını gösterir; kalıcı depolama ve concurrency ayrı katmanda çözülür. CQRS için Confirm komutu ile sipariş özeti sorgusunu ayrı sözleşmelere dönüştür.",
+      "tips": [
+        "Her tabloyu otomatik aggregate veya repository yapma; tutarlılık ihtiyacını önce yaz.",
+        "Domain event işlenmesinde exception olursa transaction’ın ne yapacağını belirle.",
+        "CQRS ve event sourcing ayrı kararlardır; birlikte kullanılmaları zorunlu değildir."
+      ],
+      "exercise": "Sipariş domain modelini ayrı projeye taşı. ConfirmOrder kullanım senaryosu ve OrderSummary sorgusu tasarla; geçersiz durum geçişlerini test et ve stok modülüyle iletişimin transaction sınırını diyagramla açıkla.",
+      "acceptance": [
+        "Onaylanmış sipariş değiştirilemez",
+        "Domain projesi web/veri erişim projesine referans vermez",
+        "Okuma DTO’su domain nesnesini dışarı sızdırmaz"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: DDD ve CQRS",
+          "url": "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/"
+        }
+      ]
+    },
+    {
+      "id": "http-pipeline",
+      "level": 12,
+      "title": "HTTP sözleşmeleri ve ASP.NET Core istek hattı",
+      "topics": [
+        {
+          "id": "http-pipeline-01",
+          "title": "Middleware sırası ve short-circuit",
+          "explanation": "Middleware istekte kayıt sırasıyla, yanıtta ters yönde çalışır. Next çağırmayan bileşen hattı keser; auth, rate limit ve endpoint sırası bu yüzden davranışı etkiler. Response başladıktan sonra hata yanıtını baştan yazamazsın; akış ve streaming hatalarını ayrı incele."
+        },
+        {
+          "id": "http-pipeline-02",
+          "title": "Routing, binding ve endpoint filters",
+          "explanation": "Route ve query girdilerini iş modeline doğrudan atamak yerine giriş DTO’suna bağla. Binding başarısı iş kuralının geçerli olduğu anlamına gelmez. Endpoint filter ortak kontrolleri taşıyabilir; controller filters ile kapsamlarını karşılaştır ve CancellationToken’ı gerçek alt çağrılara ilet."
+        },
+        {
+          "id": "http-pipeline-03",
+          "title": "HTTP metotları ve idempotency",
+          "explanation": "GET yan etkisiz okuma için, POST yeni işlem için kullanılır; PUT ve DELETE’in idempotency beklentisi tekrarın amaçlanan durum etkisiyle ilgilidir. Aynı yanıt kodunun dönmesi zorunlu değildir. Ödeme gibi POST işlemlerinde tekrar güvenliğini yalnızca metot adına dayanarak varsayma."
+        },
+        {
+          "id": "http-pipeline-04",
+          "title": "DTO, validation ve ProblemDetails",
+          "explanation": "Giriş DTO’su hangi alanların istemci tarafından değiştirilebildiğini sınırlar; domain entity bind etmek mass assignment doğurabilir. Biçim hatası, iş kuralı ihlali ve beklenmeyen exception’ı ayır. ProblemDetails sözleşmesinde correlation bilgisi ver, stack trace ve altyapı sırlarını kullanıcıya taşıma."
+        },
+        {
+          "id": "http-pipeline-05",
+          "title": "Pagination, ETag ve koşullu istekler",
+          "explanation": "Büyük listelerde sayfa boyutunu sınırla ve kararlı sıralama kullan. ETag kaynağın temsil sürümünü tanımlar; If-None-Match okumada gereksiz aktarımı, If-Match yazmada kayıp güncellemeyi önlemeye yardım eder. Cache doğrulaması ile veritabanı concurrency kontrolünün rollerini karıştırma."
+        },
+        {
+          "id": "http-pipeline-06",
+          "title": "Streaming, request abort ve sınırlar",
+          "explanation": "Büyük yanıtı tamamen RAM’e almadan üretmek bellek baskısını azaltabilir; yavaş istemci bağlantıyı uzun süre açık tutar. RequestAborted sinyalini veri erişimi ve ağ çağrılarına geçir. Gövde boyutu, timeout ve pagination sınırlarını hem uygulama hem reverse proxy seviyesinde denetle."
+        }
+      ],
+      "scenario": "Liste endpoint’i sınırsız veri döndürüyor, hatalarda farklı JSON biçimleri üretiyor ve istemci bağlantısı kesilse bile pahalı işlem sürüyor.",
+      "code": "// dotnet new web; .NET 8+ ASP.NET Core, Program.cs\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProblemDetails();\nvar app = builder.Build();\napp.UseExceptionHandler();\napp.Use(async (context, next) =>\n{\n    context.Response.Headers[\"X-Request-Id\"] = context.TraceIdentifier;\n    await next(context);\n});\napp.MapGet(\"/orders\", async (int? take, CancellationToken ct) =>\n{\n    int limit = take ?? 20;\n    if (limit is < 1 or > 100)\n        return Results.ValidationProblem(new Dictionary<string, string[]>\n        { [\"take\"] = [\"1 ile 100 arasında olmalı\"] });\n    await Task.Delay(10, ct); // Yerine iptal edilebilir veri erişimi gelir.\n    return Results.Ok(Enumerable.Range(1, limit)\n        .Select(id => new OrderSummary(id, \"Pending\")));\n});\napp.Run();\npublic sealed record OrderSummary(int Id, string Status);",
+      "walkthrough": "Exception handler hattın başında alt bileşenlerdeki hataları ele alır. Middleware istek kimliğini ekler; endpoint sayfa sınırını doğrular ve request iptalini beklemeye geçirir. Range yalnızca örnek veridir, kalıcı depolama değildir. DTO dış sözleşmeyi domain modelinden ayırır.",
+      "tips": [
+        "HTTP durum kodlarını ekip sözleşmesiyle sabitle; her hatayı 200 içinde taşıma.",
+        "Gerçek proxy arkasında forwarded header güven zincirini yapılandır.",
+        "Streaming başladıktan sonraki hata davranışını integration testinde ayrıca dene."
+      ],
+      "exercise": "Endpoint’e filtre ve kararlı cursor pagination ekle. Geçersiz limit, iptal ve beklenmeyen hata isteklerini integration testinde gönder; ProblemDetails ve istek kimliği sözleşmesini doğrula.",
+      "acceptance": [
+        "Limit üst sınırı sunucuda uygulanır",
+        "İstek iptali alt I/O çağrısına iletilir",
+        "Hata yanıtında stack trace veya secret bulunmaz"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: middleware",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/"
+        },
+        {
+          "title": "Microsoft: API hataları",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api"
+        }
+      ]
+    },
+    {
+      "id": "api-yetki",
+      "level": 12,
+      "title": "Kimlik doğrulama ve kaynak yetkilendirmesi",
+      "topics": [
+        {
+          "id": "api-yetki-01",
+          "title": "Authentication ve authorization ayrımı",
+          "explanation": "Authentication isteğin kimliğini kurar; authorization bu kimliğin belirli işlemi yapıp yapamayacağını değerlendirir. Bir endpoint’e login şartı koymak nesne sahipliğini doğrulamaz. Aynı kullanıcıyla farklı sipariş kimlikleri göndererek nesne düzeyindeki erişim sınırını test et."
+        },
+        {
+          "id": "api-yetki-02",
+          "title": "JWT doğrulama ve claim güveni",
+          "explanation": "Token’ı decode etmek doğrulamak değildir. Güvenilir issuer, audience, imza ve geçerlilik süresi doğrulandıktan sonra claim’lere dayan. İstemciden gelen kullanıcı veya tenant başlığını doğrulanmış kimlik yerine kullanma; signing key rotasyonunu kullanılan identity sağlayıcısının akışıyla ele al."
+        },
+        {
+          "id": "api-yetki-03",
+          "title": "Policy ve resource-based authorization",
+          "explanation": "Role geniş yetki gruplarını, policy işleme özgü koşulları anlatabilir. Kaynak yüklendikten sonra sahiplik veya tenant ilişkisini authorization handler ile değerlendir. Bütün kullanıcıları authenticate etmek kaynak yetkisini otomatik sağlamaz; okuma ve yazma yetkisini ayrı tanımla."
+        },
+        {
+          "id": "api-yetki-04",
+          "title": "Cookie, bearer token ve CSRF",
+          "explanation": "Tarayıcı cookie’yi otomatik gönderdiği için cookie tabanlı durum değiştiren uçlarda CSRF korumasını düşün. Bearer token’ın taşınma ve saklanma biçimi farklı riskler getirir. SameSite ve CORS tek başına kapsamlı CSRF çözümü değildir; kullanılan kimlik akışına uygun savunmayı test et."
+        },
+        {
+          "id": "api-yetki-05",
+          "title": "Çok kiracılı veri izolasyonu",
+          "explanation": "Tenant kimliğini güvenilir kimlik bağlamından üret ve bütün veri yollarına taşı. Query filter yardımcı olsa da ham SQL, background job ve filter devre dışı bırakma yollarını incele. Tenant değişimini yalnızca UI filtresiyle sınırlandırma; veritabanı anahtar ve yetki tasarımını da değerlendirmeye al."
+        },
+        {
+          "id": "api-yetki-06",
+          "title": "401, 403 ve bilgi sızıntısı",
+          "explanation": "Kimlik doğrulaması olmayan istek ile yetkisi olmayan kimliği ayır. Bazı kaynaklarda 404 dönmek kaynak varlığını gizleyebilir; davranışı tutarlı sözleşmeye bağla. Yetki reddini denetlenebilir biçimde kaydet, fakat loglara token, kişisel veri veya hassas kaynak içeriği yazma."
+        }
+      ],
+      "scenario": "Giriş yapan bir müşteri URL’deki sipariş numarasını değiştirerek başka müşterinin verisini görüyor; endpoint yalnızca token varlığını kontrol ediyor.",
+      "code": "// ASP.NET Core web projesi; doğrulanmış authentication scheme\n// uygulamanın composition root'unda ayrıca yapılandırılmalıdır.\nusing System.Security.Claims;\nusing Microsoft.AspNetCore.Authorization;\n\npublic sealed record OrderResource(Guid Id, string OwnerId);\npublic sealed class OwnOrderRequirement : IAuthorizationRequirement { }\npublic sealed class OwnOrderHandler\n    : AuthorizationHandler<OwnOrderRequirement, OrderResource>\n{\n    protected override Task HandleRequirementAsync(\n        AuthorizationHandlerContext context,\n        OwnOrderRequirement requirement, OrderResource resource)\n    {\n        string? userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);\n        if (context.User.Identity?.IsAuthenticated == true &&\n            userId is not null && userId == resource.OwnerId)\n            context.Succeed(requirement);\n        return Task.CompletedTask;\n    }\n}\n// DI: services.AddSingleton<IAuthorizationHandler, OwnOrderHandler>();\n// Policy: AddAuthorization(o => o.AddPolicy(\"OwnOrder\", p =>\n//     p.RequireAuthenticatedUser().AddRequirements(new OwnOrderRequirement())));\n// Endpoint: await authorization.AuthorizeAsync(User, order, \"OwnOrder\");\n// Başarısız sonucu değerlendirmeden order verisini döndürme.",
+      "walkthrough": "Handler doğrulanmış kullanıcının kimliğini kaynak sahibine karşılaştırır. Claim türü identity sağlayıcısındaki eşlemeyle uyumlu olmalıdır. Bu kod yalnızca yetkilendirme bileşenidir; authentication kurulumu ve endpoint’in sonucu uygulaması ayrıca gerekir. Salt RequireAuthorization sahiplik kontrolünün yerine geçmez.",
+      "tips": [
+        "Yetki kontrollerini yalnızca UI’da veya istemci kodunda uygulama.",
+        "Sahiplik ve tenant sınırını hem liste hem tekil kayıt hem güncelleme yolunda test et.",
+        "Identity sağlayıcısının claim mapping davranışını gerçek token ile doğrula."
+      ],
+      "exercise": "İki müşteri ve iki tenant için yetki matrisi oluştur. Kaynak sahibinin erişebildiğini, başka kullanıcının ve anonim isteğin reddedildiğini handler ve gerçek HTTP pipeline testleriyle doğrula.",
+      "acceptance": [
+        "Anonim kullanıcı sahiplik claim’i taklit ederek erişemez",
+        "Başka müşterinin kaynak kimliği veri sızdırmaz",
+        "Yetki kararı endpoint tarafından uygulanır"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: kaynak yetkilendirmesi",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased"
+        },
+        {
+          "title": "Microsoft: JWT bearer",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication"
+        }
+      ]
+    },
+    {
+      "id": "api-savunma",
+      "level": 12,
+      "title": "Girdi, secret ve API güvenlik sınırları",
+      "topics": [
+        {
+          "id": "api-savunma-01",
+          "title": "Girdi doğrulama ve mass assignment",
+          "explanation": "İstemcinin değiştirebileceği alanları ayrı DTO ile tanımla; IsAdmin veya OwnerId gibi alanları entity üzerinden bind etme. Uzunluk, aralık ve toplam iş maliyetini doğrula. Geçerli JSON olması güvenilir veri olduğu anlamına gelmez; iş kurallarını domain sınırında da koru."
+        },
+        {
+          "id": "api-savunma-02",
+          "title": "Parametreli SQL ve çıktı kodlama",
+          "explanation": "SQL değerlerini parametre olarak geçir; dinamik kolon veya sıralama adlarını izinli listeden seç. Parametreler tablo isimlerinin yerine kullanılamaz. HTML, JSON ve URL çıktılarının kodlama kuralları farklıdır; SQL korumasını XSS koruması yerine koyma."
+        },
+        {
+          "id": "api-savunma-03",
+          "title": "Secret yönetimi ve anahtar rotasyonu",
+          "explanation": "Geliştirme secret’larını kaynak koduna veya örnek appsettings dosyasına gömme. Üretimde secret sağlayıcısı, erişim yetkisi ve rotasyon prosedürünü tanımla. Environment değişkeni dağıtım kolaylığı sağlar ancak tek başına şifreli kasa değildir; log, dump ve build artifact’larında sızıntı yollarını incele."
+        },
+        {
+          "id": "api-savunma-04",
+          "title": "Rate limiting ve kaynak bütçesi",
+          "explanation": "İstek sayısını sınırlarken kullanıcı, tenant veya IP anahtarının güven kaynağını belirle. Tek instance belleğindeki limit bütün cluster için ortak limit değildir. Kuyruk kapasitesi ve pahalı işlem eşzamanlılığını da sınırla; 429 yanıtı ve tekrar bekleme davranışını istemci sözleşmesine ekle."
+        },
+        {
+          "id": "api-savunma-05",
+          "title": "CORS, HTTPS ve reverse proxy güveni",
+          "explanation": "CORS tarayıcının farklı origin yanıtlarını okuyabilmesini yönetir; kimlik doğrulama veya sunucular arası erişim engeli değildir. Credential gereken origin listesini açık tanımla. Forwarded header’ları yalnızca güvenilen proxy’den kabul et; dış URL üretimi ve HTTPS yönlendirmesini gerçek dağıtımda dene."
+        },
+        {
+          "id": "api-savunma-06",
+          "title": "SSRF, dosya yükleme ve veri sızıntısı",
+          "explanation": "Kullanıcının verdiği URL’yi sunucudan çağırmak iç ağa erişim doğurabilir; izinli hedef, redirect ve DNS çözümleme davranışını değerlendir. Dosyada boyut, içerik ve saklama yolunu sunucu belirlesin. Hata ve loglarda secret maskeleme kadar hangi verinin hiç toplanmaması gerektiğini de tanımla."
+        }
+      ],
+      "scenario": "Bir dışa aktarma API’si kullanıcı URL’lerine istek atıyor, büyük gövdeler alıyor ve bağlantı bilgilerini loglarda saklıyor; güvenlik sınırları açık değil.",
+      "code": "// dotnet new web; ASP.NET Core .NET 8+, Program.cs\nusing Microsoft.AspNetCore.RateLimiting;\nusing System.Threading.RateLimiting;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProblemDetails();\nbuilder.WebHost.ConfigureKestrel(o =>\n    o.Limits.MaxRequestBodySize = 64 * 1024);\nbuilder.Services.AddRateLimiter(o =>\n{\n    o.RejectionStatusCode = StatusCodes.Status429TooManyRequests;\n    o.AddFixedWindowLimiter(\"exports\", limiter =>\n    {\n        limiter.PermitLimit = 5;\n        limiter.Window = TimeSpan.FromMinutes(1);\n        limiter.QueueLimit = 0;\n    });\n});\nvar app = builder.Build();\napp.UseExceptionHandler();\napp.UseRouting();\napp.UseRateLimiter();\napp.MapPost(\"/exports\", (ExportRequest input) =>\n    input.Count is > 0 and <= 100\n        ? Results.Accepted(value: new { input.Count })\n        : Results.BadRequest())\n    .RequireRateLimiting(\"exports\");\napp.Run();\npublic sealed record ExportRequest(int Count);\n// Örnek limit bu süreçte endpoint için ortaktır; kullanıcı başına değildir.\n// Üretimde kimlik/yetki, kalıcı iş kaydı ve proxy sınırları ayrıca eklenir.",
+      "walkthrough": "Endpoint yalnızca Count alanını kabul eder ve istek gövdesini sınırlar. Fixed window policy aynı süreçte endpoint çağrılarını topluca sınırlar; kullanıcı veya cluster bazlı limit sağlamaz. Accepted burada sözleşme örneğidir, işi gerçekten kuyruğa almadan üretimde başarı yanıtı verilmemelidir.",
+      "tips": [
+        "Gövde boyutu sınırını proxy ve uygulamada birlikte doğrula.",
+        "Secret içeren configuration nesnesini topluca loglama.",
+        "Rate limit testi yaparken policy’nin partition anahtarını ve instance sayısını kaydet."
+      ],
+      "exercise": "Örneğe doğrulanmış kullanıcı başına partition ekle; kimlik bilgisini istemci başlığından doğrudan alma. Aşırı gövde ve limit aşımı isteklerini test et; export için kalıcı iş kaydı oluşturmadan 202 dönülmemesini sağla.",
+      "acceptance": [
+        "İzin verilmeyen DTO alanları iş modelini değiştiremez",
+        "Büyük gövde ve limit aşımı kontrollü reddedilir",
+        "Secret kod, yanıt veya logda bulunmaz"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: rate limiting",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit"
+        },
+        {
+          "title": "Microsoft: geliştirme secret’ları",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets"
+        }
+      ]
+    },
+    {
+      "id": "ef-model",
+      "level": 13,
+      "title": "EF Core modelleme ve change tracking",
+      "topics": [
+        {
+          "id": "ef-model-01",
+          "title": "DbContext ömrü ve unit of work",
+          "explanation": "DbContext bir iş biriminin change tracker ve bağlantı koordinasyonunu taşır; thread-safe değildir. Aynı instance üzerinde paralel sorgu başlatma. Kısa ömürlü kapsam veya context factory kullan; context pooling ile veritabanı connection pooling’in farklı kaynakları yeniden kullandığını açıkla."
+        },
+        {
+          "id": "ef-model-02",
+          "title": "İlişkiler, anahtarlar ve constraint’ler",
+          "explanation": "Foreign key, benzersizlik ve zorunluluk kurallarını yalnızca C# kontrolüne bırakma. Veritabanı constraint’i yarışan işlemlerde de kuralı korur. Navigation ilişkisinin required/optional oluşunu, silme davranışını ve join maliyetini migration SQL’inde gözlemle."
+        },
+        {
+          "id": "ef-model-03",
+          "title": "Snapshot tracking ve DetectChanges",
+          "explanation": "Tracked nesnenin eski değerleri ile güncel değerleri karşılaştırılarak değişiklik belirlenebilir. Büyük graph üzerinde DetectChanges maliyetini ölç; otomatik davranışı kapatacaksan SaveChanges öncesi doğruluğu kanıtla. Her performans sorununun çözümünü tracking’i devre dışı bırakmak olarak görme."
+        },
+        {
+          "id": "ef-model-04",
+          "title": "AsNoTracking ve identity resolution",
+          "explanation": "Salt okuma projection veya AsNoTracking gereksiz tracking maliyetini azaltabilir. Aynı anahtarın birden fazla satırda görünmesi nesne kimliği açısından farklı sonuçlar doğurabilir. AsNoTrackingWithIdentityResolution seçeneğini bellek, tekrar eden nesne ve sorgu maliyeti açısından karşılaştır."
+        },
+        {
+          "id": "ef-model-05",
+          "title": "Disconnected graph ve kontrollü güncelleme",
+          "explanation": "HTTP’den gelen entity graph’ını doğrudan Update etmek istemcinin göndermediği alanları veya ilişkileri yanlış değiştirebilir. Kaydı yetkili kapsamda yükle ve izin verilen alanları ata. Concurrency token’ın istemci ile nasıl taşındığını ve orijinal değerinin nasıl kullanıldığını açık belirle."
+        },
+        {
+          "id": "ef-model-06",
+          "title": "Value conversion ve model sınırları",
+          "explanation": "Value object’i veritabanına dönüştürürken null, eşitlik ve mutability davranışını düşün. Value converter her sorgu ifadesinin SQL’e çevrilebilmesini sağlamaz; mutable özel tiplerde comparer gereksinimini incele. Domain modelinin bütün yapısını tek JSON kolona koymanın sorgu ve indeks maliyetini değerlendir."
+        }
+      ],
+      "scenario": "Web isteğinden gelen ürün nesnesi doğrudan Update ediliyor; fiyat dışında sahiplik bilgisi de değişiyor ve uzun yaşayan context belleği büyütüyor.",
+      "code": "// Konsol: dotnet add package Microsoft.EntityFrameworkCore.Sqlite\nusing Microsoft.EntityFrameworkCore;\n\nawait using var db = new CatalogDb();\nawait db.Database.EnsureCreatedAsync(); // Yalnızca bu yerel demo için.\nif (!await db.Products.AnyAsync())\n{\n    db.Products.Add(new Product { Name = \"Klavye\", Price = 100m });\n    await db.SaveChangesAsync();\n}\nvar product = await db.Products.OrderBy(p => p.Id).FirstAsync();\nproduct.Name = \"Mekanik klavye\";\nawait db.SaveChangesAsync();\nConsole.WriteLine(await db.Products.AsNoTracking().CountAsync());\n\npublic sealed class Product\n{\n    public int Id { get; set; }\n    public string Name { get; set; } = \"\";\n    public decimal Price { get; set; }\n}\npublic sealed class CatalogDb : DbContext\n{\n    public DbSet<Product> Products => Set<Product>();\n    protected override void OnConfiguring(DbContextOptionsBuilder options) =>\n        options.UseSqlite(\"Data Source=catalog-demo.db\");\n    protected override void OnModelCreating(ModelBuilder model) =>\n        model.Entity<Product>().Property(p => p.Name).IsRequired();\n}",
+      "walkthrough": "İlk sorgu tracked bir Product döndürür; Name ataması SaveChanges sırasında kalıcılaşır. AsNoTracking okuma yolunun niyetini gösterir, Count ise entity materialize etmeden sayılır. EnsureCreated yalnızca bağımsız demo veritabanı içindir; üretimde migration akışının yerine kullanılmaz.",
+      "tips": [
+        "SQLite ile SQL Server veya PostgreSQL tip davranışlarını aynı kabul etme.",
+        "Context pooling kullanırken tenant gibi request durumunu sonraki kiracıya sızdırma.",
+        "Güncelleme DTO’sunda istemcinin kontrol edemeyeceği alanlara yer verme."
+      ],
+      "exercise": "Ürün güncelleme DTO’sunu tasarla; yalnızca ad ve fiyatı değiştir. İki farklı context ile tracked ve no-tracking sorguları karşılaştır; SQLite dışında hedef sağlayıcının constraint testini de kur.",
+      "acceptance": [
+        "Context paralel işlemler arasında paylaşılmaz",
+        "İzin verilmeyen alanlar güncellenmez",
+        "Zorunlu ve benzersiz kurallar gerçek veritabanında test edilir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: change tracking",
+          "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/"
+        },
+        {
+          "title": "Microsoft: DbContext ömrü",
+          "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/"
+        }
+      ]
+    },
+    {
+      "id": "ef-sorgu",
+      "level": 13,
+      "title": "LINQ çevirisi, SQL planları ve sorgu performansı",
+      "topics": [
+        {
+          "id": "ef-sorgu-01",
+          "title": "IQueryable sağlayıcısı ve SQL çevirisi",
+          "explanation": "IQueryable expression tree toplar; sağlayıcı desteklediği ifadeleri SQL’e çevirir. AsEnumerable sonrası işlemler istemcide LINQ-to-Objects olarak yürür; önce tüm veriyi çekmek filtre maliyetini gizler. Çevrilemeyen ifadeleri ve ToQueryString çıktısını incele; yalnızca C# koduna bakarak sorgu maliyetini tahmin etme."
+        },
+        {
+          "id": "ef-sorgu-02",
+          "title": "Projection ve gereksiz veri aktarımı",
+          "explanation": "Ekranda gereken kolonları Select ile DTO’ya projekte et. Büyük binary kolonları ve gereksiz navigation graph’larını taşımak ağ ve materialization maliyetini büyütür. Projection içinde entity döndürmenin tracking davranışına dikkat et; salt DTO ile ölçülen farkı karşılaştır."
+        },
+        {
+          "id": "ef-sorgu-03",
+          "title": "N+1, Include ve split queries",
+          "explanation": "Lazy loading bir liste üzerinde her navigation erişiminde ayrı sorgu oluşturabilir. Include her zaman çözüm değildir; birden fazla koleksiyon join’i satırları çarpabilir. Split query komut sayısını artırır ve birden fazla sorgu arasında tutarlılık ihtiyacını gündeme getirir; veri boyutu ve izolasyonla birlikte değerlendir."
+        },
+        {
+          "id": "ef-sorgu-04",
+          "title": "İndeksler ve execution plan okuma",
+          "explanation": "İndeksin filtre, join ve sıralama kullanımına etkisini gerçek planla ölç. Bileşik indekste kolon sırası ve sorgunun seçiciliği önemlidir; her kolona indeks eklemek yazma maliyetini artırır. Gerçek veri dağılımı, parametreler ve istatistikler olmadan küçük demo sonucu genellenemez."
+        },
+        {
+          "id": "ef-sorgu-05",
+          "title": "Keyset pagination ve kararlı sıralama",
+          "explanation": "Skip büyüdükçe atlanan satırların maliyeti artabilir; cursor son sıralama değerlerini taşıyarak devam eder. Sıralama benzersiz olmalı, örneğin CreatedAt ve Id birlikte kullanılmalı. Eklenen veya silinen kayıtlar altında cursor sözleşmesini ve önceki sayfaya dönüş ihtiyacını test et."
+        },
+        {
+          "id": "ef-sorgu-06",
+          "title": "Compiled query ve roundtrip bütçesi",
+          "explanation": "Compiled query tekrar eden aynı şekilli sorgularda EF tarafındaki hazırlık maliyetini azaltabilir; ağ ve kötü SQL planını düzeltmez. Önce komut sayısını, dönen satırı ve indeksi ölç. Sync/async sonuçlarını sağlayıcı ve yük altında karşılaştır; eşzamanlı context kullanımından kaçın."
+        }
+      ],
+      "scenario": "Sipariş listesi geliştirme verisinde hızlıyken milyonlarca satırda yavaşlıyor; gereksiz alanlar çekiliyor ve her müşteri adı için ek sorgu çalışıyor.",
+      "code": "// EF Core ilişkisel sağlayıcısı olan projeye eklenen sorgu bileşeni.\nusing Microsoft.EntityFrameworkCore;\n\npublic static class OrderQueries\n{\n    public static async Task<List<OrderRow>> NextPageAsync(\n        OrdersDb db, long afterId, int pageSize, CancellationToken ct)\n    {\n        if (pageSize is < 1 or > 100)\n            throw new ArgumentOutOfRangeException(nameof(pageSize));\n        var query = db.Orders.AsNoTracking()\n            .Where(o => o.Id > afterId)\n            .OrderBy(o => o.Id)\n            .Select(o => new OrderRow(o.Id, o.CustomerName))\n            .Take(pageSize);\n        Console.WriteLine(query.ToQueryString()); // Yerel teşhis; üretim logu değil.\n        return await query.ToListAsync(ct);\n    }\n}\npublic sealed record OrderRow(long Id, string CustomerName);\npublic sealed class StoredOrder\n{\n    public long Id { get; set; }\n    public string CustomerName { get; set; } = \"\";\n}\npublic sealed class OrdersDb(DbContextOptions<OrdersDb> options) : DbContext(options)\n{\n    public DbSet<StoredOrder> Orders => Set<StoredOrder>();\n}\n// Options içinde hedef sağlayıcı ve bağlantı ayrıca yapılandırılır.",
+      "walkthrough": "Filtre ve projection materialization öncesinde IQueryable üzerinde kalır. Benzersiz Id sırası cursor’ın anlamını sabitler; Take istenen satır sayısını sınırlar. Id anahtarı uygun indeksle desteklenmelidir. ToQueryString öğretici teşhistir, gerçek execution plan ve ölçümün yerine geçmez.",
+      "tips": [
+        "Sorgu performansını satır sayısı, komut sayısı ve planla birlikte raporla.",
+        "SQL loglarında parametrelerin kişisel veri içerebileceğini düşün.",
+        "Cursor’a dahil edilen filtre ve sıralamayı sayfalar arasında değiştirme."
+      ],
+      "exercise": "100 bin kayıtla offset ve keyset sürümlerini karşılaştır. Müşteri navigation’ıyla N+1 üretip projection ile düzelt; aynı veri ve filtrelerde SQL komut sayısı, süre ve aktarılan kolonları raporla.",
+      "acceptance": [
+        "Sayfalar benzersiz ve kararlı sırayla döner",
+        "Liste boyutuyla doğrusal ek sorgu oluşmaz",
+        "Ölçüm gerçek hedef sağlayıcı ve planla desteklenir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: verimli sorgulama",
+          "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying"
+        },
+        {
+          "title": "Microsoft: pagination",
+          "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination"
+        }
+      ]
+    },
+    {
+      "id": "ef-tutarlilik",
+      "level": 13,
+      "title": "Transaction, optimistic concurrency ve migration",
+      "topics": [
+        {
+          "id": "ef-tutarlilik-01",
+          "title": "SaveChanges ve atomik iş birimi",
+          "explanation": "Transaction destekleyen sağlayıcılarda tek SaveChanges çağrısındaki değişiklikler transaction ile uygulanır. Birden fazla SaveChanges veya dış servis çağrısı otomatik olarak aynı atomik iş değildir. İş sınırını açık kur; uzun ağ beklemesini transaction içine almak kilit ve bağlantı ömrünü uzatır."
+        },
+        {
+          "id": "ef-tutarlilik-02",
+          "title": "İzolasyon seviyeleri ve anomaliler",
+          "explanation": "Read committed, repeatable read ve serializable davranışları sağlayıcıya göre farklı kilit veya snapshot mekanizmaları kullanabilir. Dirty read, non-repeatable read ve write skew senaryolarını ayrı üret. Daha güçlü izolasyonun contention ve retry maliyetini ölç; isimden tek başına garanti çıkarma."
+        },
+        {
+          "id": "ef-tutarlilik-03",
+          "title": "Optimistic concurrency token",
+          "explanation": "UPDATE koşuluna orijinal version değeri eklenince başka işlem önce yazdıysa etkilenen satır sayısı sıfır olabilir. EF bunu DbUpdateConcurrencyException olarak bildirir. Yeni değerleri yükleyip iş kuralını yeniden değerlendir; exception sonrası aynı hesabı körlemesine yeniden göndermek kayıp güncellemeyi çözmez."
+        },
+        {
+          "id": "ef-tutarlilik-04",
+          "title": "Retry, execution strategy ve bilinmeyen commit",
+          "explanation": "Geçici bağlantı hatası retry edilebilir; iş kuralı ihlali aynı kategoride değildir. Commit yanıtı kaybolduğunda transaction’ın uygulanıp uygulanmadığı belirsiz olabilir. İşlem kimliği ve benzersiz constraint ile tekrarın etkisini sınırla; execution strategy ile explicit transaction birlikteliğini sağlayıcı belgeleriyle kur."
+        },
+        {
+          "id": "ef-tutarlilik-05",
+          "title": "Migration, expand/contract ve schema drift",
+          "explanation": "Yeni ve eski uygulama sürümleri aynı şemayla bir süre çalışabilir. Önce ek alanı uyumlu ekle, veriyi kontrollü doldur, sonra eski alanı kaldır. Migration SQL’ini gözden geçir; büyük tablo değişikliğinde kilit süresini ve geri dönüş yolunu gerçek boyuta yakın ortamda ölç."
+        },
+        {
+          "id": "ef-tutarlilik-06",
+          "title": "Constraint, raw SQL ve toplu güncelleme",
+          "explanation": "ExecuteUpdate gibi toplu işlemler change tracker’ı senkronize etmez; eldeki tracked nesne eski kalabilir. Raw SQL ve bulk yollarında aynı invariant, tenant ve concurrency kurallarını uygula. Veritabanı constraint’ini son savunma olarak kullan ve başarısız sonucu iş seviyesinde anlamlı biçimde ele al."
+        }
+      ],
+      "scenario": "İki worker aynı stok değerini okuyup ayrı ayrı azaltıyor; son yazan öncekinin güncellemesini siliyor ve uygulama başarılı satış sayısını yanlış raporluyor.",
+      "code": "// dotnet add package Microsoft.EntityFrameworkCore.Sqlite\nusing Microsoft.EntityFrameworkCore;\nawait using (var setup = new StockDb())\n{\n    await setup.Database.EnsureCreatedAsync();\n    if (!await setup.Stock.AnyAsync())\n    {\n        setup.Stock.Add(new Stock { Id = 1, Quantity = 2 });\n        await setup.SaveChangesAsync();\n    }\n}\nawait using var a = new StockDb();\nawait using var b = new StockDb();\nvar first = await a.Stock.SingleAsync(s => s.Id == 1);\nvar stale = await b.Stock.SingleAsync(s => s.Id == 1);\nfirst.Quantity--; first.Version = Guid.NewGuid();\nawait a.SaveChangesAsync();\nstale.Quantity--; stale.Version = Guid.NewGuid();\ntry { await b.SaveChangesAsync(); }\ncatch (DbUpdateConcurrencyException)\n{ Console.WriteLine(\"Çatışma: yeniden oku ve stok kuralını değerlendir.\"); }\n\npublic sealed class Stock\n{\n    public int Id { get; set; }\n    public int Quantity { get; set; }\n    public Guid Version { get; set; } = Guid.NewGuid();\n}\npublic sealed class StockDb : DbContext\n{\n    public DbSet<Stock> Stock => Set<Stock>();\n    protected override void OnConfiguring(DbContextOptionsBuilder o) =>\n        o.UseSqlite(\"Data Source=stock-concurrency-demo.db\");\n    protected override void OnModelCreating(ModelBuilder m) =>\n        m.Entity<Stock>().Property(s => s.Version).IsConcurrencyToken();\n}",
+      "walkthrough": "İki context aynı version değerini okur. İlk kayıt version’ı değiştirir; ikinci context eski version ile yazınca concurrency kontrolü başarısız olur. GUID token uygulama tarafından yönetilir ve her ilgili yazmada yenilenmelidir. Bu demo çatışmayı yakalar; stok yeterliliği ve güvenli retry uygulamasını alıştırmada tamamla.",
+      "tips": [
+        "SQL Server rowversion davranışını SQLite’ın otomatik sağladığını varsayma.",
+        "Concurrency retry sırasında güncel iş kuralını tekrar hesapla.",
+        "Migration’ı her uygulama instance’ının yarışarak başlatacağı bir iş hâline getirme."
+      ],
+      "exercise": "Yeni bir geçici veritabanında stok 1 iken iki satın alma başlat. Concurrency çatışmasında yeniden okuyup stoğu değerlendir; yalnızca bir satın almanın başarılı olmasını doğrula. Bir kolon değişikliği için expand/contract planı yaz.",
+      "acceptance": [
+        "Stok negatif olmaz ve kayıp güncelleme oluşmaz",
+        "Retry sınırlıdır ve güncel veriyle karar verir",
+        "Şema değişikliği eski sürümle birlikte çalışma süresini kapsar"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: concurrency",
+          "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency"
+        },
+        {
+          "title": "Microsoft: transactions",
+          "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions"
+        },
+        {
+          "title": "Microsoft: migration uygulama",
+          "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying"
+        }
+      ]
+    },
+    {
+      "id": "http-dayaniklilik",
+      "level": 14,
+      "title": "Timeout, retry ve circuit breaker tasarımı",
+      "topics": [
+        {
+          "id": "http-dayaniklilik-01",
+          "title": "Toplam süre bütçesi ve cancellation",
+          "explanation": "Tek denemenin timeout’u ile tüm denemeler ve beklemelerin toplam bütçesini ayır. Request iptalini dış servise geçir; timeout wrapper’ı alttaki işlemi gerçekten durdurmayabilir. Çağrı zincirinde kalan süreyi ve hangi bileşenin iptal sahibi olduğunu açıkça tanımla."
+        },
+        {
+          "id": "http-dayaniklilik-02",
+          "title": "Transient hata sınıflandırması",
+          "explanation": "Bağlantı kopması veya bazı geçici sunucu yanıtları retry adayı olabilir; validation ve yetki hataları aynı değildir. Durum kodunu iş semantiğiyle birlikte değerlendir. 429 için bekleme talimatını hesaba kat ve bütün istemcilerin aynı anda yeniden denemesinin yükü artırabileceğini göster."
+        },
+        {
+          "id": "http-dayaniklilik-03",
+          "title": "Exponential backoff ve jitter",
+          "explanation": "Artan bekleme bağımlılığa toparlanma süresi tanır; jitter istemcilerin eşzamanlı tekrarını dağıtır. Maksimum deneme, toplam süre ve kuyruk kapasitesini sınırla. Üç katmanda ayrı retry yapmanın deneme sayısını çarptığını ölç; retry sahipliğini tek bir açık sınırda kur."
+        },
+        {
+          "id": "http-dayaniklilik-04",
+          "title": "Circuit breaker ve half-open davranışı",
+          "explanation": "Breaker belirlenen başarısızlık eşiğinde yeni çağrıları geçici reddeder; açıkken bağımlılığa sürekli yük bindirmez. Half-open denemesi toparlanmayı sınar. Breaker timeout veya concurrency limiti değildir; her birinin koruduğu kaynak ve ölçümünü ayrı tanımla."
+        },
+        {
+          "id": "http-dayaniklilik-05",
+          "title": "IHttpClientFactory ve bağlantı ömrü",
+          "explanation": "Her istekte yeni bağlantı havuzu kurmak kaynak tüketimini büyütebilir. Factory veya uygun handler ömrüyle bağlantı reuse ve DNS değişimini birlikte ele al. Response ve stream ömrünü temizle; paylaşılan istemcide kullanıcıya özgü mutable default header değiştirme."
+        },
+        {
+          "id": "http-dayaniklilik-06",
+          "title": "Idempotent retry ve hedging maliyeti",
+          "explanation": "Yanıt kaybolduğunda sunucu işlemi yapmış olabilir. POST veya ödeme çağrısını tekrar etmeden sunucunun kalıcı idempotency sözleşmesini kullan. Hedging aynı işi eşzamanlı gönderebilir; yan etkili çağrılarda kopya etkisi ve ek yük riskini ölçmeden etkinleştirme."
+        }
+      ],
+      "scenario": "Ödeme bağımlılığı yavaşladığında bütün istekler bekliyor; katmanların ayrı retry politikaları aynı ödemeyi tekrar tekrar gönderip kesintiyi büyütüyor.",
+      "code": "// Konsol paketleri: Microsoft.Extensions.Hosting,\n// Microsoft.Extensions.Http.Resilience\nusing Microsoft.Extensions.DependencyInjection;\nusing Microsoft.Extensions.Hosting;\nusing Microsoft.Extensions.Http.Resilience;\nusing Polly;\n\nvar builder = Host.CreateApplicationBuilder(args);\nbuilder.Services.AddHttpClient(\"catalog\", client =>\n{\n    client.BaseAddress = new Uri(\"https://example.com/\"); // Demo hedefi.\n    client.Timeout = Timeout.InfiniteTimeSpan; // Bütçe resilience hattında.\n}).AddStandardResilienceHandler(options =>\n{\n    options.Retry.MaxRetryAttempts = 2;\n    options.Retry.Delay = TimeSpan.FromMilliseconds(200);\n    options.Retry.BackoffType = DelayBackoffType.Exponential;\n    options.Retry.UseJitter = true;\n    options.Retry.DisableForUnsafeHttpMethods();\n    options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(10);\n    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(2);\n});\nusing var host = builder.Build();\nvar client = host.Services.GetRequiredService<IHttpClientFactory>()\n    .CreateClient(\"catalog\");\nusing var budget = new CancellationTokenSource(TimeSpan.FromSeconds(10));\nusing var response = await client.GetAsync(\"/\", budget.Token);\nConsole.WriteLine(response.StatusCode);",
+      "walkthrough": "GET için standart resilience hattı kullanılır, iki retry en fazla üç deneme anlamına gelir. Toplam bütçe deneme ve beklemeleri sınırlar; unsafe metotlarda retry kapatılır. Gerçek projede example.com yerine kontrollü test sunucusu kullanarak kesinti üret. Politika varsayımlarını paketin sürümüyle birlikte kaydet.",
+      "tips": [
+        "Timeout ve dış iptal sonuçlarını ölçümlerde ayrı sınıflandır.",
+        "Retry katmanlarının toplam deneme sayısını trace üzerinden hesapla.",
+        "POST retry için yalnızca istemci header’ı değil, sunucuda kalıcı deduplication gerekir."
+      ],
+      "exercise": "Kontrollü HTTP sunucusunda sırasıyla 503, gecikme ve başarılı yanıt üret. Deneme sayısını, toplam süreyi ve circuit açılmasını kaydet; yan etkili POST’un otomatik tekrarlanmadığını doğrula.",
+      "acceptance": [
+        "Toplam süre bütçesi ve maksimum deneme sayısı sınırlandırılır",
+        "İptal bağımlılığa iletilir",
+        "Yan etkili işlem kalıcı idempotency olmadan tekrar edilmez"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: HTTP resilience",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience"
+        }
+      ]
+    },
+    {
+      "id": "mesaj-tutarlilik",
+      "level": 14,
+      "title": "Mesaj kuyrukları, outbox ve eventual consistency",
+      "topics": [
+        {
+          "id": "mesaj-tutarlilik-01",
+          "title": "At-least-once teslim ve acknowledgement",
+          "explanation": "Mesaj alındıktan sonra worker kapanırsa broker yeniden teslim edebilir. Acknowledgement’ı iş etkisi kalıcılaşmadan vermek veri kaybettirebilir; sonra vermek tekrar teslimi mümkün kılar. Bu pencereyi çiz ve tüketiciyi yinelenen mesaj altında doğru çalışacak biçimde tasarla."
+        },
+        {
+          "id": "mesaj-tutarlilik-02",
+          "title": "Transactional outbox",
+          "explanation": "İş kaydı ve gönderilecek olay aynı veritabanı transaction’ında yazılır. Ayrı dispatcher outbox’ı okuyup gönderir; gönderim ile gönderildi işareti arasındaki çökme yine tekrar yayın yaratabilir. Outbox atomik veritabanı yazımı sağlar, bütün sistemi kendiliğinden exactly-once yapmaz."
+        },
+        {
+          "id": "mesaj-tutarlilik-03",
+          "title": "Inbox, idempotency key ve deduplication",
+          "explanation": "Tüketici mesaj kimliğini iş etkisiyle aynı transaction’da saklar. Kimlik üzerindeki unique constraint eşzamanlı iki tüketiciye karşı koruma sağlar; önce SELECT sonra INSERT kontrolü tek başına yeterli değildir. Anahtarın kapsamını, saklama süresini ve farklı payload ile tekrar kullanım davranışını tanımla."
+        },
+        {
+          "id": "mesaj-tutarlilik-04",
+          "title": "Sıralama, partition ve poison message",
+          "explanation": "Teslim sırasını global varsayma; partition veya aggregate anahtarıyla hangi kapsamda sıra gerektiğini belirle. Eski sürüm olayları ve işlenemeyen mesajları sınırlı retry sonrası karantinaya al. Dead-letter queue arşiv değil, inceleme ve kontrollü replay gerektiren operasyonel iş akışıdır."
+        },
+        {
+          "id": "mesaj-tutarlilik-05",
+          "title": "Saga, compensation ve kısmi başarısızlık",
+          "explanation": "Sipariş, ödeme ve stok farklı transaction sınırlarında ise bütün akışı tek rollback ile geri alamazsın. Saga adımları ve telafi işlemleri iş semantiğini taşır; iade geçmişte ödeme olmamış gibi davranmak değildir. Telafilerin de başarısız olabileceğini ve tekrar güvenli olması gerektiğini modele ekle."
+        },
+        {
+          "id": "mesaj-tutarlilik-06",
+          "title": "Eventual consistency, replay ve şema sürümleme",
+          "explanation": "Read model güncellemesi gecikebilir; kullanıcıya pending durumunu ve uzlaştırma yolunu göster. Olay sözleşmelerine eklenen alanlarda eski tüketicinin davranışını test et. Replay sırasında dış yan etkileri yeniden üretmemek için tüketici kimliği, idempotency ve event sürümleme kararlarını birlikte ele al."
+        }
+      ],
+      "scenario": "Sipariş kaydediliyor fakat broker kesintisi nedeniyle bildirim kayboluyor; yeniden gönderimde ise aynı e-posta iki kez gidiyor. Veritabanı ile broker arasında ortak transaction yok.",
+      "code": "// EF Core ilişkisel projede kullanılan uygulama bileşeni.\n// Sağlayıcı/bağlantı composition root'ta yapılandırılır.\nusing Microsoft.EntityFrameworkCore;\nusing System.Text.Json;\n\npublic static class PlaceOrder\n{\n    public static async Task<Guid> ExecuteAsync(\n        MessagingDb db, CancellationToken ct)\n    {\n        var orderId = Guid.NewGuid();\n        db.Orders.Add(new MessageOrder { Id = orderId });\n        db.Outbox.Add(new OutboxMessage\n        {\n            Id = Guid.NewGuid(),\n            Payload = JsonSerializer.Serialize(new { OrderId = orderId })\n        });\n        await db.SaveChangesAsync(ct); // Aynı DB transaction'ında iki kayıt.\n        return orderId;\n    }\n}\npublic sealed class MessageOrder { public Guid Id { get; set; } }\npublic sealed class OutboxMessage\n{\n    public Guid Id { get; set; }\n    public string Payload { get; set; } = \"\";\n    public DateTimeOffset? SentAt { get; set; }\n}\npublic sealed class MessagingDb(DbContextOptions<MessagingDb> options)\n    : DbContext(options)\n{\n    public DbSet<MessageOrder> Orders => Set<MessageOrder>();\n    public DbSet<OutboxMessage> Outbox => Set<OutboxMessage>();\n}\n// Dispatcher: gönder -> başarılıysa SentAt yaz.\n// Gönderim ile SentAt arasındaki çökme kopya yaratabilir: inbox gerekir.",
+      "walkthrough": "Orders ve Outbox aynı context’in tek SaveChanges çağrısında kalıcılaşır. Böylece commit olmuş siparişin yayın niyeti kaybolmaz. Örnek broker veya dispatcher içermez; bu parçalar ayrı süreç olarak geliştirilir. Dispatcher’ın tekrar yayın penceresi nedeniyle tüketici deduplication’ı zorunlu tasarım girdisidir.",
+      "tips": [
+        "Deduplication kaydını iş etkisinden ayrı transaction’da yazma.",
+        "Outbox için backlog yaşı, deneme sayısı ve temizleme politikasını izle.",
+        "Replay yetkisini ve hangi dış etkilerin tekrar üretilebileceğini açık belirle."
+      ],
+      "exercise": "Outbox dispatcher ve unique message ID kullanan inbox tüketicisi ekle. Gönderim sonrası işaretlemeden önce süreci kapat; yeniden başlatıp mesajın tekrar geldiğini fakat iş etkisinin tek kaldığını doğrula.",
+      "acceptance": [
+        "Broker kapalıyken sipariş ve yayın niyeti birlikte kalıcılaşır",
+        "Eşzamanlı kopya teslimlerde iş etkisi tek kalır",
+        "Poison message sınırsız retry döngüsü oluşturmaz"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: dağıtık olay iletişimi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/multi-container-microservice-net-applications/integration-event-based-microservice-communications"
+        },
+        {
+          "title": "Microsoft: transactional outbox",
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-outbox-cosmos"
+        }
+      ]
+    },
+    {
+      "id": "worker-kapasite",
+      "level": 14,
+      "title": "Background services, backpressure ve cache tutarlılığı",
+      "topics": [
+        {
+          "id": "worker-kapasite-01",
+          "title": "Hosted service yaşam döngüsü",
+          "explanation": "Start, ExecuteAsync ve Stop akışını host yaşam döngüsüne bağla. Başlatılıp beklenmeyen task hataları ve kapanışı görünmez yapabilir. Worker’ın başlangıçta hazır sayılma koşulunu, exception sonrası yeniden başlama politikasını ve iptal sırasında yarım işlerin durumunu belirle."
+        },
+        {
+          "id": "worker-kapasite-02",
+          "title": "Bounded channel ve overload politikası",
+          "explanation": "Sınırsız kuyruk yük patlamasını RAM artışına dönüştürür. Bounded channel ile kapasiteyi sınırlayıp bekleme, reddetme veya düşürme davranışını iş ihtiyacına göre seç. TryWrite başarısızlığını sessiz yutma; önemli işler için süreç içi channel’ın kalıcı kuyruk olmadığını açık tut."
+        },
+        {
+          "id": "worker-kapasite-03",
+          "title": "Graceful shutdown ve drain",
+          "explanation": "Önce yeni işi kabul etmeyi durdur, sonra tamamlanabilecek işi boşalt. Shutdown süresinin üst sınırı dolunca kalan işin nasıl tekrar alınacağını tanımla. Container sonlandırma süresi ile host timeout’unu uyumla; process kill altında finally çalışacağına güvenerek kalıcı iş garantisi verme."
+        },
+        {
+          "id": "worker-kapasite-04",
+          "title": "Concurrency, lease ve fencing",
+          "explanation": "Birden fazla worker aynı işi seçiyorsa sahipliği atomik claim veya lease ile belirle. Lease süresi bitince eski worker hâlâ çalışıyor olabilir; yeni sahibin yazmasını eski worker’ın bozmasını fencing token ile önle. Dağıtık lock’u tek başına iş idempotency’sinin yerine koyma."
+        },
+        {
+          "id": "worker-kapasite-05",
+          "title": "Cache-aside, TTL ve invalidation",
+          "explanation": "Cache miss durumunda kaynaktan oku; yazma sonrasında cache’i geçersizleştirmenin transaction ile yarışabileceğini göster. TTL yalnızca bayatlığın üst sınırına yardımcıdır, her durumda kesin tutarlılık vermez. Tenant anahtarları, kapasite ve hassas veri saklama gereksinimlerini cache sözleşmesine ekle."
+        },
+        {
+          "id": "worker-kapasite-06",
+          "title": "Cache stampede ve kapasite ölçümü",
+          "explanation": "Aynı anahtarın süresi dolduğunda çok sayıda istek kaynağa yığılabilir. Tek süreçte single-flight, jitter veya kontrollü eski veri sunma seçeneklerini karşılaştır. Birden fazla instance koordinasyonunu ayrıca düşün; hit oranını gecikme, eviction ve bellek bütçesiyle birlikte ölç."
+        }
+      ],
+      "scenario": "İşler bellek içi kuyruğa sınırsız ekleniyor; worker kapanınca kayboluyor ve cache süresi dolduğunda veritabanına eşzamanlı binlerce sorgu gidiyor.",
+      "code": "// .NET konsol projesi; channel yalnızca süreç içindedir.\nusing System.Threading.Channels;\n\nvar queue = Channel.CreateBounded<int>(new BoundedChannelOptions(2)\n{\n    FullMode = BoundedChannelFullMode.Wait,\n    SingleWriter = true,\n    SingleReader = true\n});\nusing var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(5));\nvar producer = ProduceAsync(queue.Writer, timeout.Token);\nvar consumer = ConsumeAsync(queue.Reader, timeout.Token);\nawait Task.WhenAll(producer, consumer);\n\nstatic async Task ProduceAsync(ChannelWriter<int> writer, CancellationToken ct)\n{\n    Exception? failure = null;\n    try\n    {\n        for (int i = 0; i < 10; i++) await writer.WriteAsync(i, ct);\n    }\n    catch (Exception ex) { failure = ex; throw; }\n    finally { writer.TryComplete(failure); }\n}\nstatic async Task ConsumeAsync(ChannelReader<int> reader, CancellationToken ct)\n{\n    await foreach (int item in reader.ReadAllAsync(ct))\n    {\n        await Task.Delay(50, ct);\n        Console.WriteLine(item);\n    }\n}",
+      "walkthrough": "Kapasite iki olduğunda producer dolu kanala yazarken await eder; bu backpressure oluşturur. Producer bitince TryComplete consumer’ın kalan işleri okuyup sonlanmasına izin verir. Ortak cancellation bekleyen yazma ve okumaları keser. Process çökmesinde kuyruk kaybolur; kalıcı iş gereksinimi için broker veya veritabanı gerekir.",
+      "tips": [
+        "Kuyruk kapasitesini iş başına bellek ve hedef gecikmeyle hesapla.",
+        "Worker’ın scope’unu işi bitmeden kapatma; iptal sonrası kaynak temizliğini izle.",
+        "Cache başarısızlığında asıl kaynağa sınırsız eşzamanlı fallback yapma."
+      ],
+      "exercise": "Örneği host içinde çalışan worker’a dönüştür; kapasite dolduğunda kabul davranışını ölç. Kapanışta drain ve süre sınırını test et. Aynı anahtara eşzamanlı cache miss üreterek single-flight sürümünün kaynak çağrı sayısını karşılaştır.",
+      "acceptance": [
+        "Kuyruk ve eşzamanlı iş sayısı sınırlıdır",
+        "Normal kapanış ile zorla sonlandırmanın garantileri ayrılır",
+        "Cache anahtarında tenant izolasyonu korunur"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: hosted services",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services"
+        },
+        {
+          "title": "Microsoft: Channels",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels"
+        },
+        {
+          "title": "Microsoft: cache-aside",
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside"
+        }
+      ]
+    },
+    {
+      "id": "test-stratejisi",
+      "level": 15,
+      "title": "Unit, integration ve contract test mühendisliği",
+      "topics": [
+        {
+          "id": "test-stratejisi-01",
+          "title": "Davranış testi ve test double seçimi",
+          "explanation": "Unit testi iş kuralını dar sınırda doğrular; sınıfın iç çağrı sayısını gereksiz sabitlemek refactoring’i zorlaştırır. Stub girdi sağlar, fake çalışan basit uyarlama sunar, mock etkileşim beklentisi koyar. Dış etki önemli olduğunda etkileşimi doğrula; her bağımlılığı otomatik mock yapma."
+        },
+        {
+          "id": "test-stratejisi-02",
+          "title": "WebApplicationFactory ve gerçek istek hattı",
+          "explanation": "Integration testi gerçek routing, binding, middleware ve authorization hattını çalıştırmalıdır. WebApplicationFactory test ortamında servisleri kontrollü değiştirmeyi sağlar. Authentication test double’ı gerçek token doğrulamasını test etmez; imza, issuer ve audience için ayrı gerçekçi senaryolar kur."
+        },
+        {
+          "id": "test-stratejisi-03",
+          "title": "Gerçek veritabanı ve test izolasyonu",
+          "explanation": "EF InMemory sağlayıcısı ilişkisel constraint, transaction ve SQL çevirisini kanıtlamaz. Hedef sağlayıcıyla geçici veritabanı veya container kullan; testler arasında veri izolasyonu ve cleanup kur. Aynı veritabanında paralel testlerin birbirinin migration ve verisini bozmasını önle."
+        },
+        {
+          "id": "test-stratejisi-04",
+          "title": "Consumer-driven contract ve geriye uyumluluk",
+          "explanation": "Contract testi üretici ve tüketicinin HTTP veya olay sözleşmesinde anlaştığını doğrular. Alan ekleme, enum genişlemesi ve null değişimini tüketici beklentisiyle test et. Contract testi iş akışının bütün başarısını kanıtlamaz; integration ve az sayıda uçtan uca testle tamamla."
+        },
+        {
+          "id": "test-stratejisi-05",
+          "title": "Property-based, fuzzing ve mutation testing",
+          "explanation": "Örnek testler belirli girdileri, property-based testler geniş girdi ailesindeki invariant’ı sınar. Fuzzing bozuk ve beklenmeyen girdilerle parser dayanıklılığını inceler. Mutation testing küçük davranış değişikliklerinin testlerce yakalanmasını ölçer; coverage yüzdesini tek başına doğruluk kanıtı olarak görme."
+        },
+        {
+          "id": "test-stratejisi-06",
+          "title": "Zaman, rastgelelik ve flaky testler",
+          "explanation": "Gerçek beklemeler ve duvar saati testleri yavaş ve kararsız yapabilir. TimeProvider ve kontrollü scheduler gibi sınırlar üzerinden zamanı yönet. Rastgele testte seed ve başarısız girdiyi kaydet; concurrency yarışlarını Thread.Sleep tahminleri yerine kontrollü eşgüdüm noktalarıyla üret."
+        }
+      ],
+      "scenario": "Testler yüksek coverage gösteriyor ancak yetki hatası ve SQL constraint ihlali üretimde kaçıyor; testler gerçek pipeline ve veritabanı yerine yalnızca mock kullanıyor.",
+      "code": "// dotnet new xunit; test projesine eklenir.\nusing Xunit;\n\npublic sealed class ReservationTests\n{\n    [Theory]\n    [InlineData(1, 1, 0)]\n    [InlineData(10, 3, 7)]\n    [InlineData(0, 0, 0)]\n    public void Reserve_preserves_stock_invariant(int stock, int amount, int expected)\n    {\n        Assert.Equal(expected, Reserve(stock, amount));\n    }\n    [Fact]\n    public void Insufficient_stock_is_rejected()\n    {\n        Assert.Throws<InvalidOperationException>(() => Reserve(1, 2));\n    }\n    [Fact]\n    public void Negative_amount_is_rejected()\n    {\n        Assert.Throws<ArgumentOutOfRangeException>(() => Reserve(1, -1));\n    }\n    private static int Reserve(int stock, int amount)\n    {\n        if (stock < 0 || amount < 0) throw new ArgumentOutOfRangeException();\n        if (amount > stock) throw new InvalidOperationException(\"Yetersiz stok\");\n        return stock - amount;\n    }\n}\n// Bu unit test tek başına DB concurrency veya HTTP yetkisini kanıtlamaz.",
+      "walkthrough": "Testler stok azaltmanın örneklerini ve geçersiz girdi yollarını görünür kılar. Assert’ler uygulamanın dış davranışına yöneliktir. Bu dar model üzerinde yüksek coverage elde etmek bütün sistemi doğrulamaz; gerçek Reserve kullanım senaryosunu, HTTP yetkisini ve yarışan veritabanı yazımını ayrı test et.",
+      "tips": [
+        "Test adında koşulu ve beklenen davranışı açıkça belirt.",
+        "Mock’la geçen testi gerçek sağlayıcı doğrulaması olarak raporlama.",
+        "Flaky testi sınırsız retry ile gizlemek yerine seed ve zamanlama nedenini bul."
+      ],
+      "exercise": "Reserve kuralı için stok asla negatif olmaz property’sini ekle. WebApplicationFactory ile iki kullanıcı erişimini, gerçek veritabanıyla son stok yarışını ve eski olay tüketicisiyle yeni payload sözleşmesini test et.",
+      "acceptance": [
+        "Unit test sınır ve hata durumlarını kapsar",
+        "Integration test gerçek ilişkisel constraint’i kullanır",
+        "Contract değişikliği eski tüketiciyle sınanır",
+        "Başarısız rastgele test yeniden üretilebilir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: integration tests",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests"
+        },
+        {
+          "title": "Microsoft: EF test stratejisi",
+          "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy"
+        },
+        {
+          "title": "Microsoft: unit test uygulamaları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "otel-slo",
+      "level": 15,
+      "title": "OpenTelemetry, log korelasyonu ve servis hedefleri",
+      "topics": [
+        {
+          "id": "otel-slo-01",
+          "title": "Yapılandırılmış log ve scope",
+          "explanation": "Log mesajını string interpolation ile tek metne çevirmek yerine alanları ayrı template parametresi olarak taşı. Scope ile order ID veya operation ID bağlamını ilişkilendir. Kullanıcı girdisini kontrolsüz loglama; kişisel veri, token ve yüksek hacimli payload için toplama ve saklama sınırını tanımla."
+        },
+        {
+          "id": "otel-slo-02",
+          "title": "ActivitySource ve distributed tracing",
+          "explanation": "Activity uygulamadaki bir işlemi, parent-child ilişkisi çağrı zincirini anlatır. HTTP ve mesaj sınırlarında trace context aktarımını doğrula. ActivitySource dinleyici yoksa null dönebilir; instrumentation uygulama davranışı için zorunlu olmamalı ve her istekten kesin trace elde edileceği varsayılmamalıdır."
+        },
+        {
+          "id": "otel-slo-03",
+          "title": "Meter, counter ve histogram",
+          "explanation": "Counter artan olay sayısını, histogram gecikme dağılımını ölçmek için uygundur. Gauge anlık değeri temsil eder; araçların toplama semantiğini öğren. Order ID veya kullanıcı ID gibi sınırsız değerleri metric label yapma; cardinality maliyetini sınırla ve ayrıntıyı trace/log katmanına taşı."
+        },
+        {
+          "id": "otel-slo-04",
+          "title": "OpenTelemetry pipeline ve sampling",
+          "explanation": "Instrumentation veriyi üretir; provider, processor ve exporter veriyi işler ve iletir. Sampling maliyeti azaltırken bazı izleri dışarıda bırakır; head ve tail yaklaşımını hata araştırma hedefiyle karşılaştır. Exporter kesintisinde uygulamanın sonsuz tampon büyütmemesi için queue ve batch sınırlarını tanımla."
+        },
+        {
+          "id": "otel-slo-05",
+          "title": "SLI, SLO ve error budget",
+          "explanation": "SLI ölçülen başarı veya gecikme oranı, SLO hedef ve zaman penceresidir. Başarılı istek tanımında kullanıcı iptali, doğrulama hatası ve bağımlılık kesintisinin nasıl sayıldığını belirle. Ortalama yerine p95/p99 ve hedef altındaki istek oranını incele; yüzdeliklerin ortalamasını alarak global yüzdelik üretme."
+        },
+        {
+          "id": "otel-slo-06",
+          "title": "Alarm, yük testi ve olay incelemesi",
+          "explanation": "Alarmı yalnızca CPU eşiğine değil kullanıcı etkisine ve SLO tüketimine bağla. Yük testinde geliş hızı, eşzamanlılık, kuyruk ve tail latency ölç; kapalı döngü testinin yavaşlamada daha az istek üretip gecikmeyi gizleyebileceğini değerlendir. Olay raporunda zaman çizelgesi, kanıt ve kalıcı düzeltmeyi ayır."
+        }
+      ],
+      "scenario": "Sipariş API’sinin ortalama süresi iyi görünüyor ancak bazı müşteriler uzun bekliyor; HTTP, worker ve SQL logları arasında ilişki kurulamıyor.",
+      "code": "// .NET konsol projesi; BCL instrumentation, exporter içermez.\nusing System.Diagnostics;\nusing System.Diagnostics.Metrics;\n\nusing var listener = new ActivityListener\n{\n    ShouldListenTo = source => source.Name == \"DevVisual.Orders\",\n    Sample = (ref ActivityCreationOptions<ActivityContext> _) =>\n        ActivitySamplingResult.AllDataAndRecorded,\n    ActivityStopped = activity => Console.WriteLine($\"Trace: {activity.TraceId}\")\n};\nActivitySource.AddActivityListener(listener);\nusing var source = new ActivitySource(\"DevVisual.Orders\");\nusing var meter = new Meter(\"DevVisual.Orders\");\nvar duration = meter.CreateHistogram<double>(\"orders.duration\", \"ms\");\nvar count = meter.CreateCounter<long>(\"orders.completed\");\nvar started = Stopwatch.GetTimestamp();\nusing (var activity = source.StartActivity(\"reserve\", ActivityKind.Internal))\n{\n    activity?.SetTag(\"order.id\", \"demo-42\"); // Trace detayı; metric label değil.\n    await Task.Delay(20);\n    count.Add(1, new KeyValuePair<string, object?>(\"outcome\", \"success\"));\n    duration.Record(Stopwatch.GetElapsedTime(started).TotalMilliseconds);\n}\n// Üretimde OpenTelemetry provider ve OTLP exporter yapılandırılır.\n// Metric verisini görmek için MeterListener veya exporter gerekir.",
+      "walkthrough": "ActivityListener örnekte trace üretilmesini sağlar; uygulama null Activity durumunu da kaldırır. Counter ve histogram düşük cardinality ile kaydedilir, order ID yalnızca trace detayındadır. Bu kod collector’a göndermez; provider/exporter yapılandırması ve log korelasyonu alıştırmada eklenir.",
+      "tips": [
+        "Kullanıcı ID ve sipariş ID’yi metric boyutu olarak çoğaltma.",
+        "Trace sampling oranını hata araştırması ve veri maliyetiyle birlikte seç.",
+        "SLO penceresi ve başarısızlık tanımı olmadan tek gecikme sayısı raporlama."
+      ],
+      "exercise": "ASP.NET Core uygulamasına OTLP exporter ekle; HTTP, veri erişimi ve worker zincirini izle. Kontrollü gecikme üretip p99 ile ortalamayı karşılaştır; exporter kapalıyken uygulamanın bellek ve gecikme davranışını ölç.",
+      "acceptance": [
+        "İstek ile alt bağımlılıklar ortak trace üzerinden bulunur",
+        "Metric label kümesi sınırlıdır",
+        "SLO tanımı zaman penceresi ve başarılı istek ölçütünü içerir"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: OpenTelemetry gözlemlenebilirliği",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel"
+        },
+        {
+          "title": "Microsoft: metrics instrumentation",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation"
+        }
+      ]
+    },
+    {
+      "id": "uretim-dagitim",
+      "level": 15,
+      "title": "Container, CI/CD ve güvenli sürüm geçişleri",
+      "topics": [
+        {
+          "id": "uretim-dagitim-01",
+          "title": "Tekrarlanabilir build ve artifact kimliği",
+          "explanation": "CI aynı kaynak revizyonundan doğrulanabilir artifact üretmeli; SDK ve bağımlılık sürümlerini sabitle. Build, test ve publish aşamalarını ayır, başarısız kontrolde dağıtımı durdur. Aynı artifact’ı ortamlar arasında taşı; her ortam için yeniden derlemek test edilen kodla yayınlanan kodu ayırabilir."
+        },
+        {
+          "id": "uretim-dagitim-02",
+          "title": "Multi-stage container ve en az yetki",
+          "explanation": "SDK aşaması derleme, runtime aşaması çalıştırma için kullanılır. Runtime image’a kaynak kodu ve geliştirme araçlarını taşımadan küçük yüzey oluştur. Non-root kullanıcı, yazılabilir dizin ve port gereksinimlerini açık yapılandır; image içine secret kopyalama."
+        },
+        {
+          "id": "uretim-dagitim-03",
+          "title": "Liveness, readiness ve startup kontrolleri",
+          "explanation": "Liveness sürecin ilerleyebildiğini, readiness trafik alabilecek durumda olduğunu gösterir. Geçici veritabanı kesintisini liveness’a bağlamak bütün instance’ları gereksiz restart döngüsüne sokabilir. Başlangıç ısınmasını ayrıca ele al; readiness yanıtının orchestrator tarafından gerçekten kullanıldığını doğrula."
+        },
+        {
+          "id": "uretim-dagitim-04",
+          "title": "Yapılandırma, secret ve ortam farkları",
+          "explanation": "Aynı binary ortam değişkenleri veya secret sağlayıcısıyla yapılandırılabilir. Gerekli ayarları başlangıçta doğrula; eksik bağlantı bilgisini ilk kullanıcı isteğinde fark etme. Geliştirme hata sayfası, hassas log ve test authentication scheme’inin üretime taşınmadığını CI/ortam kontrolleriyle göster."
+        },
+        {
+          "id": "uretim-dagitim-05",
+          "title": "Rolling, canary ve rollback",
+          "explanation": "Yeni sürüme kademeli trafik verirken eski ve yeni uygulama aynı veri ve olay sözleşmeleriyle çalışabilmeli. Rollback yalnızca image sürümünü değiştirmek değildir; yıkıcı migration geri dönüşü engelleyebilir. Başarı eşiği, bekleme penceresi ve otomatik durdurma sinyalini önceden belirle."
+        },
+        {
+          "id": "uretim-dagitim-06",
+          "title": "Graceful shutdown ve dağıtım tatbikatı",
+          "explanation": "Instance trafiği bırakıp açık istekleri tamamlamak için süreye ihtiyaç duyar. Termination grace period, host shutdown timeout ve kuyruk drain süresini uyumla. Dağıtım sırasında uzun istek, worker işi ve migration senaryolarını çalıştır; kapatılmış instance’a giden trafik ve kaybolan işi ölç."
+        }
+      ],
+      "scenario": "Yeni sürüm rollout sırasında eski şemayla uyumsuz kalıyor; henüz hazır olmayan container trafik alıyor ve kapanışta işlenen siparişler yarıda bırakılıyor.",
+      "code": "// ASP.NET Core web projesi, Program.cs; .NET 8+\nusing Microsoft.AspNetCore.Diagnostics.HealthChecks;\nusing Microsoft.Extensions.Diagnostics.HealthChecks;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.Configure<HostOptions>(o =>\n    o.ShutdownTimeout = TimeSpan.FromSeconds(20));\nbuilder.Services.AddHealthChecks()\n    .AddCheck(\"self\", () => HealthCheckResult.Healthy(), tags: [\"live\"])\n    .AddCheck<ReadinessCheck>(\"ready\", tags: [\"ready\"]);\nvar app = builder.Build();\napp.MapHealthChecks(\"/health/live\", new HealthCheckOptions\n{ Predicate = registration => registration.Tags.Contains(\"live\") });\napp.MapHealthChecks(\"/health/ready\", new HealthCheckOptions\n{ Predicate = registration => registration.Tags.Contains(\"ready\") });\napp.MapGet(\"/\", () => \"DevVisual Orders\");\napp.Run();\npublic sealed class ReadinessCheck : IHealthCheck\n{\n    public Task<HealthCheckResult> CheckHealthAsync(\n        HealthCheckContext context, CancellationToken ct = default) =>\n        Task.FromResult(HealthCheckResult.Healthy(\"Demo hazır\"));\n}\n// Demo readiness sabittir. Gerçek uygulamada başlangıç durumu ve\n// gerekli bağımlılıkları sınırlı timeout ile değerlendir.\n// Health endpoint'lerinde secret/bağlantı bilgisi döndürme.",
+      "walkthrough": "İki health endpoint farklı tag kümelerini çalıştırır; aynı kontrolü iki isimle sunmaz. ReadinessCheck demoda daima healthy döner ve gerçek hazır olma kanıtı değildir. Üretimde uygulama başlangıç durumu ile zorunlu bağımlılıkları değerlendirip orchestrator probe’larına bağla. Host kapanış bütçesi altyapı sonlandırma süresinden kısa olmalıdır.",
+      "tips": [
+        "Build artifact’ına kaynak revizyonunu ve bağımlılık sürümlerini iliştir.",
+        "Health endpoint’ini eklemek tek başına yük dengeleyicinin onu kullanmasını sağlamaz.",
+        "Rollback tatbikatını şema ve olay sözleşmeleriyle birlikte yap."
+      ],
+      "exercise": "Bitirme projesi için multi-stage Dockerfile ve restore/build/test/publish CI hattı yaz. Readiness başarısızken trafiğin kesildiğini, uzun istek sırasında graceful shutdown’ı ve eski artifact’a dönüşte şema uyumluluğunu dene.",
+      "acceptance": [
+        "CI test başarısızlığında publish/dağıtımı durdurur",
+        "Runtime container non-root çalışır ve secret içermez",
+        "Readiness gerçek bağımlılık durumuyla değişir",
+        "Rollback planı uygulama, şema ve mesaj uyumluluğunu kapsar"
+      ],
+      "sources": [
+        {
+          "title": "Microsoft: container publish",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container"
+        },
+        {
+          "title": "Microsoft: health checks",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
         }
       ]
     }

@@ -1,6 +1,6 @@
 # C# eğitim kapsamı
 
-Bu kapsam kullanıcı tarafından onaylanan 10 seviyenin tüm konularını içerir. Başlıklar uygulamadaki kalıcı konu kimlikleriyle eşlenmiştir.
+Bu kapsam ilk 10 seviyeyi ve derin uzmanlık için eklenen 5 uygulama mühendisliği seviyesini içerir. Toplam 15 seviye, 57 ders ve 556 konu vardır. İlk 466 konunun kimlikleri ve içerikleri korunmuştur. Başlıklar uygulamadaki kalıcı konu kimlikleriyle eşlenmiştir.
 
 ## Seviye 1 — Programlama ve C# temelleri
 
@@ -681,3 +681,185 @@ Bu kapsam kullanıcı tarafından onaylanan 10 seviyenin tüm konularını içer
 - AOT/trimming uyumunu doğrula
 - Fuzzing, concurrency ve performans testleri kur
 
+
+Yeni seviyeler için önerilen önkoşullar: Seviye 11 için 2–3, seviye 12 için 7 ve 11, seviye 13 için LINQ ve 11–12, seviye 14 için 7 ve 11–13, seviye 15 için 9 ve 11–14. Konuları okumakla yetinme; her projede hata senaryosunu üret, düzelt ve kanıtını kaydet.
+
+## Seviye 11 — Tasarım kalıpları ve uygulama mimarisi
+
+### SOLID ve tasarım kalıplarını problem üzerinden seçme
+
+- `tasarim-kaliplari-01` — SOLID ve değişim eksenleri
+- `tasarim-kaliplari-02` — Strategy ve politika bileşimi
+- `tasarim-kaliplari-03` — Factory ve nesne oluşturma sınırı
+- `tasarim-kaliplari-04` — Decorator ve çapraz kesen davranışlar
+- `tasarim-kaliplari-05` — Observer ve abonelik ömrü
+- `tasarim-kaliplari-06` — Refactoring ve soyutlama maliyeti
+
+### Dependency Injection, scope ve yapılandırma
+
+- `di-yasam-01` — Composition root ve constructor injection
+- `di-yasam-02` — Transient, scoped ve singleton yaşam süreleri
+- `di-yasam-03` — Captive dependency ve scope doğrulaması
+- `di-yasam-04` — BackgroundService içinde async scope
+- `di-yasam-05` — Options pattern ve başlangıç doğrulaması
+- `di-yasam-06` — Container sahipliği ve disposable bağımlılıklar
+
+### Clean Architecture, DDD ve CQRS sınırları
+
+- `domain-mimari-01` — Katman bağımlılıkları ve ports/adapters
+- `domain-mimari-02` — Entity, value object ve invariant
+- `domain-mimari-03` — Aggregate ve transaction sınırı
+- `domain-mimari-04` — Domain events ve integration events
+- `domain-mimari-05` — CQRS ve okuma/yazma modelleri
+- `domain-mimari-06` — Modüler monolit ve servis çıkarma
+
+### Uygulama: Modüler sipariş uygulaması
+
+- Domain, application ve infrastructure bağımlılıklarını çiz
+- Fiyat politikasını Strategy ile değiştir
+- DI kapsamlarını doğrula ve modüllerin veri sahipliğini belirle
+- Bir kullanım senaryosunu bağımsız test et
+
+## Seviye 12 — ASP.NET Core ve güvenli API tasarımı
+
+### HTTP sözleşmeleri ve ASP.NET Core istek hattı
+
+- `http-pipeline-01` — Middleware sırası ve short-circuit
+- `http-pipeline-02` — Routing, binding ve endpoint filters
+- `http-pipeline-03` — HTTP metotları ve idempotency
+- `http-pipeline-04` — DTO, validation ve ProblemDetails
+- `http-pipeline-05` — Pagination, ETag ve koşullu istekler
+- `http-pipeline-06` — Streaming, request abort ve sınırlar
+
+### Kimlik doğrulama ve kaynak yetkilendirmesi
+
+- `api-yetki-01` — Authentication ve authorization ayrımı
+- `api-yetki-02` — JWT doğrulama ve claim güveni
+- `api-yetki-03` — Policy ve resource-based authorization
+- `api-yetki-04` — Cookie, bearer token ve CSRF
+- `api-yetki-05` — Çok kiracılı veri izolasyonu
+- `api-yetki-06` — 401, 403 ve bilgi sızıntısı
+
+### Girdi, secret ve API güvenlik sınırları
+
+- `api-savunma-01` — Girdi doğrulama ve mass assignment
+- `api-savunma-02` — Parametreli SQL ve çıktı kodlama
+- `api-savunma-03` — Secret yönetimi ve anahtar rotasyonu
+- `api-savunma-04` — Rate limiting ve kaynak bütçesi
+- `api-savunma-05` — CORS, HTTPS ve reverse proxy güveni
+- `api-savunma-06` — SSRF, dosya yükleme ve veri sızıntısı
+
+### Uygulama: Çok kullanıcılı sipariş API’si
+
+- Middleware sırasını kur ve hata yanıtlarını standartlaştır
+- Kimlik ve kaynak yetkilendirmesini ayrı test et
+- DTO, pagination ve iptal sözleşmelerini tanımla
+- Gövde boyutu, rate limit ve secret yönetimini yapılandır
+
+## Seviye 13 — EF Core ve veri mühendisliği
+
+### EF Core modelleme ve change tracking
+
+- `ef-model-01` — DbContext ömrü ve unit of work
+- `ef-model-02` — İlişkiler, anahtarlar ve constraint’ler
+- `ef-model-03` — Snapshot tracking ve DetectChanges
+- `ef-model-04` — AsNoTracking ve identity resolution
+- `ef-model-05` — Disconnected graph ve kontrollü güncelleme
+- `ef-model-06` — Value conversion ve model sınırları
+
+### LINQ çevirisi, SQL planları ve sorgu performansı
+
+- `ef-sorgu-01` — IQueryable sağlayıcısı ve SQL çevirisi
+- `ef-sorgu-02` — Projection ve gereksiz veri aktarımı
+- `ef-sorgu-03` — N+1, Include ve split queries
+- `ef-sorgu-04` — İndeksler ve execution plan okuma
+- `ef-sorgu-05` — Keyset pagination ve kararlı sıralama
+- `ef-sorgu-06` — Compiled query ve roundtrip bütçesi
+
+### Transaction, optimistic concurrency ve migration
+
+- `ef-tutarlilik-01` — SaveChanges ve atomik iş birimi
+- `ef-tutarlilik-02` — İzolasyon seviyeleri ve anomaliler
+- `ef-tutarlilik-03` — Optimistic concurrency token
+- `ef-tutarlilik-04` — Retry, execution strategy ve bilinmeyen commit
+- `ef-tutarlilik-05` — Migration, expand/contract ve schema drift
+- `ef-tutarlilik-06` — Constraint, raw SQL ve toplu güncelleme
+
+### Uygulama: Eşzamanlı stok rezervasyonu
+
+- Gerçek ilişkisel veritabanıyla integration testi kur
+- Projection ve keyset pagination uygula
+- Concurrency token ile yarışan güncellemeyi işle
+- Migration ve indeks değişikliğinin planını ölç
+
+## Seviye 14 — Güvenilir servisler ve dağıtık sistemler
+
+### Timeout, retry ve circuit breaker tasarımı
+
+- `http-dayaniklilik-01` — Toplam süre bütçesi ve cancellation
+- `http-dayaniklilik-02` — Transient hata sınıflandırması
+- `http-dayaniklilik-03` — Exponential backoff ve jitter
+- `http-dayaniklilik-04` — Circuit breaker ve half-open davranışı
+- `http-dayaniklilik-05` — IHttpClientFactory ve bağlantı ömrü
+- `http-dayaniklilik-06` — Idempotent retry ve hedging maliyeti
+
+### Mesaj kuyrukları, outbox ve eventual consistency
+
+- `mesaj-tutarlilik-01` — At-least-once teslim ve acknowledgement
+- `mesaj-tutarlilik-02` — Transactional outbox
+- `mesaj-tutarlilik-03` — Inbox, idempotency key ve deduplication
+- `mesaj-tutarlilik-04` — Sıralama, partition ve poison message
+- `mesaj-tutarlilik-05` — Saga, compensation ve kısmi başarısızlık
+- `mesaj-tutarlilik-06` — Eventual consistency, replay ve şema sürümleme
+
+### Background services, backpressure ve cache tutarlılığı
+
+- `worker-kapasite-01` — Hosted service yaşam döngüsü
+- `worker-kapasite-02` — Bounded channel ve overload politikası
+- `worker-kapasite-03` — Graceful shutdown ve drain
+- `worker-kapasite-04` — Concurrency, lease ve fencing
+- `worker-kapasite-05` — Cache-aside, TTL ve invalidation
+- `worker-kapasite-06` — Cache stampede ve kapasite ölçümü
+
+### Uygulama: Dayanıklı sipariş ve bildirim akışı
+
+- Toplam süre bütçesini ve retry politikasını belirle
+- Sipariş ve outbox kaydını tek transaction içinde yaz
+- Inbox/deduplication ile yinelenen mesajı işle
+- Worker kapanışını, backlog ve hata kuyruğunu gözlemle
+
+## Seviye 15 — Test, gözlemlenebilirlik ve üretim mühendisliği
+
+### Unit, integration ve contract test mühendisliği
+
+- `test-stratejisi-01` — Davranış testi ve test double seçimi
+- `test-stratejisi-02` — WebApplicationFactory ve gerçek istek hattı
+- `test-stratejisi-03` — Gerçek veritabanı ve test izolasyonu
+- `test-stratejisi-04` — Consumer-driven contract ve geriye uyumluluk
+- `test-stratejisi-05` — Property-based, fuzzing ve mutation testing
+- `test-stratejisi-06` — Zaman, rastgelelik ve flaky testler
+
+### OpenTelemetry, log korelasyonu ve servis hedefleri
+
+- `otel-slo-01` — Yapılandırılmış log ve scope
+- `otel-slo-02` — ActivitySource ve distributed tracing
+- `otel-slo-03` — Meter, counter ve histogram
+- `otel-slo-04` — OpenTelemetry pipeline ve sampling
+- `otel-slo-05` — SLI, SLO ve error budget
+- `otel-slo-06` — Alarm, yük testi ve olay incelemesi
+
+### Container, CI/CD ve güvenli sürüm geçişleri
+
+- `uretim-dagitim-01` — Tekrarlanabilir build ve artifact kimliği
+- `uretim-dagitim-02` — Multi-stage container ve en az yetki
+- `uretim-dagitim-03` — Liveness, readiness ve startup kontrolleri
+- `uretim-dagitim-04` — Yapılandırma, secret ve ortam farkları
+- `uretim-dagitim-05` — Rolling, canary ve rollback
+- `uretim-dagitim-06` — Graceful shutdown ve dağıtım tatbikatı
+
+### Uygulama: Üretime hazır bitirme projesi
+
+- Unit, integration ve contract testlerini CI aşamalarına yerleştir
+- Trace, metric ve log korelasyonunu kur
+- Container, readiness ve graceful shutdown yapılandır
+- Yük testi yap; SLO ve rollback tatbikatı hazırla

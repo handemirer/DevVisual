@@ -47,5 +47,15 @@ await useCSharp.persist.rehydrate();
 assert.equal(state().lessonId, first.id);
 assert.equal(state().topicId, first.topics[0].id);
 assert.deepEqual(state().read, [first.topics[0].id]);
+// Müfredat genişlerken mevcut kayıt korunur; yeni dersler de kaydedilebilir.
+const advanced = lessons.find(lesson => lesson.level === 15);
+state().select(advanced.id, advanced.topics.at(-1).id);
+state().markRead(advanced.topics.at(-1).id);
+await useCSharp.persist.rehydrate();
+assert.equal(state().lessonId, advanced.id);
+assert.equal(state().topicId, advanced.topics.at(-1).id);
+assert.deepEqual(state().read, [first.topics[0].id, advanced.topics.at(-1).id]);
+state().reset('level');
+assert.deepEqual(state().read, [first.topics[0].id], 'Yeni seviye sıfırlanırken eski ilerleme korunmalı');
 assert.equal(values.get('devvisual-lab-v1'), 'git-ilerlemesi-korunmali');
 console.log('C# ilerlemesi doğrulandı: seçim sınırları, yinelenen kayıtlar, kapsamlı sıfırlama, eski kayıt normalizasyonu ve Git izolasyonu.');
