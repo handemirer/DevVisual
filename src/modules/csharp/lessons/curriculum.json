@@ -1,0 +1,3716 @@
+{
+  "levels": [
+    {
+      "number": 1,
+      "title": "Programlama ve C# temelleri",
+      "goal": "Küçük programları bağımsız yazmak ve kodun akışını açıklamak.",
+      "model": [
+        "Kaynak kod",
+        "Derleyici",
+        "Çalışan program"
+      ],
+      "project": {
+        "title": "Metin analiz aracı",
+        "scenario": "Bir destek ekibi günlük kayıtlarındaki kelimeleri, sayıları ve hatalı girişleri incelemek istiyor.",
+        "tasks": [
+          "Metin al; kelime ve satır sayılarını üret",
+          "Farklı kültürlerde sayısal parsing dene",
+          "Hatalı girdiyi TryParse ile işle",
+          "Breakpoint ile akışı takip et"
+        ],
+        "acceptance": [
+          "Boş metin ve geçersiz sayı çökme üretmez",
+          "Unicode ve kültür farklarını raporda açıkla",
+          "Debug ve Release çıktılarının doğruluğunu karşılaştır"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "title": "Tip sistemi ve nesne tasarımı",
+      "goal": "Tipleri bilinçli seçmek; eşitlik, kopyalama ve nesne davranışlarını doğru tasarlamak.",
+      "model": [
+        "Tip sözleşmesi",
+        "Nesne davranışı",
+        "Eşitlik ve sahiplik"
+      ],
+      "project": {
+        "title": "Değişmez sipariş modeli",
+        "scenario": "Bir fiyat güncellemesi önceki sipariş kayıtlarını değiştirmemeli.",
+        "tasks": [
+          "Class, struct ve record sürümlerini karşılaştır",
+          "İç içe koleksiyonda shallow copy etkisini göster",
+          "Dictionary anahtarları için eşitlik tasarla"
+        ],
+        "acceptance": [
+          "Eski sipariş snapshot’ı değişmez",
+          "Eşit nesneler aynı hash kodunu üretir",
+          "Mutable struct hatasını yeniden üret ve düzelt"
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "title": "C# diline ileri düzey hâkimiyet",
+      "goal": "Karmaşık ifadelerin neden derlendiğini ve hangi davranışı ürettiğini açıklamak.",
+      "model": [
+        "İfade ve sözleşme",
+        "Derleyici bağlama",
+        "Seçilen davranış"
+      ],
+      "project": {
+        "title": "Generic API ve iterator",
+        "scenario": "Bir ekip farklı veri kaynaklarını aynı filtreleme API’sinden geçirmek istiyor.",
+        "tasks": [
+          "Generic constraints belirle",
+          "Özel iterator ve event geliştir",
+          "LINQ ve expression tree örnekleri kur",
+          "Derlenir mi ve ne çıktı verir soruları hazırla"
+        ],
+        "acceptance": [
+          "Deferred execution zamanını göster",
+          "Closure etkisini yeniden üret",
+          "Overload seçimini gerekçelendir"
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "title": "Bellek modeli ve kaynak yönetimi",
+      "goal": "Kodun bellek maliyetini ve kaynakların yaşam süresini analiz etmek.",
+      "model": [
+        "Allocation",
+        "Referans ve canlılık",
+        "Temizleme"
+      ],
+      "project": {
+        "title": "Allocation ve kaynak ömrü laboratuvarı",
+        "scenario": "Bir dosya işleme aracı zamanla daha fazla RAM kullanıyor ve dosyaları kilitli tutuyor.",
+        "tasks": [
+          "Boxing ve string allocation örneklerini ölç",
+          "Using ile dosya ömrünü sınırla",
+          "Process belleğini managed heap ile karşılaştır"
+        ],
+        "acceptance": [
+          "Kaynaklar exception yolunda da kapanır",
+          "Allocation ile retained memory ayrılır",
+          "Release ve runtime sürümünü kaydet"
+        ]
+      }
+    },
+    {
+      "number": 5,
+      "title": "Garbage collector ve bellek teşhisi",
+      "goal": "Yüksek RAM kullanımının ve GC duraklamalarının nedenini teşhis etmek.",
+      "model": [
+        "Roots",
+        "Nesil ve toplama",
+        "Retention teşhisi"
+      ],
+      "project": {
+        "title": "Bellek sızıntısı dedektifliği",
+        "scenario": "Uzun süre açık kalan uygulamada kapanmış ekran nesneleri bellekte kalıyor.",
+        "tasks": [
+          "Event, static cache ve closure sızıntılarını üret",
+          "Heap dump al ve gcroot incele",
+          "Düzeltme sonrası canlı nesne sayısını karşılaştır"
+        ],
+        "acceptance": [
+          "Tutucu referans zincirini göster",
+          "Normal GC gecikmesini leak ile karıştırma",
+          "Düzeltmeyi aynı iş yüküyle doğrula"
+        ]
+      }
+    },
+    {
+      "number": 6,
+      "title": "Belleği verimli kullanan C#",
+      "goal": "Bellek sahipliğini koruyarak allocation ve gereksiz kopyalamayı azaltmak.",
+      "model": [
+        "Buffer sahipliği",
+        "Kopyasız görünüm",
+        "Ölçülen maliyet"
+      ],
+      "project": {
+        "title": "Streaming binary parser",
+        "scenario": "Büyük sensör dosyaları RAM’e tamamen alınmadan işlenecek.",
+        "tasks": [
+          "Span ile header parse et",
+          "Endianness’i açık belirle",
+          "Parçalı girdiyi streaming işle",
+          "Pool buffer’ının sahipliğini tanımla"
+        ],
+        "acceptance": [
+          "Eksik ve bozuk girdi güvenli işlenir",
+          "Bellek kullanımı girdi boyutuyla sınırsız artmaz",
+          "Pooling sürümü doğruluğu korur"
+        ]
+      }
+    },
+    {
+      "number": 7,
+      "title": "Async, concurrency ve bellek görünürlüğü",
+      "goal": "Eş zamanlı kodun doğruluğunu, bellek görünürlüğünü ve maliyetini birlikte değerlendirmek.",
+      "model": [
+        "İşin yaşam süresi",
+        "Koordinasyon",
+        "Görünürlük ve ilerleme"
+      ],
+      "project": {
+        "title": "Sınırlı eş zamanlı işleyici",
+        "scenario": "Binlerce veri parçası işlenirken tüketici yavaşlayabiliyor; RAM’in sınırsız büyümemesi gerekiyor.",
+        "tasks": [
+          "Bounded channel kur",
+          "Cancellation ve temizlemeyi tasarla",
+          "Race condition örneğini düzelt",
+          "Async state machine IL çıktısını incele"
+        ],
+        "acceptance": [
+          "Bellek ve concurrency sınırlıdır",
+          "Hata ve iptal halinde kaynaklar kapanır",
+          "Throughput ve latency birlikte ölçülür"
+        ]
+      }
+    },
+    {
+      "number": 8,
+      "title": "CLR, JIT ve düşük seviye çalışma",
+      "goal": "Kaynak kodun runtime ve makine kodu düzeyindeki davranışını açıklamak.",
+      "model": [
+        "C# ve IL",
+        "Runtime ve JIT",
+        "Makine kodu"
+      ],
+      "project": {
+        "title": "Runtime ve interop incelemesi",
+        "scenario": "Native bir veri işleme kütüphanesi managed uygulamaya bağlanacak; callback ve buffer ömrü korunmalı.",
+        "tasks": [
+          "IL ve disassembly incele",
+          "Native kaynak sahipliğini tasarla",
+          "Collectible assembly yükle ve unload sorununu üret",
+          "JIT ve AOT kısıtlarını karşılaştır"
+        ],
+        "acceptance": [
+          "Native kaynaklar dengeli temizlenir",
+          "Unloading’i engelleyen root bulunur",
+          "Mimari ve runtime sürümü raporlanır"
+        ]
+      }
+    },
+    {
+      "number": 9,
+      "title": "Ölçüm, profiling ve optimizasyon",
+      "goal": "Performans sorununu ölçümle bulmak ve yapılan iyileştirmeyi kanıtlamak.",
+      "model": [
+        "Hedef ve baseline",
+        "Ölçüm",
+        "Doğrulanan sonuç"
+      ],
+      "project": {
+        "title": "Profiler raporu",
+        "scenario": "Bir veri işleyici düşük ortalama sürede çalışsa da p99 gecikmesi yüksek.",
+        "tasks": [
+          "CPU, allocation ve GC trace topla",
+          "Cold start ve steady-state ayır",
+          "Heap snapshot karşılaştır",
+          "Önce-sonra raporu hazırla"
+        ],
+        "acceptance": [
+          "Doğruluk korunur",
+          "Gerçek iş yükünde iyileşme doğrulanır",
+          "Ölçüm belirsizliği ve ortam bilgisi verilir"
+        ]
+      }
+    },
+    {
+      "number": 10,
+      "title": "Dil, derleyici ve kütüphane mühendisliği",
+      "goal": "Bilinmeyen davranışı bağımsız araştırmak; geliştirme araçları ve ölçülebilir kütüphaneler üretmek.",
+      "model": [
+        "Spesifikasyon",
+        "Araç ve API",
+        "Kanıtlanan sözleşme"
+      ],
+      "project": {
+        "title": "Analyzer ve performans bütçeli kütüphane",
+        "scenario": "Ekip sıcak yollarda allocation ve yanlış async kullanımını erken yakalamak istiyor.",
+        "tasks": [
+          "Roslyn analyzer ve code fix geliştir",
+          "Incremental source generator ekle",
+          "AOT/trimming uyumunu doğrula",
+          "Fuzzing, concurrency ve performans testleri kur"
+        ],
+        "acceptance": [
+          "Tanı doğru konumda ve anlaşılırdır",
+          "Code fix derlenebilir sonuç üretir",
+          "API uyumluluğu ve performans bütçesi raporlanır"
+        ]
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "calistirma",
+      "level": 1,
+      "title": "Programın yapısı ve çalıştırılması",
+      "topics": [
+        {
+          "id": "calistirma-01",
+          "title": "C# ile .NET arasındaki ilişki",
+          "explanation": "C# kaynak dilidir; .NET runtime ve temel kütüphaneleri sağlar. Dil özelliği ile kütüphane API’sinin sürümünü ayrı değerlendirmek gerekir."
+        },
+        {
+          "id": "calistirma-02",
+          "title": "SDK ve geliştirme ortamı kurulumu",
+          "explanation": "SDK derleyici ve dotnet araçlarını içerir; yalnızca runtime kurmak geliştirme için yeterli değildir. dotnet --info ile kurulu ortamı incele."
+        },
+        {
+          "id": "calistirma-03",
+          "title": "İlk konsol uygulaması",
+          "explanation": "Konsol projesi giriş alıp çıktı üreten en küçük çalışma alanıdır. İlk örneği dotnet new console ve dotnet run ile çalıştır."
+        },
+        {
+          "id": "calistirma-04",
+          "title": "Proje, kaynak dosya ve giriş noktası",
+          "explanation": "csproj hedef framework ve derleme ayarlarını taşır; .cs dosyaları programın kaynaklarıdır. Yürütülebilir program tek bir giriş noktasından başlar."
+        },
+        {
+          "id": "calistirma-05",
+          "title": "Top-level statements ve klasik Main metodu",
+          "explanation": "Top-level ifadelerde derleyici giriş metodunu oluşturur. Klasik Main aynı başlangıcı açık bir sınıf ve metotla gösterir; iki modeli aynı projede dikkatsizce karıştırma."
+        },
+        {
+          "id": "calistirma-06",
+          "title": "Programın derlenmesi ve çalıştırılması",
+          "explanation": "Derleme kaynak kodu assembly’ye dönüştürür; çalıştırma runtime üzerinden yürütür. Derlenebilmek, tüm girdilerde doğru sonuç üretmek anlamına gelmez."
+        },
+        {
+          "id": "calistirma-07",
+          "title": "Debug ve Release yapılandırmaları",
+          "explanation": "Yapılandırmalar optimizasyon ve debug bilgilerini etkiler. Performansı debugger bağlı olmadan Release yapılandırmasında ölç; doğruluğu iki yapılandırmada da koru."
+        },
+        {
+          "id": "calistirma-08",
+          "title": "Derleyici hataları ve warning mesajlarını okuma",
+          "explanation": "Hata derlemeyi durdurur; warning olası problemi bildirir. Önce ilk anlamlı hatayı ve dosya/satırını incele, tüm uyarıları körlemesine susturma."
+        },
+        {
+          "id": "calistirma-09",
+          "title": "Debugger, breakpoint, adım adım çalıştırma ve değişken inceleme",
+          "explanation": "Breakpoint yürütmeyi durdurur; step over ve step into farklı ayrıntı düzeylerinde ilerler. Watch ifadelerinin property veya metot çalıştırabileceğini bil."
+        }
+      ],
+      "scenario": "Ekipte bir uygulama geliştiricide çalışıyor, CI üzerinde farklı SDK ile derlenmiyor. Proje hedefini, SDK bilgisini ve derleme çıktısını karşılaştır.",
+      "tips": [
+        "SDK sürümünü dotnet --info ile kaydet.",
+        "Top-level statements tek dosyada kullanılabilir; diğer dosyalarda tipler bulunabilir.",
+        "Debugger altında ölçülen süreyi üretim performansı sanma."
+      ],
+      "code": "// Program.cs — top-level statements\nConsole.WriteLine(\"Merhaba, DevVisual!\");\n// Terminal:\n// dotnet new console -n IlkProgram\n// dotnet run --project IlkProgram\n// dotnet build IlkProgram -c Release",
+      "walkthrough": "Console.WriteLine başlangıçta çalışır. Terminal satırları C# kodu değildir; proje üretmek ve derlemek için ayrı kullanılır.",
+      "exercise": "Aynı programı klasik static void Main ile yeniden yaz.",
+      "acceptance": [
+        "İki giriş modeli aynı metni üretir",
+        "SDK ve hedef framework farkını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# başlangıç rehberi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "temel-tipler",
+      "level": 1,
+      "title": "Değişkenler ve temel tipler",
+      "topics": [
+        {
+          "id": "temel-tipler-01",
+          "title": "Değişken tanımlama, başlatma ve atama",
+          "explanation": "Değişkenin tipi alabileceği değerleri belirler. Yerel değişken kullanılmadan önce atanmış olmalıdır; sonraki atama önceki değeri değiştirir."
+        },
+        {
+          "id": "temel-tipler-02",
+          "title": "Sabitler ve const",
+          "explanation": "const derleme zamanında bilinen değer içindir ve sonradan atanamaz. Kütüphane sabitlerinin tüketici assembly’ye gömülebildiğini unutma."
+        },
+        {
+          "id": "temel-tipler-03",
+          "title": "Sayısal tipler, bool, char ve string",
+          "explanation": "Sayısal tipler hesaplama, bool karar, char UTF-16 kod birimi, string metin tutar. Char tek bir görünür karakteri her zaman temsil etmez."
+        },
+        {
+          "id": "temel-tipler-04",
+          "title": "Açık tip bildirimi ve var",
+          "explanation": "var derleyicinin statik tip çıkarmasıdır; dynamic değildir. İlk atamadan çıkarılan tip sonraki atamalarda değişmez."
+        },
+        {
+          "id": "temel-tipler-05",
+          "title": "Tiplerin değer aralıkları",
+          "explanation": "Her tam sayı tipinin alt ve üst sınırı vardır. Kullanıcı veya dosya girdisini sınır kontrolü olmadan daha dar tipe aktarma."
+        },
+        {
+          "id": "temel-tipler-06",
+          "title": "İkili sayı sistemi",
+          "explanation": "Bitler iki tabanındaki basamaklardır; 0b öneki ikili literal yazmayı sağlar. Bayraklar ve protokol alanları bu gösterimle anlaşılır."
+        },
+        {
+          "id": "temel-tipler-07",
+          "title": "Signed ve unsigned gösterim",
+          "explanation": "Signed tip negatif sayıları da temsil eder; unsigned aralığı sıfırdan başlar. Karışık aritmetik dönüşüm ve taşma kurallarını değiştirebilir."
+        },
+        {
+          "id": "temel-tipler-08",
+          "title": "Two’s complement",
+          "explanation": "İşaretli tam sayılarda negatif değerlerin ikili temsilini açıklar. En küçük negatif değerin pozitif karşılığı aynı tipe sığmayabilir."
+        },
+        {
+          "id": "temel-tipler-09",
+          "title": "Floating-point hassasiyeti ve yuvarlama",
+          "explanation": "İkili kayan nokta tüm ondalık kesirleri tam temsil etmez. Hesapların büyüklüğüne uygun tolerans ve açık yuvarlama kuralı kullan."
+        },
+        {
+          "id": "temel-tipler-10",
+          "title": "NaN, pozitif ve negatif infinity",
+          "explanation": "IEEE kayan nokta özel değerler içerir. NaN için eşitlik karşılaştırması yerine IsNaN kullan; bu değerleri girdi doğrulamasında ele al."
+        },
+        {
+          "id": "temel-tipler-11",
+          "title": "float, double ve decimal seçimi",
+          "explanation": "float daha az hassasiyet, double genel hesaplama, decimal ondalık tabanlı işlemler için seçeneklerdir. Decimal da sonlu hassasiyete ve taşma sınırına sahiptir."
+        }
+      ],
+      "scenario": "Bir fatura programı para, ürün adedi ve sensör verisini aynı tipte tutarsa hassasiyet ve sınır hataları oluşur. Alanın anlamına uygun tip seç.",
+      "tips": [
+        "Para için decimal kullanmak vergi ve yuvarlama politikasını belirleme zorunluluğunu kaldırmaz.",
+        "var kullanımı statik tip güvenliğini azaltmaz.",
+        "NaN kontrolünü x == double.NaN ile yapma."
+      ],
+      "code": "decimal birimFiyat = 19.95m;\nint adet = 3;\ndecimal toplam = birimFiyat * adet;\nConsole.WriteLine(toplam); // tr-TR: 59,85; en-US: 59.85\nConsole.WriteLine(double.IsNaN(0.0 / 0.0)); // True",
+      "walkthrough": "m soneki decimal literal üretir. Aynı sayısal değer kültüre bağlı farklı yazdırılır; IsNaN özel değeri açıkça tanır.",
+      "exercise": "0.1 + 0.2 işlemini double ve decimal ile karşılaştır; sınırları int.MaxValue ile incele.",
+      "acceptance": [
+        "Değer ile ekranda biçimlendirilmiş metni ayır",
+        "Kayan nokta farkının nedenini açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# başlangıç rehberi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "operator-donusum",
+      "level": 1,
+      "title": "Operatörler ve dönüşümler",
+      "topics": [
+        {
+          "id": "operator-donusum-01",
+          "title": "Aritmetik, karşılaştırma ve mantıksal operatörler",
+          "explanation": "Tam sayı bölmesi kesir kısmını atar. Karşılaştırmalar bool üretir; mantıksal operatörlerle doğrulama koşulları birleştirilir."
+        },
+        {
+          "id": "operator-donusum-02",
+          "title": "Atama, artırma ve azaltma operatörleri",
+          "explanation": "Ön ek ve son ek ifadelerin döndürdüğü değer farklıdır. Bir ifadede çok sayıda yan etki oluşturmaktan kaçın."
+        },
+        {
+          "id": "operator-donusum-03",
+          "title": "Bit operatörleri ve bit kaydırma",
+          "explanation": "&, yazılan dikey çizgi operatörü, ^ ve ~ bitleri işler; kaydırmalar bit konumlarını değiştirir. Bool operatörleriyle tam sayı bit işlemlerini ayır."
+        },
+        {
+          "id": "operator-donusum-04",
+          "title": "İşlem öncelikleri ve ilişkilendirme",
+          "explanation": "Öncelik hangi işlemin önce gruplanacağını, ilişkilendirme aynı öncelikteki gruplamayı belirler. Okunabilirlik için gerekli yerde parantez ekle."
+        },
+        {
+          "id": "operator-donusum-05",
+          "title": "Kısa devre değerlendirme",
+          "explanation": "&& ve çift dikey çizgi operatörü sağ tarafı gerekmedikçe değerlendirmez. Null kontrolünden sonra üyeye erişmek bu davranıştan yararlanır."
+        },
+        {
+          "id": "operator-donusum-06",
+          "title": "Örtük ve açık tip dönüşümleri",
+          "explanation": "Örtük dönüşüm her zaman hassasiyet kaybı olmayacağı anlamına gelmez; int’ten float’a örnek verilebilir. Açık dönüşüm niyet bildirir, doğruluk garantisi değildir."
+        },
+        {
+          "id": "operator-donusum-07",
+          "title": "Casting, parsing ve TryParse",
+          "explanation": "Casting bir değerin tip dönüşümüdür; parsing metin yorumlar. Beklenen hatalı kullanıcı girdisi için TryParse ile sonuç kontrolü yap."
+        },
+        {
+          "id": "operator-donusum-08",
+          "title": "Sayısal taşmalar",
+          "explanation": "Sonuç hedef tipin aralığına sığmadığında taşma oluşur. Kaynak değer kadar ara hesapların aralığını da değerlendir."
+        },
+        {
+          "id": "operator-donusum-09",
+          "title": "checked ve unchecked",
+          "explanation": "checked uygun tam sayı işlemlerinde taşmayı exception’a dönüştürür; unchecked ilgili işlemlerde sarılmaya izin verir. Bu sözcükler tüm sayısal doğruluk sorunlarını çözmez."
+        }
+      ],
+      "scenario": "Stok adedi ile koli miktarı çarpılıyor; ara hesap int sınırını aşarsa sistem negatif stok üretebilir. Taşmayı açıkça yönet.",
+      "tips": [
+        "Bölmeden önce uygun tipe dönüştür; sonradan cast kaybolan kesri geri getirmez.",
+        "checked kapsamı çağrılan metotların gövdesine otomatik taşınmaz.",
+        "TryParse başarısızsa out değerini başarılı sonuç gibi kullanma."
+      ],
+      "code": "Console.WriteLine(5 / 2);       // 2\nConsole.WriteLine(5 / 2.0);     // 2.5 (sayısal değer)\nint koli = 50_000;\nlong stok = checked((long)koli * 50_000);\nConsole.WriteLine(stok);       // 2500000000",
+      "walkthrough": "Çarpımdan önce long dönüşümü yapılır; aksi halde int çarpımı taşabilir. Bölmedeki operand tipi sonucu değiştirir.",
+      "exercise": "checked ile int.MaxValue + bir değişken üzerinden 1 işlemini dene ve exception’ı gözle.",
+      "acceptance": [
+        "Taşmanın hangi işlemde oluştuğunu göster",
+        "Güvenli genişletmenin işlemden önce yapılmasını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# başlangıç rehberi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "akis-metotlar",
+      "level": 1,
+      "title": "Kontrol akışı ve metotlar",
+      "topics": [
+        {
+          "id": "akis-metotlar-01",
+          "title": "if, else ve switch",
+          "explanation": "Koşullar yürütülecek yolu belirler. Switch sabit veya pattern seçeneklerinde kararları düzenler; erişilemeyen ve eksik durumları kontrol et."
+        },
+        {
+          "id": "akis-metotlar-02",
+          "title": "for, while, do-while ve foreach",
+          "explanation": "for sayaçlı, while koşullu, do-while en az bir kez, foreach yineleme protokolüne göre çalışır. Seçimi verinin akışına göre yap."
+        },
+        {
+          "id": "akis-metotlar-03",
+          "title": "İç içe koşullar ve döngüler",
+          "explanation": "İç döngü dış döngünün her turunda çalışabilir. Veri büyüdüğünde toplam işlem sayısının katlanmasını göz önünde bulundur."
+        },
+        {
+          "id": "akis-metotlar-04",
+          "title": "break, continue ve return",
+          "explanation": "break en yakın döngü/switch’i bitirir, continue döngünün sonraki turuna geçer, return metottan çıkar. Üçünün etki sınırı farklıdır."
+        },
+        {
+          "id": "akis-metotlar-05",
+          "title": "Metot tanımlama ve çağırma",
+          "explanation": "Metot bir davranışı isimlendirir. Tek sorumluluklu metot akış takibini ve ayrı doğrulamayı kolaylaştırır."
+        },
+        {
+          "id": "akis-metotlar-06",
+          "title": "Parametreler ve dönüş değerleri",
+          "explanation": "Parametre sözleşmesi girdiyi, dönüş tipi sonucu ifade eder. Sonucu geri döndürmek ile paylaşılan nesneyi değiştirmek farklı davranışlardır."
+        },
+        {
+          "id": "akis-metotlar-07",
+          "title": "Metot aşırı yükleme",
+          "explanation": "Aynı isim farklı parametre listeleriyle kullanılabilir. Yalnız dönüş tipini değiştirerek overload yapılamaz."
+        },
+        {
+          "id": "akis-metotlar-08",
+          "title": "İsimlendirilmiş ve isteğe bağlı parametreler",
+          "explanation": "İsimlendirilmiş argüman çağrının anlamını açar. İsteğe bağlı parametrelerin varsayılan değerleri çağıran kodun derlenme zamanına bağlı olabilir."
+        },
+        {
+          "id": "akis-metotlar-09",
+          "title": "params temelleri",
+          "explanation": "Değişken sayıda argümanı tek parametreyle kabul etmeyi sağlar. Dizinin veya koleksiyonun oluşturulma maliyeti ileri seviyede incelenir."
+        },
+        {
+          "id": "akis-metotlar-10",
+          "title": "Yerel fonksiyonlar",
+          "explanation": "Bir metot içinde kullanılan yardımcı davranışı sınırlı kapsamda tanımlar. Dış değişken yakalamak yaşam süresini ve maliyeti etkileyebilir."
+        },
+        {
+          "id": "akis-metotlar-11",
+          "title": "Özyineleme",
+          "explanation": "Fonksiyon kendini çağırır; bitiş koşulu zorunludur. Derin girdi stack taşmasına yol açabilir; uygun durumda iteratif çözüm kullan."
+        },
+        {
+          "id": "akis-metotlar-12",
+          "title": "Kapsam ve değişkenlerin yaşam süresine giriş",
+          "explanation": "Kapsam ismin nerede erişilebilir olduğunu belirler. Nesnenin bellekten ne zaman temizleneceği yalnız sözdizimsel kapsama bakılarak söylenemez."
+        }
+      ],
+      "scenario": "Sipariş satırları arasında iptal edilenleri atlayıp toplam hesaplayan bir yardımcı fonksiyon yaz. Negatif veya boş girdiyi erken kontrol et.",
+      "tips": [
+        "Özyinelemede hem bitiş koşulunu hem maksimum derinliği düşün.",
+        "return sonrasında kaynak temizliği finally/using üzerinden yine gerçekleşebilir.",
+        "İç içe döngülerde veri büyümesini hesapla."
+      ],
+      "code": "static decimal Toplam(params decimal[] fiyatlar)\n{\n    decimal sonuc = 0;\n    foreach (decimal fiyat in fiyatlar)\n    {\n        if (fiyat < 0) continue;\n        sonuc += fiyat;\n    }\n    return sonuc;\n}\nConsole.WriteLine(Toplam(10m, -3m, 20m)); // 30",
+      "walkthrough": "continue yalnız negatif satırı atlar. Sonuç metodun sonunda döner; parametre listesinden dizi oluşturulabilir.",
+      "exercise": "Metoda negatif fiyatı atlamak veya hata saymak için named/optional parametreli bir seçenek ekle.",
+      "acceptance": [
+        "Boş girdi için 0 üret",
+        "Negatif girdi politikasını test et"
+      ],
+      "sources": [
+        {
+          "title": "C# başlangıç rehberi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "temel-veri",
+      "level": 1,
+      "title": "Temel veri işlemleri",
+      "topics": [
+        {
+          "id": "temel-veri-01",
+          "title": "Konsoldan veri alma ve çıktı üretme",
+          "explanation": "Console.ReadLine null döndürebilir. Girdiyi doğrulamadan dönüştürme; kullanıcıya anlamlı sonuç ver."
+        },
+        {
+          "id": "temel-veri-02",
+          "title": "String işlemleri ve biçimlendirme",
+          "explanation": "Arama, kırpma, birleştirme ve formatlama yeni string üretebilir. Değerin gösterimi ile saklama biçimini ayrı tut."
+        },
+        {
+          "id": "temel-veri-03",
+          "title": "Escape karakterleri",
+          "explanation": "Yeni satır ve ters eğik çizgi gibi karakterleri kaynakta temsil eder. Dosya yolu yazarken escape kurallarını kontrol et."
+        },
+        {
+          "id": "temel-veri-04",
+          "title": "Interpolated, verbatim ve raw string ifadeleri",
+          "explanation": "Interpolation değişkenleri metne katar; verbatim ve raw biçimler kaçış ihtiyacını azaltır. Raw literal girintisi sonuç metnini etkiler."
+        },
+        {
+          "id": "temel-veri-05",
+          "title": "Tek boyutlu, çok boyutlu ve jagged diziler",
+          "explanation": "Çok boyutlu dizi dikdörtgen yapıdır; jagged dizi dizilerden oluşur ve satır boyları farklı olabilir. Eleman ve satır erişimini ayır."
+        },
+        {
+          "id": "temel-veri-06",
+          "title": "İndeksler ve aralıklar",
+          "explanation": "^ sondan indeks, .. aralık tanımlar. Array üzerinde dilim yeni dizi oluşturabilir; Span dilimi kopya üretmez."
+        },
+        {
+          "id": "temel-veri-07",
+          "title": "Enum temelleri ve flags",
+          "explanation": "Enum isimlendirilmiş sayısal değerlerdir; her sayısal değer tanımlı üye olmak zorunda değildir. Flags üyeleri birleştirmek için uygun bit değerleri seç."
+        },
+        {
+          "id": "temel-veri-08",
+          "title": "Tarih, saat ve süre işlemleri",
+          "explanation": "DateTime, DateTimeOffset ve TimeSpan farklı anlamlar taşır. Bir anı, yerel saati ve geçen süreyi birbirine karıştırma."
+        },
+        {
+          "id": "temel-veri-09",
+          "title": "Unicode, UTF-16, Unicode scalar value ve Rune",
+          "explanation": "String Length UTF-16 kod birimlerini sayar. Rune scalar value temsil eder; tek kullanıcı karakteri birden fazla scalar value içerebilir."
+        },
+        {
+          "id": "temel-veri-10",
+          "title": "Kültüre bağlı parsing ve biçimlendirme",
+          "explanation": "Virgül ve nokta farklı kültürlerde farklı anlam taşır. Makine formatlarında açık CultureInfo kullan."
+        },
+        {
+          "id": "temel-veri-11",
+          "title": "Kültüre bağlı ve ordinal string karşılaştırma",
+          "explanation": "Kullanıcı metni kültürel, protokol anahtarı genellikle ordinal kurallarla karşılaştırılır. Türkçe I/i davranışı bu ayrımı görünür kılar."
+        },
+        {
+          "id": "temel-veri-12",
+          "title": "Exception ve hata ayıklama temelleri",
+          "explanation": "Exception akışını stack trace üzerinden takip et. Beklenen giriş hatasını doğrulama ile ayır, exception’ı sessizce yutma."
+        },
+        {
+          "id": "temel-veri-13",
+          "title": "İsimlendirme, yorumlar ve okunabilir kod",
+          "explanation": "İsim neyi temsil ettiğini, yorum kararın nedenini açıklamalıdır. Kodun söylediğini tekrar eden yorum yerine sınırı ve niyeti yaz."
+        }
+      ],
+      "scenario": "Farklı ülkelerden gelen CSV fiyatları ve emoji içeren destek mesajları işleniyor. Ondalık ayırıcıyı ve karakter sayımını açık kurallarla yönet.",
+      "tips": [
+        "String.Length görünen karakter sayısı değildir.",
+        "Makineye yazılan sayılarda InvariantCulture kullan.",
+        "Array range işleminin kopya ürettiğini unutma."
+      ],
+      "code": "using System.Globalization;\nusing System.Text;\nstring mesaj = \"A🙂\";\nConsole.WriteLine(mesaj.Length); // 3 UTF-16 kod birimi\nint scalarSayisi = 0;\nforeach (Rune rune in mesaj.EnumerateRunes()) scalarSayisi++;\nConsole.WriteLine(scalarSayisi); // 2 scalar value\nbool ok = decimal.TryParse(\"19.95\", NumberStyles.Number,\n    CultureInfo.InvariantCulture, out decimal fiyat);\nConsole.WriteLine(ok); // True",
+      "walkthrough": "Emoji iki UTF-16 kod birimi kullanır. Rune sayısı da tüm metinlerde kullanıcı tarafından görülen karakter sayısına eşit değildir.",
+      "exercise": "tr-TR ve en-US ile aynı fiyat metnini parse et; ordinal ve kültürel karşılaştırmaları karşılaştır.",
+      "acceptance": [
+        "Kültür seçimini açık yap",
+        "Kod birimi, scalar value ve görünür karakter farkını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# başlangıç rehberi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        }
+      ]
+    },
+    {
+      "id": "sinif-nesne",
+      "level": 2,
+      "title": "Sınıflar ve nesneler",
+      "topics": [
+        {
+          "id": "sinif-nesne-01",
+          "title": "Sınıf, nesne, alan ve metot",
+          "explanation": "Sınıf davranış ve verinin tanımıdır; nesne onun örneğidir. Alan nesne durumunu, metot bu durumla yapılabilecek işlemi temsil eder."
+        },
+        {
+          "id": "sinif-nesne-02",
+          "title": "Constructor ve constructor overload",
+          "explanation": "Constructor yeni örneğin başlangıç koşullarını kurar. Farklı overload’ların aynı doğrulama kurallarını uygulamasını sağla."
+        },
+        {
+          "id": "sinif-nesne-03",
+          "title": "this ve base",
+          "explanation": "this mevcut örneğe, base temel sınıf üyelerine erişir. Base erişimi sanal çağrı beklentisini değiştirebilir."
+        },
+        {
+          "id": "sinif-nesne-04",
+          "title": "Constructor chaining",
+          "explanation": "this(...) ve base(...) başlangıç işlerini başka constructor’a devreder. Ortak doğrulamayı tekrar yazmadan tek akışta toplar."
+        },
+        {
+          "id": "sinif-nesne-05",
+          "title": "Nesne başlatıcılar",
+          "explanation": "Constructor sonrasında erişilebilir property ve alanları atar. Başlatıcıların çalışması constructor doğrulamasının yerine geçmez."
+        },
+        {
+          "id": "sinif-nesne-06",
+          "title": "Primary constructors",
+          "explanation": "Parametreleri tip bildirimi üzerinde tanımlar. Class/struct primary constructor parametreleri kendiliğinden public property olmaz; record davranışı farklıdır."
+        },
+        {
+          "id": "sinif-nesne-07",
+          "title": "Property ve indexer",
+          "explanation": "Property erişimi içinde hesaplama veya doğrulama çalışabilir; indexer nesneyi indeksle erişilebilir yapar. Sık erişilen üyelerde gizli pahalı işlemlerden kaçın."
+        },
+        {
+          "id": "sinif-nesne-08",
+          "title": "Auto-properties ve backing fields",
+          "explanation": "Auto-property için alanı derleyici oluşturur. Özel backing field erişim kuralı veya doğrulama gerektiğinde kontrol sağlar."
+        },
+        {
+          "id": "sinif-nesne-09",
+          "title": "Erişim belirleyiciler",
+          "explanation": "public, private, protected ve internal API sınırlarını belirler. En dar gerekli erişimi kullan; assembly sınırını namespace sınırıyla karıştırma."
+        },
+        {
+          "id": "sinif-nesne-10",
+          "title": "static, readonly, const, init ve required",
+          "explanation": "Static tipe aittir; readonly atamayı sınırlar; const derleme sabitidir. Init başlatma zamanı atamasını, required çağıranın atama yükümlülüğünü belirtir; null olmayan değer garantisi tek başına değildir."
+        },
+        {
+          "id": "sinif-nesne-11",
+          "title": "Nested types ve partial tipler/üyeler",
+          "explanation": "Nested tip kapsayıcı tipe bağlı isim alanı sağlar; partial bildirimler tek tipe birleşir. Partial kullanımında üye ve sürüm kurallarını gözet."
+        },
+        {
+          "id": "sinif-nesne-12",
+          "title": "Namespace, using, alias ve global using",
+          "explanation": "Namespace isimleri düzenler; using isim çözümünü kolaylaştırır. Global using tüm derleme birimlerini etkiler; alias belirsiz adları ayırır."
+        }
+      ],
+      "scenario": "Bir ürünün adı boş, fiyatı negatif olamamalı. Constructor ve property tasarımıyla bu kuralları bütün oluşturma yollarında koru.",
+      "tips": [
+        "required doğrulama değildir; required string yine null atanabilir.",
+        "Primary constructor parametresiyle property’yi ayrı düşün.",
+        "Constructor içinden virtual metot çağırmak henüz başlatılmamış türetilmiş duruma erişebilir."
+      ],
+      "code": "public sealed class Urun\n{\n    public string Ad { get; }\n    public decimal Fiyat { get; }\n    public Urun(string ad, decimal fiyat)\n    {\n        ArgumentException.ThrowIfNullOrWhiteSpace(ad);\n        if (fiyat < 0) throw new ArgumentOutOfRangeException(nameof(fiyat));\n        Ad = ad;\n        Fiyat = fiyat;\n    }\n}",
+      "walkthrough": "Constructor iki invarianti korur; nesne oluşturulduktan sonra public setter olmadığı için değerler normal API üzerinden değişmez.",
+      "exercise": "İkinci constructor’ı constructor chaining ile ekle.",
+      "acceptance": [
+        "Her constructor aynı doğrulamayı uygular",
+        "Geçersiz nesne oluşturulamaz"
+      ],
+      "sources": [
+        {
+          "title": "C# tip sistemi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/"
+        }
+      ]
+    },
+    {
+      "id": "kopyalama",
+      "level": 2,
+      "title": "Tip ve kopyalama davranışları",
+      "topics": [
+        {
+          "id": "kopyalama-01",
+          "title": "Değer tipleri ve referans tipleri",
+          "explanation": "Değer tipi atamada kendi değerini, referans tipi nesneye referansı kopyalar. Kopyalanan struct’ın referans alanları aynı nesneyi göstermeye devam edebilir."
+        },
+        {
+          "id": "kopyalama-02",
+          "title": "Atama, kopyalama ve nesne paylaşımı",
+          "explanation": "İki değişken aynı nesneyi gösterebilir. Birinden yapılan nesne değişikliği diğerinden görünür; değişkeni yeniden atamak ise diğer referansı değiştirmez."
+        },
+        {
+          "id": "kopyalama-03",
+          "title": "Parametre aktarım semantiği",
+          "explanation": "Varsayılan aktarım değerce yapılır; referans tipinde kopyalanan şey referanstır. Nesneyi değiştirmek ile çağıranın değişkenini yeniden atamak ayrı işlemlerdir."
+        },
+        {
+          "id": "kopyalama-04",
+          "title": "struct, class, record class ve record struct",
+          "explanation": "Class referans, struct değer tipidir; record ailesi değer eşitliği ve kopyalama yardımcıları üretir. Record otomatik olarak derin değişmez değildir."
+        },
+        {
+          "id": "kopyalama-05",
+          "title": "readonly struct",
+          "explanation": "Örnek alanlarının constructor dışında değiştirilmesini sınırlar. İçindeki referansın gösterdiği değişebilir nesneyi dondurmaz."
+        },
+        {
+          "id": "kopyalama-06",
+          "title": "default(T) ve sıfırlama",
+          "explanation": "Default referans için null, sayısal değerler için sıfır tabanlı durum üretir. Default değer her zaman alanının geçerli iş durumu olmayabilir."
+        },
+        {
+          "id": "kopyalama-07",
+          "title": "Struct constructor davranışları",
+          "explanation": "new ile constructor çağrısı ve default ile sıfır durum üretimi farklıdır. Struct dizilerinin elemanları başlangıçta default değerdedir."
+        },
+        {
+          "id": "kopyalama-08",
+          "title": "Mutable struct kaynaklı kopyalama hataları",
+          "explanation": "Property veya koleksiyondan alınan struct çoğu durumda kopyadır. Kopyadaki değişiklik asıl saklanan değere dönmeyebilir."
+        },
+        {
+          "id": "kopyalama-09",
+          "title": "Shallow copy ve deep copy",
+          "explanation": "Shallow copy iç referansları paylaşır; deep copy seçilen nesne grafiğini yeniden oluşturur. Döngüler ve paylaşılması gereken nesneler için açık politika gerekir."
+        },
+        {
+          "id": "kopyalama-10",
+          "title": "İç içe değişebilir nesneler",
+          "explanation": "Readonly alan veya init property içine List konması listenin içeriğini değişmez yapmaz. Sahiplik ve dışarı açılan görünümü denetle."
+        },
+        {
+          "id": "kopyalama-11",
+          "title": "Boxing ve unboxing",
+          "explanation": "Değer tipini object veya uygun interface’e çevirmek heap üzerinde kutu oluşturabilir. Unboxing doğru kutulanmış tipi ister; sayısal dönüşüm yerine geçmez."
+        },
+        {
+          "id": "kopyalama-12",
+          "title": "Nesne kimliği ve değer eşitliği",
+          "explanation": "Aynı referansı göstermek ile içerik olarak eşit olmak farklıdır. ReferenceEquals ve Equals beklentilerini tip sözleşmesinde belirt."
+        },
+        {
+          "id": "kopyalama-13",
+          "title": "Değişmezlik ve with ifadeleri",
+          "explanation": "With yeni record kopyası oluşturur ve seçilen üyeleri değiştirir. Referans alanlar varsayılan olarak paylaşılır; derin kopya varsayma."
+        }
+      ],
+      "scenario": "Sipariş kaydını with ile kopyaladığında içindeki List paylaşılırsa eski sipariş de değişebilir. Snapshot tasarımında bu sınırı göster.",
+      "tips": [
+        "Readonly referans nesneyi dondurmaz.",
+        "Boxing sırasında yapılan kopya sonradan değişen struct’ı takip etmez.",
+        "Struct seçimini yalnız heap allocation korkusuyla yapma."
+      ],
+      "code": "var ilk = new Siparis(new List<string> { \"Kalem\" });\nvar kopya = ilk with { };\nkopya.Urunler.Add(\"Defter\");\nConsole.WriteLine(ilk.Urunler.Count); // 2: liste paylaşılıyor\npublic sealed record Siparis(List<string> Urunler);",
+      "walkthrough": "Record kopyalanır fakat List referansı kopyalandığından aynı koleksiyon kullanılır. With derin değişmezlik sağlamaz.",
+      "exercise": "List yerine immutable veri kullanarak eski snapshot’ı koru.",
+      "acceptance": [
+        "Paylaşılan referansı önce göster",
+        "Yeni tasarımda eski kayıt değişmez"
+      ],
+      "sources": [
+        {
+          "title": "C# tip sistemi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/"
+        }
+      ]
+    },
+    {
+      "id": "baslatma-polimorfizm",
+      "level": 2,
+      "title": "Başlatılma ve nesne yönelimli davranışlar",
+      "topics": [
+        {
+          "id": "baslatma-polimorfizm-01",
+          "title": "Alanların ve constructor’ların çalıştırılma sırası",
+          "explanation": "Alan başlatıcıları ve constructor zinciri belirli kurallarla yürütülür. Gözlemlenebilir log ekleyerek base/derived sırasını deneyle doğrula."
+        },
+        {
+          "id": "baslatma-polimorfizm-02",
+          "title": "Base constructor başlatılması",
+          "explanation": "Türetilmiş constructor gövdesinden önce temel constructor tamamlanır. Temel constructor’dan sanal çağrı yapmak türetilmiş gövde çalışmadan davranış çağırabilir."
+        },
+        {
+          "id": "baslatma-polimorfizm-03",
+          "title": "Static constructor ve static initialization",
+          "explanation": "Static başlangıç tip düzeyinde bir kez yürütülür. Başarısız başlatma sonraki kullanımları da etkileyebilir; ağır I/O ve kilitli beklemelerden kaçın."
+        },
+        {
+          "id": "baslatma-polimorfizm-04",
+          "title": "beforefieldinit",
+          "explanation": "Metadata işareti runtime’a tip başlatma zamanında esneklik verir. Açık static constructor bulunması bu işareti etkiler; zamanlama varsayımlarını IL ile kontrol et."
+        },
+        {
+          "id": "baslatma-polimorfizm-05",
+          "title": "Kapsülleme, kalıtım ve çok biçimlilik",
+          "explanation": "Kapsülleme invariantları korur; kalıtım alt tip ilişkisini ifade eder; polymorphism ortak sözleşme üzerinden davranış seçer."
+        },
+        {
+          "id": "baslatma-polimorfizm-06",
+          "title": "virtual, override, abstract ve sealed",
+          "explanation": "Virtual üyeler override edilebilir; abstract uygulama gerektirir; sealed kalıtımı veya override zincirini kapatır. Kullanıcıya hangi genişletme noktalarının açık olduğunu belirle."
+        },
+        {
+          "id": "baslatma-polimorfizm-07",
+          "title": "Overload, override ve new ile üye gizleme",
+          "explanation": "Overload çağrı imzası seçimidir; override sanal dispatch’i değiştirir; new üye gizler. Değişkenin statik tipi gizlemede sonucu etkiler."
+        },
+        {
+          "id": "baslatma-polimorfizm-08",
+          "title": "Interface ve explicit implementation",
+          "explanation": "Interface davranış sözleşmesidir. Explicit uygulama yalnız interface görünümü üzerinden erişim sağlar ve çakışan üye adlarını ayırabilir."
+        },
+        {
+          "id": "baslatma-polimorfizm-09",
+          "title": "Default interface members",
+          "explanation": "Interface bazı üyelerine gövde sağlayabilir. Sınıfın normal üyesiymiş gibi her erişimde görünmesini bekleme; dispatch kurallarını incele."
+        },
+        {
+          "id": "baslatma-polimorfizm-10",
+          "title": "Static abstract ve static virtual interface members",
+          "explanation": "Generic algoritmalar tip parametresi üzerinde statik sözleşme kullanabilir. Generic math operatörlerini bu mekanizma destekler."
+        },
+        {
+          "id": "baslatma-polimorfizm-11",
+          "title": "Composition ve inheritance seçimi",
+          "explanation": "Composition davranışı içerilen nesneye devreder; inheritance alt tip sözleşmesi kurar. Sadece kod tekrarını azaltmak için kırılgan kalıtım zinciri kurma."
+        }
+      ],
+      "scenario": "Bir ödeme hesaplayıcısının farklı ücret kurallarını ortak interface üzerinden değiştir. Kuralı sonradan değiştirebilmek için composition kullan.",
+      "tips": [
+        "new ile gizleme override değildir.",
+        "Static başlangıçta uzun beklemeler ilk isteği geciktirebilir.",
+        "Temel sınıfa eklenen virtual davranış alt tiplerin invariantlarını etkileyebilir."
+      ],
+      "code": "IUcret kural = new SabitUcret(5m);\nConsole.WriteLine(kural.Hesapla(100m)); // 5\npublic interface IUcret { decimal Hesapla(decimal tutar); }\npublic sealed class SabitUcret(decimal ucret) : IUcret\n{\n    public decimal Hesapla(decimal tutar) => ucret;\n}",
+      "walkthrough": "Primary constructor parametresi davranışta kullanılır; public property otomatik üretilmez. Çağrı interface üzerinden uygulamaya gider.",
+      "exercise": "Oransal ücret sınıfı ekle ve aynı çağıranı iki kuralla çalıştır.",
+      "acceptance": [
+        "Çağıran kod somut kurala bağımlı olmaz",
+        "Static ve runtime tip ayrımını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# tip sistemi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/"
+        }
+      ]
+    },
+    {
+      "id": "null-esitlik-pattern",
+      "level": 2,
+      "title": "Null, eşitlik ve desenler",
+      "topics": [
+        {
+          "id": "null-esitlik-pattern-01",
+          "title": "Nullable değer tipleri",
+          "explanation": "Nullable<T> değer yanında yokluk bilgisini taşır. HasValue ve Value kullanırken boş durumu ele al; lifted operatörlerin sonuçlarını öğren."
+        },
+        {
+          "id": "null-esitlik-pattern-02",
+          "title": "Nullable reference types",
+          "explanation": "Derleyici null olasılığı için statik analiz yapar; ayrı runtime referans tipi yaratmaz. Uyarıları sözleşme hatası işareti olarak değerlendir."
+        },
+        {
+          "id": "null-esitlik-pattern-03",
+          "title": "Null akış analizi",
+          "explanation": "Kontrol sonrasında değişkenin olası null durumu takip edilir. Aliasing, mutable alanlar ve dış çağrılar nedeniyle varsayımların sınırı vardır."
+        },
+        {
+          "id": "null-esitlik-pattern-04",
+          "title": "?., ??, ??= ve null-forgiving !",
+          "explanation": "Koşullu erişim ve coalescing yokluğu yönetir. ! yalnız derleyici uyarısını bastırır; runtime’da null kontrolü eklemez."
+        },
+        {
+          "id": "null-esitlik-pattern-05",
+          "title": "Equals ve GetHashCode",
+          "explanation": "Equals değer eşitliğini, hash kodu hash tabanlı aramayı destekler. Eşit değerler aynı hash üretmeli; aynı hash eşitlik garantisi değildir."
+        },
+        {
+          "id": "null-esitlik-pattern-06",
+          "title": "IEquatable<T> ve IComparable<T>",
+          "explanation": "Tipli eşitlik ve sıralama sözleşmeleri sağlar. Sıralama, eşitlik ve null politikasını tutarlı tasarla."
+        },
+        {
+          "id": "null-esitlik-pattern-07",
+          "title": "Özel equality comparer ve ordering comparer",
+          "explanation": "Aynı veriyi farklı alanlarda farklı karşılaştırabilirsin. Örneğin kullanıcı adı için ordinal ignore-case, gösterim için kültürel sıralama gerekebilir."
+        },
+        {
+          "id": "null-esitlik-pattern-08",
+          "title": "Eşitlik ve hash sözleşmeleri",
+          "explanation": "Eşitlik refleksif, simetrik ve transitif olmalıdır. Kalıtımlı tiplerde ek alanlar bu sözleşmeyi bozabilir."
+        },
+        {
+          "id": "null-esitlik-pattern-09",
+          "title": "Dictionary anahtarlarının değişmesi",
+          "explanation": "Hash/eşitliğe katılan alanları anahtar eklendikten sonra değiştirmek aramayı bozabilir. Değişmez anahtar veya kararlı kimlik kullan."
+        },
+        {
+          "id": "null-esitlik-pattern-10",
+          "title": "Tuple, isimlendirilmiş tuple ve deconstruction",
+          "explanation": "Tuple kısa çoklu sonuç taşır. Eleman adları okunabilirliği artırır ancak API’nin uzun vadeli alan sözleşmesi için ayrı tip daha uygun olabilir."
+        },
+        {
+          "id": "null-esitlik-pattern-11",
+          "title": "Deconstruct ve discard",
+          "explanation": "Deconstruct üyeleri konumsal açar; _ kullanılmayan sonucu belirtir. Konumsal alan sırası API sözleşmesinin parçasıdır."
+        },
+        {
+          "id": "null-esitlik-pattern-12",
+          "title": "Type, property, positional, relational ve list patterns",
+          "explanation": "Pattern şekil ve değer koşullarını birlikte eşler. Null, eksik alan ve sınır durumlarını açıkça kapsa."
+        },
+        {
+          "id": "null-esitlik-pattern-13",
+          "title": "Pattern birleştirme",
+          "explanation": "and, or ve not ile desenler birleşir. Pattern önceliğini parantezlerle okunur kıl."
+        },
+        {
+          "id": "null-esitlik-pattern-14",
+          "title": "Switch expressions",
+          "explanation": "Kararı değer üreten ifadeye dönüştürür. Kapsanmayan girdi runtime’da hata üretebilir; bilinmeyen durum politikasını belirt."
+        }
+      ],
+      "scenario": "Kullanıcı adlarını büyük/küçük harften bağımsız arayan bir kayıt sistemi tasarla. Anahtarların hash davranışını ve null girişlerini test et.",
+      "tips": [
+        "Hash kodunu kalıcı kimlik olarak saklama.",
+        "Null-forgiving ! geçersiz veriyi düzeltmez.",
+        "Dictionary anahtarının eşitliğe katılan alanlarını değiştirme."
+      ],
+      "code": "var kullanicilar = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)\n{\n    [\"Ada\"] = 42\n};\nConsole.WriteLine(kullanicilar[\"ADA\"]); // 42\nstatic string Sinifla(int? puan) => puan switch\n{\n    null => \"Yok\",\n    >= 50 and <= 100 => \"Geçti\",\n    >= 0 and < 50 => \"Kaldı\",\n    _ => \"Geçersiz\"\n};",
+      "walkthrough": "Comparer dictionary’nin tüm anahtar işlemlerini etkiler. Switch null ve aralık dışı değerleri de ele alır.",
+      "exercise": "Record anahtarla ekle/ara senaryosu kur; mutable anahtar sürümünde hatayı göster.",
+      "acceptance": [
+        "Eşitlik ve hash sözleşmesini doğrula",
+        "Null ve sınır değerleri kapsa"
+      ],
+      "sources": [
+        {
+          "title": "C# tip sistemi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/"
+        }
+      ]
+    },
+    {
+      "id": "generic-baglama",
+      "level": 3,
+      "title": "Generics ve tip bağlama",
+      "topics": [
+        {
+          "id": "generic-baglama-01",
+          "title": "Generic tipler ve metotlar",
+          "explanation": "Tip parametresi tekrar kullanılabilir tip güvenli kod sağlar. Her T için aynı işlemlerin kullanılabileceğini varsayma."
+        },
+        {
+          "id": "generic-baglama-02",
+          "title": "Generic constraints",
+          "explanation": "where kısıtları T üzerinde hangi işlemlerin geçerli olduğunu belirler. class, struct, unmanaged, notnull, new() ve interface kısıtlarının anlamını ayır."
+        },
+        {
+          "id": "generic-baglama-03",
+          "title": "Tip çıkarımı",
+          "explanation": "Derleyici argümanlardan generic tipleri çıkarabilir. Çıkarım başarısız olduğunda açık tip argümanı veya daha net API gerekir."
+        },
+        {
+          "id": "generic-baglama-04",
+          "title": "Covariance ve contravariance",
+          "explanation": "out üretici, in tüketici yönünde referans dönüşümlerini destekler. Bu dönüşümler her generic tipe ve değer tipine uygulanmaz."
+        },
+        {
+          "id": "generic-baglama-05",
+          "title": "Hedef tipe bağlı ifadeler",
+          "explanation": "Lambda, new() ve collection expression gibi ifadeler hedef tipe göre anlam kazanır. Hedefin değişmesi overload seçimini etkileyebilir."
+        },
+        {
+          "id": "generic-baglama-06",
+          "title": "Dönüşüm öncelikleri",
+          "explanation": "Identity, sayısal, referans ve kullanıcı tanımlı dönüşümler bağlama sırasında değerlendirilir. Açık cast çağrının anlamını değiştirebilir."
+        },
+        {
+          "id": "generic-baglama-07",
+          "title": "Üye arama ve overload resolution",
+          "explanation": "Önce aday üyeler bulunur, sonra uygulanabilirlik ve daha iyi üye kuralları işletilir. Runtime nesne tipi her zaman overload seçmez."
+        },
+        {
+          "id": "generic-baglama-08",
+          "title": "Overload resolution priority",
+          "explanation": "Desteklenen dil sürümlerinde kütüphane yazarına aday önceliği belirleme olanağı verir. Kaynak uyumluluğu üzerindeki etkisini ayrı test et."
+        },
+        {
+          "id": "generic-baglama-09",
+          "title": "Definite assignment",
+          "explanation": "Bir yerel değişken her kullanılabilir yürütme yolunda atanmış olmalıdır. Bir koşulda atamak tüm yolları kapsamaz."
+        },
+        {
+          "id": "generic-baglama-10",
+          "title": "Reachability analizi",
+          "explanation": "Derleyici erişilebilir kod ve dönüş yollarını inceler. Uyarı, mantık hatasının işareti olabilir; unreachable branch’i sırf susturmak için değiştirme."
+        },
+        {
+          "id": "generic-baglama-11",
+          "title": "Değerlendirme sırası",
+          "explanation": "Operandların değerlendirilme sırası ile operatörlerin gruplanması farklı kavramlardır. Yan etkili ifadelerle farkı küçük deneylerde gözle."
+        }
+      ],
+      "scenario": "Bir kütüphaneye yeni overload eklenince eski kaynak kod farklı metodu seçebilir. Yayından önce mevcut çağrı biçimlerini derleyerek karşılaştır.",
+      "tips": [
+        "Constraint yalnız niyet belgesi değildir; derleyicinin izin verdiği işlemleri değiştirir.",
+        "Overload çoğunlukla statik tiplerle seçilir.",
+        "Variance yalnız desteklenen interface/delegate konumlarında geçerlidir."
+      ],
+      "code": "static string Sec(object x) => \"object\";\nstatic string Sec(string x) => \"string\";\nobject ad = \"Ada\";\nConsole.WriteLine(Sec(ad));         // object\nConsole.WriteLine(Sec((string)ad)); // string",
+      "walkthrough": "Aynı runtime string nesnesi iki çağrıda da kullanılır; argümanın statik tipi overload seçimini değiştirir.",
+      "exercise": "Generic bir filtreye gerekli constraint’i ekle; iki belirsiz overload çağrısını düzelt.",
+      "acceptance": [
+        "Gereksiz constraint ekleme",
+        "Her çağrının adaylarını ve seçimini açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# dil başvurusu",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/"
+        }
+      ]
+    },
+    {
+      "id": "delegate-event",
+      "level": 3,
+      "title": "Delegate, lambda ve event",
+      "topics": [
+        {
+          "id": "delegate-event-01",
+          "title": "Delegate tanımlama ve method groups",
+          "explanation": "Delegate çağrılabilir metot sözleşmesidir; method group uygun delegate’e dönüştürülebilir. Multicast dönüş değerinin yalnız son çağrıdan geldiğini bil."
+        },
+        {
+          "id": "delegate-event-02",
+          "title": "Action, Func ve Predicate",
+          "explanation": "Action sonuçsuz, Func sonuçlu, Predicate bool döndüren hazır delegate aileleridir. API’de davranışın anlamını açıklayan isimler kullan."
+        },
+        {
+          "id": "delegate-event-03",
+          "title": "Anonymous methods ve lambda ifadeleri",
+          "explanation": "Davranışı çağrı yerinde tanımlar. Aynı lambda delegate veya expression tree hedefinde farklı temsile dönüşebilir."
+        },
+        {
+          "id": "delegate-event-04",
+          "title": "Closure ve değişken yakalama",
+          "explanation": "Closure değerin o anki kopyasını değil değişkeni yakalayabilir. Yaşam süresi uzar; döngü değişkeni ve büyük nesne retention’ını kontrol et."
+        },
+        {
+          "id": "delegate-event-05",
+          "title": "Static lambda",
+          "explanation": "Dış yerel değişkenleri ve this’i yakalamayı yasaklar. Capture gerekmeyen kodda derleyicinin bu sınırı denetlemesini sağlar."
+        },
+        {
+          "id": "delegate-event-06",
+          "title": "Lambda parametrelerinde modifier kullanımı",
+          "explanation": "ref, in ve out gibi modifier’lar imza uyumunu etkiler. Kısa sözdiziminin kullanılabilirliği dil sürümüne bağlıdır."
+        },
+        {
+          "id": "delegate-event-07",
+          "title": "Event tanımlama ve abonelik yönetimi",
+          "explanation": "Event dışarıdan abonelik ekleme/çıkarma sözleşmesidir. Publisher uzun ömürlüyse subscriber’ı referansla hayatta tutabilir."
+        },
+        {
+          "id": "delegate-event-08",
+          "title": "Custom event accessors",
+          "explanation": "add/remove gövdeleri abonelik saklama ve yönetimini özelleştirir. Thread safety ve aynı handler’ın birden çok eklenmesini düşün."
+        },
+        {
+          "id": "delegate-event-09",
+          "title": "Delegate ile event arasındaki farklar",
+          "explanation": "Delegate alanı dışarıdan yeniden atanabilir veya çağrılabilir; event bu yetkileri tip dışından sınırlar. Bu sınır kapsülleme sağlar."
+        }
+      ],
+      "scenario": "Uzun ömürlü bildirim servisine ekran açıldıkça abone olunuyor; kapanan ekranlar unsubscribe edilmezse bellek tutulur.",
+      "tips": [
+        "Aboneliği çıkaracaksan aynı delegate örneğini sakla.",
+        "Static lambda yakalamayı engeller, tüm allocation’ları yok etme garantisi vermez.",
+        "Multicast delegate’te exception sonraki handler’ları durdurabilir."
+      ],
+      "code": "var isler = new List<Action>();\nfor (int i = 0; i < 3; i++)\n{\n    int kopya = i;\n    isler.Add(() => Console.WriteLine(kopya));\n}\nforeach (Action islem in isler) islem(); // 0, 1, 2",
+      "walkthrough": "Her turda yeni yerel değişken yakalanır. Doğrudan i yakalansaydı yürütme anında hepsi döngü sonundaki değeri görebilirdi.",
+      "exercise": "Publisher/subscriber örneği kur ve Dispose içinde aboneliği kaldır.",
+      "acceptance": [
+        "Aynı handler ile unsubscribe yap",
+        "Closure’ın tuttuğu nesneleri açıklayabil"
+      ],
+      "sources": [
+        {
+          "title": "C# dil başvurusu",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/"
+        }
+      ]
+    },
+    {
+      "id": "extension-pattern",
+      "level": 3,
+      "title": "Genişletme ve özel dil davranışları",
+      "topics": [
+        {
+          "id": "extension-pattern-01",
+          "title": "Extension metotları",
+          "explanation": "Statik metotları örnek metodu gibi çağırmayı sağlar; tipi değiştirmez. Gerçek instance üyesiyle aynı öncelikte değildir."
+        },
+        {
+          "id": "extension-pattern-02",
+          "title": "Extension members ve extension blocks",
+          "explanation": "Yeni sözdizimi receiver üzerinde genişletme üyelerini gruplar. Dil sürümünü açıkça belirterek eski metot sözdizimiyle ilişkilendir."
+        },
+        {
+          "id": "extension-pattern-03",
+          "title": "Extension property ve statik genişletme üyeleri",
+          "explanation": "Desteklenen sürümlerde property ve tip düzeyindeki davranışlar genişletilebilir. Genişletmenin alıcı nesneye yeni instance alanı eklediğini varsayma."
+        },
+        {
+          "id": "extension-pattern-04",
+          "title": "Operatör aşırı yükleme",
+          "explanation": "Tipin operatör davranışını tanımlar. Matematiksel beklentileri, eşitlik ve null kurallarını tutarlı tut."
+        },
+        {
+          "id": "extension-pattern-05",
+          "title": "Kullanıcı tanımlı implicit ve explicit dönüşümler",
+          "explanation": "Implicit dönüşüm sürpriz kayıp veya exception üretmemelidir. Bilgi kaybı olan dönüşümlerde explicit kullanmayı değerlendir."
+        },
+        {
+          "id": "extension-pattern-06",
+          "title": "Kullanıcı tanımlı bileşik atama operatörleri",
+          "explanation": "Dil sürümüne bağlı kurallarla += benzeri işlemler özelleştirilebilir. Eski operatör yeniden yazım modeliyle farkını test et."
+        },
+        {
+          "id": "extension-pattern-07",
+          "title": "Pattern tabanlı foreach, using, await ve deconstruction",
+          "explanation": "Derleyici belirli üye şekillerini tanıyarak sözdizimini bağlar. Her özellik için mutlaka aynı interface zorunludur varsayımı yanlıştır."
+        }
+      ],
+      "scenario": "Ölçüm birimi tipinde metre ile kilometre dönüşümünü açık tasarla; yanlış örtük dönüşüm sensör hesaplarını sessizce bozmasın.",
+      "tips": [
+        "Extension üyeler gerçek tipe alan eklemez.",
+        "Implicit dönüşümün sürpriz exception üretmesi API kullanımını zorlaştırır.",
+        "Operatörlerin alışılmış anlamını koru."
+      ],
+      "code": "public readonly record struct Metre(double Deger)\n{\n    public static Metre operator +(Metre a, Metre b)\n        => new(a.Deger + b.Deger);\n    public static explicit operator double(Metre m) => m.Deger;\n}\n// Kullanım: var toplam = new Metre(2) + new Metre(3);",
+      "walkthrough": "Toplama yeni değer üretir. Double’a geçiş explicit tasarlanarak birim bilgisinin kaybolması çağrı yerinde görünür olur.",
+      "exercise": "Metre tipine çıkarma ve anlamlı sınır kontrolleri ekle.",
+      "acceptance": [
+        "Operatörler tutarlı sonuç üretir",
+        "Dönüşümde birim kaybını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "C# dil başvurusu",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/"
+        }
+      ]
+    },
+    {
+      "id": "linq-iterator",
+      "level": 3,
+      "title": "Koleksiyonlar, iterator ve LINQ",
+      "topics": [
+        {
+          "id": "linq-iterator-01",
+          "title": "List, Dictionary, HashSet, Queue ve Stack",
+          "explanation": "List sıralı erişim, Dictionary anahtar arama, HashSet üyelik, Queue FIFO, Stack LIFO davranışı sağlar. Seçimi erişim biçimine göre yap."
+        },
+        {
+          "id": "linq-iterator-02",
+          "title": "Sıralı, salt okunur ve immutable koleksiyonlar",
+          "explanation": "Salt okunur görünüm alttaki koleksiyonun değişmeyeceği anlamına gelmez. Immutable tipler değişiklikte yeni görünüm üretir; sorted yapılar sıralamayı korur."
+        },
+        {
+          "id": "linq-iterator-03",
+          "title": "Uygun koleksiyonu seçme",
+          "explanation": "Arama sıklığı, sıralama, tekrarlar ve bellek maliyetini birlikte değerlendir. Big-O kadar sabit maliyetler ve veri boyutu önemlidir."
+        },
+        {
+          "id": "linq-iterator-04",
+          "title": "IEnumerable<T> ve IEnumerator<T>",
+          "explanation": "Enumerable yineleme kaynağı, enumerator mevcut konum ve ilerleme durumudur. İki kez yinelemek aynı maliyet veya sonucu vermeyebilir."
+        },
+        {
+          "id": "linq-iterator-05",
+          "title": "Özel enumerator geliştirme",
+          "explanation": "MoveNext, Current ve gerekli temizleme sözleşmelerini uygula. Değişen koleksiyon ve bitmiş enumerator davranışını tanımla."
+        },
+        {
+          "id": "linq-iterator-06",
+          "title": "Iterator metotları ve yield",
+          "explanation": "Yield çalışmayı öğe istendikçe sürdürür; derleyici state machine üretir. Parametre doğrulamasının ne zaman çalıştığını kontrol et."
+        },
+        {
+          "id": "linq-iterator-07",
+          "title": "Collection expressions ve collection builders",
+          "explanation": "Hedef koleksiyon tipine göre [] sözdizimi farklı oluşturma yolu seçebilir. Spread elemanların yineleme maliyetini gizleyebilir."
+        },
+        {
+          "id": "linq-iterator-08",
+          "title": "params collections",
+          "explanation": "Uygun koleksiyon tipleriyle değişken argüman kabul eder. Overload seçimi ve geçici depolama davranışını kullanılan sürümde incele."
+        },
+        {
+          "id": "linq-iterator-09",
+          "title": "LINQ query syntax ve method syntax",
+          "explanation": "Query sözdizimi ilgili metot çağrılarına çevrilir. İki biçim aynı sorgu niyetini farklı okunabilirlikte ifade eder."
+        },
+        {
+          "id": "linq-iterator-10",
+          "title": "Filtreleme, sıralama, dönüştürme ve toplama",
+          "explanation": "Where filtreler, Select dönüştürür; sıralama ve toplama farklı buffering/yürütme maliyetleri taşır. Tüm operatörleri streaming sanma."
+        },
+        {
+          "id": "linq-iterator-11",
+          "title": "Gruplama ve birleştirme",
+          "explanation": "GroupBy ve Join anahtarlar üzerinden ilişkiler kurar. Comparer seçimi, tekrarlar ve saklanan ara veri sonuçları etkiler."
+        },
+        {
+          "id": "linq-iterator-12",
+          "title": "Select ve SelectMany",
+          "explanation": "Select her öğeyi bir sonuca, SelectMany her öğeyi diziye dönüştürüp düzleştirir. Kardinalite değişimini takip et."
+        },
+        {
+          "id": "linq-iterator-13",
+          "title": "Deferred execution ve materialization",
+          "explanation": "Sorgu tanımlamak yürütmek değildir; ToList gibi işlemler o anki sonucu toplar. Tekrarlı enumeration yan etki veya tekrar I/O doğurabilir."
+        },
+        {
+          "id": "linq-iterator-14",
+          "title": "IEnumerable ile IQueryable farkı",
+          "explanation": "IEnumerable CLR kodu üzerinden, IQueryable expression tree ve provider üzerinden çalışır. Provider her C# ifadesini desteklemek zorunda değildir."
+        },
+        {
+          "id": "linq-iterator-15",
+          "title": "Expression trees",
+          "explanation": "Kodun yapısını veri olarak taşır; inceleme, dönüştürme veya derleme yapılabilir. Compile maliyetini sıcak yolda tekrar ödeme."
+        }
+      ],
+      "scenario": "Bir rapor sorgusu tanımlandıktan sonra kaynak liste değişiyor. Deferred execution nedeniyle raporun hangi anı temsil ettiğini belirle.",
+      "tips": [
+        "Sıralama tüm veriyi buffer’layabilir.",
+        "Count ardından foreach aynı kaynağı iki kez çalıştırabilir.",
+        "IQueryable içindeki keyfi metot provider tarafından çevrilemeyebilir."
+      ],
+      "code": "var sayilar = new List<int> { 1, 2, 3 };\nvar sorgu = sayilar.Where(static n => n > 1);\nsayilar.Add(4);\nConsole.WriteLine(string.Join(\",\", sorgu)); // 2,3,4\nvar snapshot = sorgu.ToArray();\nsayilar.Add(5);\nConsole.WriteLine(string.Join(\",\", snapshot)); // 2,3,4",
+      "walkthrough": "Sorgu ilk enumeration anındaki listeyi görür. ToArray sonucu toplar ve sonraki eklemeden bağımsız dizi üretir.",
+      "exercise": "Tekrar enumerate edildiğinde sayaç artıran iterator yaz; materialization etkisini gözle.",
+      "acceptance": [
+        "Yürütülme zamanını göster",
+        "Streaming ve buffering operatörlerini ayır"
+      ],
+      "sources": [
+        {
+          "title": "C# dil başvurusu",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/"
+        }
+      ]
+    },
+    {
+      "id": "metadata-modern",
+      "level": 3,
+      "title": "Metadata ve modern dil özellikleri",
+      "topics": [
+        {
+          "id": "metadata-modern-01",
+          "title": "Attributes ve özel attribute geliştirme",
+          "explanation": "Attribute metadata’ya anlam ekler; tek başına davranış çalıştırmaz. Attribute’u okuyan compiler/runtime/kütüphane anlamı belirler."
+        },
+        {
+          "id": "metadata-modern-02",
+          "title": "Reflection",
+          "explanation": "Runtime’da tip ve üyeleri inceleme ve çağırma sağlar. Tekrarlanan arama ve Invoke maliyetlerini, AOT ve trimming kısıtlarını düşün."
+        },
+        {
+          "id": "metadata-modern-03",
+          "title": "dynamic ve dinamik bağlama",
+          "explanation": "Üye çözümlemesi runtime’a ertelenir; hatalar derleme yerine çalıştırmada görülebilir. Dynamic’i var ile karıştırma."
+        },
+        {
+          "id": "metadata-modern-04",
+          "title": "Nullable analizini yönlendiren attributes",
+          "explanation": "NotNullWhen ve MemberNotNull gibi bildirimler akış analizine sözleşme verir. Yanlış annotation çağıranı yanıltır; çalışma zamanı kontrolünün yerine geçmez."
+        },
+        {
+          "id": "metadata-modern-05",
+          "title": "Caller information",
+          "explanation": "CallerMemberName, CallerFilePath ve CallerLineNumber çağrı yerini derleme sırasında sağlar. Dosya yollarının dağıtılan veriye yansıyabileceğini değerlendir."
+        },
+        {
+          "id": "metadata-modern-06",
+          "title": "CallerArgumentExpression",
+          "explanation": "Argümanın kaynak ifadesini alıp doğrulama mesajını zenginleştirir. Son kullanıcıya hassas kaynak ayrıntısı göstermeden kullan."
+        },
+        {
+          "id": "metadata-modern-07",
+          "title": "Interpolated string handlers",
+          "explanation": "Interpolation parçalarının nasıl işlendiğini özelleştirir ve gereksiz biçimlendirmeyi atlayabilir. Handler’ın değerlendirme akışına etkisini incele."
+        },
+        {
+          "id": "metadata-modern-08",
+          "title": "ref struct interface uygulamaları",
+          "explanation": "Desteklenen sürümlerde ref struct interface uygulayabilir fakat boxing ile interface nesnesine çevrilemez. Generic ref-safe kullanım kurallarını gözet."
+        },
+        {
+          "id": "metadata-modern-09",
+          "title": "allows ref struct anti-constraint",
+          "explanation": "Generic parametrenin ref struct alabileceğini bildirir; gövde daha sıkı ref-safety kurallarına uyar. Heap’te saklamaya izin vermez."
+        },
+        {
+          "id": "metadata-modern-10",
+          "title": "field destekli properties",
+          "explanation": "Property accessor içinde derleyicinin backing field’ına erişim sağlar. Doğrulama ve auto-storage birlikte kullanılabilir; isim çakışmasını kontrol et."
+        },
+        {
+          "id": "metadata-modern-11",
+          "title": "Partial properties, indexers, constructors ve events",
+          "explanation": "Tanım ve uygulamayı farklı dosyalara ayırır; generator kullanımına uygundur. Her üye türünün eşleşme ve sürüm kuralları farklıdır."
+        },
+        {
+          "id": "metadata-modern-12",
+          "title": "Null-conditional assignment",
+          "explanation": "Desteklenen sürümde ?. üzerinden atama receiver null değilse gerçekleşir. Sağ taraf null durumda değerlendirilmez."
+        },
+        {
+          "id": "metadata-modern-13",
+          "title": "Unbound generic tiplerle nameof",
+          "explanation": "Desteklenen sürümde List<> benzeri açık generic adları nameof içinde kullanılabilir. Nameof tam tip kimliği veya assembly adı üretmez."
+        },
+        {
+          "id": "metadata-modern-14",
+          "title": "Span için örtük dönüşümler",
+          "explanation": "Yeni dil kuralları Span ve ReadOnlySpan adaylarını etkileyebilir. Eski overload testlerini sürüm geçişinde yeniden derle."
+        },
+        {
+          "id": "metadata-modern-15",
+          "title": "Dil sürümleri, uyumluluk ve sürüme bağlı davranışlar",
+          "explanation": "SDK, LangVersion ve TargetFramework farklı seçimlerdir. Kararlı ve preview özellikleri ayrı etiketle; runtime API gereksinimini ayrıca kontrol et."
+        }
+      ],
+      "scenario": "Bir doğrulama kütüphanesi çağıranın hatalı ifadesini anlaşılır mesajla raporluyor; reflection kullanan sürüm AOT’de ayrıca kontrol ediliyor.",
+      "tips": [
+        "Attribute kendi başına validation çalıştırmaz.",
+        "Preview özelliği kararlı dil özelliği gibi öğretme.",
+        "Reflection erişimlerini cache’lemek tiplerin unload olmasını etkileyebilir."
+      ],
+      "code": "using System.Diagnostics.CodeAnalysis;\nstatic bool Dolu([NotNullWhen(true)] string? metin)\n    => !string.IsNullOrWhiteSpace(metin);\nstring? ad = \"Ada\";\nif (Dolu(ad)) Console.WriteLine(ad.Length); // 3\n// Annotation doğru: true döndüğünde ad null olamaz.",
+      "walkthrough": "NotNullWhen çağıranın akış analizini bilgilendirir. Metot gövdesi sözleşmeyi gerçekten yerine getirmelidir.",
+      "exercise": "Özel attribute tanımlayıp reflection ile oku; ardından nullable yardımcı metoduna doğru annotation ekle.",
+      "acceptance": [
+        "Annotation gerçeğe uyar",
+        "Dil sürümüne bağlı örnekleri açık etiketle"
+      ],
+      "sources": [
+        {
+          "title": "C# dil başvurusu",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/"
+        },
+        {
+          "title": "C# 13 yenilikleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
+        },
+        {
+          "title": "C# 14 yenilikleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14/"
+        }
+      ]
+    },
+    {
+      "id": "bellek-yapisi",
+      "level": 4,
+      "title": "Belleğin yapısı",
+      "topics": [
+        {
+          "id": "bellek-yapisi-01",
+          "title": "Stack, heap ve stack frame",
+          "explanation": "Stack frame çağrının yerel yürütme durumunu tutar; heap nesnelerin dinamik ömrünü destekler. JIT değerleri register’da da tutabilir."
+        },
+        {
+          "id": "bellek-yapisi-02",
+          "title": "Nesne ömrü ve referansların yaşam süresi",
+          "explanation": "Nesne erişilebilir kaldığı sürece GC tarafından korunur. Yerel değişkenin kaynakta görünmesi runtime canlılığını tek başına belirlemez."
+        },
+        {
+          "id": "bellek-yapisi-03",
+          "title": "Değer tiplerinin neden her zaman stack üzerinde olmadığı",
+          "explanation": "Bir class alanındaki struct o nesnenin parçasıdır; struct dizisi elemanları dizi içindedir; boxing heap nesnesi yaratır. Tip semantiği ile depolama yerini ayır."
+        },
+        {
+          "id": "bellek-yapisi-04",
+          "title": "Managed heap, native heap ve toplam process belleği",
+          "explanation": "Process belleği managed nesnelerin yanında native allocation, stack ve kod içerir. Sadece GC heap ölçümü toplam RAM artışını açıklamayabilir."
+        },
+        {
+          "id": "bellek-yapisi-05",
+          "title": "Reserved memory, committed memory ve working set",
+          "explanation": "Reserved adres alanı, committed desteklenen bellek, working set fiziksel olarak resident sayfalardır. Aynı kavramları temsil etmezler."
+        },
+        {
+          "id": "bellek-yapisi-06",
+          "title": "Sanal bellek, fiziksel RAM ve paging",
+          "explanation": "Process sanal adreslerle çalışır; işletim sistemi bunları fiziksel sayfalara eşler. Paging gecikme yaratabilir; büyük sanal adres alanı aynı miktar RAM demek değildir."
+        },
+        {
+          "id": "bellek-yapisi-07",
+          "title": "Thread stack’lerinin maliyeti",
+          "explanation": "Her thread stack için kaynak kullanır. Çok thread üretmek yalnız scheduler değil bellek maliyeti de doğurur."
+        },
+        {
+          "id": "bellek-yapisi-08",
+          "title": "JIT kodu ve runtime metadata maliyetleri",
+          "explanation": "Derlenmiş kod ve yüklenen tip bilgileri de process belleğindedir. Managed nesneler temizlense bile bu kullanım kalabilir."
+        },
+        {
+          "id": "bellek-yapisi-09",
+          "title": "Nesne yerleşimi, object header, hizalama ve padding",
+          "explanation": "Alan toplamı nesnenin gerçek boyutuna eşit olmayabilir. Header, referans genişliği ve hizalama runtime/platforma bağlı ek maliyet getirir."
+        },
+        {
+          "id": "bellek-yapisi-10",
+          "title": "Referans içeren struct’lar",
+          "explanation": "Struct kopyası referans alanlarını da kopyalar; hedef nesneleri çoğaltmaz. GC iç referansları takip etmeye devam eder."
+        },
+        {
+          "id": "bellek-yapisi-11",
+          "title": "Struct kopyalama maliyetleri",
+          "explanation": "Büyük struct parametre, dönüş veya property erişiminde taşınabilir. Ref kullanımı her zaman kazanç sağlamaz; generated code ile doğrula."
+        }
+      ],
+      "scenario": "Container’da toplam bellek artarken GC heap sabit kalıyor. Thread sayısı, native allocation ve yüklenen kodu birlikte incele.",
+      "tips": [
+        "Struct eşittir stack kuralı yanlıştır.",
+        "Nesne boyutlarını runtime ve mimari belirtilmeden evrensel sayı olarak verme.",
+        "Working set düşmedi diye otomatik olarak leak var deme."
+      ],
+      "code": "using System.Diagnostics;\nlong managed = GC.GetTotalMemory(forceFullCollection: false);\nlong resident = Process.GetCurrentProcess().WorkingSet64;\nConsole.WriteLine($\"Managed tahmin: {managed} byte\");\nConsole.WriteLine($\"Working set: {resident} byte\");",
+      "walkthrough": "İki ölçüm farklı kapsamları gösterir ve birebir karşılaştırılabilir toplamlar değildir. Sayılar ortama ve o ana göre değişir.",
+      "exercise": "Aynı process’te büyük dizi oluştururken iki metriği zaman içinde kaydet.",
+      "acceptance": [
+        "Metriklerin kapsamını açıkla",
+        "Tek snapshot ile leak kararı verme"
+      ],
+      "sources": [
+        {
+          "title": "Bellek ve kaynak yönetimi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/"
+        }
+      ]
+    },
+    {
+      "id": "allocation-canlilik",
+      "level": 4,
+      "title": "Allocation ve nesne canlılığı",
+      "topics": [
+        {
+          "id": "allocation-canlilik-01",
+          "title": "Boxing, unboxing ve gizli allocation",
+          "explanation": "Object/interface geçişleri, bazı enumerator kullanımları ve formatlama kutulama üretebilir. Kaynakta new olmaması allocation yok demek değildir."
+        },
+        {
+          "id": "allocation-canlilik-02",
+          "title": "String değişmezliği ve interning",
+          "explanation": "String değiştirilemez; literal paylaşımı interning ile yapılabilir. Her dinamik metni intern etmek uzun süreli retention oluşturabilir."
+        },
+        {
+          "id": "allocation-canlilik-03",
+          "title": "String oluşturma ve StringBuilder maliyetleri",
+          "explanation": "Döngüde birleştirme ara string’ler üretir; StringBuilder buffer kullanır. Küçük sabit birleştirmelerde builder her zaman daha iyi değildir."
+        },
+        {
+          "id": "allocation-canlilik-04",
+          "title": "Dizilerin ve koleksiyonların kapasite yönetimi",
+          "explanation": "List büyürken daha büyük diziye kopyalayabilir. Bilinen boyutta kapasite vermek maliyeti azaltabilir; aşırı kapasite RAM tutar."
+        },
+        {
+          "id": "allocation-canlilik-05",
+          "title": "Closure ve delegate allocation",
+          "explanation": "Yakalanan durum closure nesnesiyle ömrü uzayabilir. Delegate cache davranışı compiler ve kod biçimine göre değişir."
+        },
+        {
+          "id": "allocation-canlilik-06",
+          "title": "Iterator ve async kaynaklı allocation",
+          "explanation": "State machine ve task/iterator temsilleri maliyet üretir. Senkron tamamlanma ve compiler optimizasyonları sonucu etkiler."
+        },
+        {
+          "id": "allocation-canlilik-07",
+          "title": "Kod kapsamı ile GC açısından canlı kalma süresi",
+          "explanation": "Scope bitişi kesin toplama noktası değildir. JIT son kullanım ve debugger nedeniyle nesneyi farklı süre tutabilir."
+        },
+        {
+          "id": "allocation-canlilik-08",
+          "title": "Bellek kullanımı, allocation hızı ve canlı nesne miktarı",
+          "explanation": "Yüksek allocation kısa ömürlü olabilir; düşük allocation büyük retention barındırabilir. GC baskısı ve kapasite sorunlarını ayrı ölç."
+        },
+        {
+          "id": "allocation-canlilik-09",
+          "title": "Belleği tutmak ile sürekli yeni bellek ayırmak",
+          "explanation": "Cache saklar, geçici iş yükü ayırıp bırakır. İki desenin çözümü farklıdır: eviction veya allocation azaltma gerekebilir."
+        },
+        {
+          "id": "allocation-canlilik-10",
+          "title": "Pooling’in allocation ve tutulan bellek üzerindeki etkisi",
+          "explanation": "Pool tekrar kullanım için nesne tutar. Allocation düşerken working set veya retained heap artabilir; kapasite sınırı belirle."
+        }
+      ],
+      "scenario": "Yoğun log formatlama GC baskısı yaratıyor; sınırsız log cache’i ise farklı bir retention sorunu oluşturuyor. İki sorunu aynı çözümle ele alma.",
+      "tips": [
+        "GC.GetAllocatedBytesForCurrentThread async thread geçişleri için toplam iş maliyeti sayacı değildir.",
+        "List.Clear kapasiteyi otomatik küçültmez.",
+        "Pooling’i önce-sonra heap ve süre ölçmeden ekleme."
+      ],
+      "code": "long once = GC.GetAllocatedBytesForCurrentThread();\nobject kutu = 42;\nGC.KeepAlive(kutu);\nlong ayrilan = GC.GetAllocatedBytesForCurrentThread() - once;\nConsole.WriteLine($\"Bu thread üzerinde: {ayrilan} byte\");\n// Kesin sayı runtime/JIT/ısınmaya bağlıdır; benchmark değildir.",
+      "walkthrough": "Boxing değer tipi için object temsili oluşturur. Ölçüm yalnız bu thread üzerindeki aralığı kapsar; sabit byte sonucu vaat edilmez.",
+      "exercise": "Döngüde string birleştirme ve builder sürümlerini Release modunda ölç.",
+      "acceptance": [
+        "Sonuç metinleri aynı olur",
+        "Süre ve allocation ayrı raporlanır"
+      ],
+      "sources": [
+        {
+          "title": "Bellek ve kaynak yönetimi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/"
+        }
+      ]
+    },
+    {
+      "id": "kaynak-exception",
+      "level": 4,
+      "title": "Hatalar ve kaynak temizliği",
+      "topics": [
+        {
+          "id": "kaynak-exception-01",
+          "title": "try, catch, finally ve throw",
+          "explanation": "Catch uygun hatayı işler; finally temizlemeyi garanti altına alan akıştır. Throw ile yeniden fırlatırken özgün stack trace’i koru."
+        },
+        {
+          "id": "kaynak-exception-02",
+          "title": "Exception filters",
+          "explanation": "when koşulu catch’in uygulanıp uygulanmayacağını belirler. Filtrede yan etkileri ve yeni exception riskini sınırlı tut."
+        },
+        {
+          "id": "kaynak-exception-03",
+          "title": "Özel exception tasarımı",
+          "explanation": "Çağıranın anlamlı biçimde ayırabileceği durumlar için kullan. Mesaj, inner exception ve bağlamı koru; her hata için yeni tip yaratma."
+        },
+        {
+          "id": "kaynak-exception-04",
+          "title": "Exception yönetim stratejileri",
+          "explanation": "Hatayı düzeltebilen veya bağlam ekleyebilen yerde ele al. Beklenen iş sonucu ile beklenmeyen arızayı ayır."
+        },
+        {
+          "id": "kaynak-exception-05",
+          "title": "Managed ve unmanaged kaynaklar",
+          "explanation": "GC managed belleği yönetir; dosya handle ve native kaynakların zamanında kapanması ayrı sorumluluktur."
+        },
+        {
+          "id": "kaynak-exception-06",
+          "title": "IDisposable ve using",
+          "explanation": "Using scope sonunda Dispose çağrısını düzenler; erken return ve exception yollarını kapsar. Dispose edilmek nesnenin GC tarafından hemen toplanması değildir."
+        },
+        {
+          "id": "kaynak-exception-07",
+          "title": "IAsyncDisposable ve await using",
+          "explanation": "Temizleme asenkron iş gerektiriyorsa DisposeAsync kullanılır. Çağıran async akıştan temizliğin tamamlanmasını bekler."
+        },
+        {
+          "id": "kaynak-exception-08",
+          "title": "Dispose pattern",
+          "explanation": "Sahip olunan kaynakların tekrar dispose ve kısmi oluşturma durumlarında güvenli temizlenmesini tasarla. Kalıtım gerekiyorsa açık genişletme sözleşmesi kur."
+        },
+        {
+          "id": "kaynak-exception-09",
+          "title": "Finalizer ve SafeHandle",
+          "explanation": "Finalizer deterministik değildir; native handle sarmalamada SafeHandle tercih edilir. Her IDisposable tipe finalizer eklemek gerekmez."
+        },
+        {
+          "id": "kaynak-exception-10",
+          "title": "Kaynak sızıntılarını önleme",
+          "explanation": "Sahiplik belli değilse kaynak iki kez kapatılabilir veya hiç kapanmayabilir. Oluşturan, devralan ve kullanan bileşenlerin görevini yaz."
+        },
+        {
+          "id": "kaynak-exception-11",
+          "title": "Başarı ve hata sonuçlarını modelleme",
+          "explanation": "Try deseni veya sonuç tipi beklenen başarısızlıkları temsil edebilir. Exception’ı her iş kuralı için kontrol akışı haline getirme."
+        },
+        {
+          "id": "kaynak-exception-12",
+          "title": "OutOfMemoryException",
+          "explanation": "Bellek isteğinin karşılanamadığını bildirir; yalnız fiziksel RAM’in bitmesi değildir. Hata sonrası ağır toparlama kodunun da allocation isteyebileceğini bil."
+        },
+        {
+          "id": "kaynak-exception-13",
+          "title": "Kapasite, adres alanı ve parçalanma kaynaklı bellek sorunları",
+          "explanation": "Tek büyük allocation, limit veya uygun blok bulunamaması arızaya neden olabilir. Dump ve ortam limitleriyle nedeni ayırt et."
+        }
+      ],
+      "scenario": "İçe aktarma sırasında parsing hatası olsa bile dosya handle’ı kapanmalı; aksi halde sonraki deneme dosyayı açamaz.",
+      "tips": [
+        "throw; stack trace’i korur; throw ex; başlangıç noktasını değiştirir.",
+        "Dispose GC.Collect değildir.",
+        "Sahibi olmadığın stream’i kapatmadan önce API sözleşmesini kontrol et."
+      ],
+      "code": "static string IlkSatir(string yol)\n{\n    using var okuyucu = new StreamReader(yol);\n    return okuyucu.ReadLine() ?? \"\";\n} // return ve exception yollarında Dispose çalışır.",
+      "walkthrough": "Using derleyici tarafından temizleme akışına çevrilir. Reader bu metotta oluşturulduğu için sahipliği ve temizliği bu metoda aittir.",
+      "exercise": "Hata atan okuma örneğinde dosyanın tekrar açılabildiğini doğrula.",
+      "acceptance": [
+        "Kaynak exception yolunda da kapanır",
+        "Beklenen giriş hatasını ayrı modelle"
+      ],
+      "sources": [
+        {
+          "title": "Bellek ve kaynak yönetimi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/"
+        }
+      ]
+    },
+    {
+      "id": "gc-mekanik",
+      "level": 5,
+      "title": "GC’nin temel mekanikleri",
+      "topics": [
+        {
+          "id": "gc-mekanik-01",
+          "title": "GC roots ve erişilebilirlik",
+          "explanation": "Stack/register referansları, static alanlar ve handle’lar gibi köklerden erişilen nesneler canlıdır. Referans döngüsü kökten erişilmiyorsa tek başına leak değildir."
+        },
+        {
+          "id": "gc-mekanik-02",
+          "title": "Nesne grafiği",
+          "explanation": "GC nesneler arasındaki referansları takip eder. Küçük bir root büyük bir grafiği dolaylı olarak hayatta tutabilir."
+        },
+        {
+          "id": "gc-mekanik-03",
+          "title": "Generation 0, 1 ve 2",
+          "explanation": "Kısa ömürlü nesnelerin çoğunluğu varsayımıyla toplama maliyeti bölünür. Toplamadan sağ çıkan nesneler uygun kurallarla terfi edebilir."
+        },
+        {
+          "id": "gc-mekanik-04",
+          "title": "Small Object Heap",
+          "explanation": "Küçük managed nesnelerin çoğu bu heap bölgelerinde bulunur. Fiziksel organizasyon runtime sürümüne göre değişebilir."
+        },
+        {
+          "id": "gc-mekanik-05",
+          "title": "Large Object Heap",
+          "explanation": "Büyük nesneler ayrı politikalarla ele alınır ve genellikle Gen 2 toplamasıyla ilişkilidir. Eşik ve compaction davranışını runtime bağlamında incele."
+        },
+        {
+          "id": "gc-mekanik-06",
+          "title": "Pinned Object Heap",
+          "explanation": "Özellikle pinned allocation için ayrılmış heap, diğer bölgelerdeki pinning etkisini azaltmayı amaçlar. Her pinlenen nesne buraya taşınmaz."
+        },
+        {
+          "id": "gc-mekanik-07",
+          "title": "Marking, sweeping ve compaction",
+          "explanation": "Mark canlılığı belirler; sweeping boş alanı geri kazanır; compaction uygun nesneleri taşır. Her toplamada her heap aynı biçimde compact edilmez."
+        },
+        {
+          "id": "gc-mekanik-08",
+          "title": "Allocation fast path ve allocation context",
+          "explanation": "Yaygın allocation yolu thread’e ayrılan alan içinde hızlı ilerleyebilir. Alan tükenmesi daha pahalı yol ve olası GC gerektirir."
+        },
+        {
+          "id": "gc-mekanik-09",
+          "title": "Allocation bütçeleri ve GC tetiklenmesi",
+          "explanation": "GC yalnız RAM bittiğinde çalışmaz; bütçe, bellek baskısı ve runtime politikaları tetikler. Sabit her-N-byte kuralı varsayma."
+        },
+        {
+          "id": "gc-mekanik-10",
+          "title": "Nesne terfisi ve uzun ömürlü nesneler",
+          "explanation": "Sağ kalan nesneler sonraki nesillere geçebilir. Gereksiz retention genç nesne toplamasını daha büyük canlı kümeye dönüştürür."
+        },
+        {
+          "id": "gc-mekanik-11",
+          "title": "Write barriers ve card tables",
+          "explanation": "Referans yazımları GC’nin nesiller arası bağlantıları izlemesine yardım eder. Bu mekanik nedeniyle referans alanı yazımı yalın sayı yazımıyla aynı değildir."
+        },
+        {
+          "id": "gc-mekanik-12",
+          "title": "Nesiller arası referans takibi",
+          "explanation": "Eski nesne genç nesneyi tutabilir. GC genç nesli toplarken bu bağlantıyı kaçırmadan izlemek zorundadır."
+        },
+        {
+          "id": "gc-mekanik-13",
+          "title": "GC suspension, safe points ve duraklama nedenleri",
+          "explanation": "Toplama belirli aşamalarda managed yürütmeyi koordine eder ve duraklatabilir. Pause süresi ile toplam GC CPU süresini ayır."
+        }
+      ],
+      "scenario": "Uzun ömürlü cache her istekten nesne tutuyor; kısa ömürlü olması beklenen veriler terfi ediyor. Canlı kümeyi ve kökleri incele.",
+      "tips": [
+        "Referans döngüsü tek başına leak değildir.",
+        "LOH her GC’de compact edilir varsayımı yanlıştır.",
+        "Gen 2 sayısı tek başına performans hükmü vermez."
+      ],
+      "code": "var nesne = new object();\nConsole.WriteLine(GC.GetGeneration(nesne));\nConsole.WriteLine(GC.CollectionCount(0));\nConsole.WriteLine(GC.CollectionCount(1));\nConsole.WriteLine(GC.CollectionCount(2));\nGC.KeepAlive(nesne);\n// Değerler çalışmaya göre değişir; zorunlu GC tetiklenmiyor.",
+      "walkthrough": "Generation nesnenin o andaki durumunu, CollectionCount process boyunca ilgili nesil toplama sayısını verir. Tek ölçüm neden analizi değildir.",
+      "exercise": "Farklı ömürlü nesneler üret ve counters ile canlı heap eğilimini izle.",
+      "acceptance": [
+        "Ölçümleri iş yükü süresiyle ilişkilendir",
+        "Root kaynaklarını açıkla"
+      ],
+      "sources": [
+        {
+          "title": "GC temelleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals"
+        }
+      ]
+    },
+    {
+      "id": "gc-ayar",
+      "level": 5,
+      "title": "GC çeşitleri ve yapılandırma",
+      "topics": [
+        {
+          "id": "gc-ayar-01",
+          "title": "Workstation GC ve server GC",
+          "explanation": "Farklı iş yükleri için heap ve toplama düzenleri sunar. Server GC adı her sunucu işinde otomatik en iyi seçim anlamına gelmez."
+        },
+        {
+          "id": "gc-ayar-02",
+          "title": "Background GC",
+          "explanation": "Bazı toplama işlerini managed yürütmeyle örtüştürür. Duraklamaları tamamen ortadan kaldırmaz."
+        },
+        {
+          "id": "gc-ayar-03",
+          "title": "GC latency modes",
+          "explanation": "Toplama zamanlamasında gecikme hedeflerine göre tercih sağlar. Daha az pause karşılığında büyüyen heap ve bellek baskısını takip et."
+        },
+        {
+          "id": "gc-ayar-04",
+          "title": "No-GC region ve kullanım sınırları",
+          "explanation": "Belirli bütçe içinde GC’den kaçınmayı denemek için API sunar. Başlatma başarısız olabilir ve bütçe aşımı planı bozabilir."
+        },
+        {
+          "id": "gc-ayar-05",
+          "title": "GC.Collect ve kullanım sınırları",
+          "explanation": "Zorunlu toplama normal politikayı bozabilir ve pahalı duraklama yaratabilir. Ölçülmüş özel senaryo dışında periyodik çağrı çözüm değildir."
+        },
+        {
+          "id": "gc-ayar-06",
+          "title": "GC heap limitleri",
+          "explanation": "Heap hard limit ve benzeri ayarlar runtime’ın kaynak kullanmasını sınırlar. Toplam process belleğini aynı limite sabitlemez."
+        },
+        {
+          "id": "gc-ayar-07",
+          "title": "Kısıtlı bellek ortamlarında GC davranışı",
+          "explanation": "Container ve işletim sistemi limitleri runtime kararlarını etkiler. Uygulamayı gerçek kaynak sınırlarıyla test et."
+        },
+        {
+          "id": "gc-ayar-08",
+          "title": "DATAS ve uygulama boyutuna uyarlanma",
+          "explanation": "Dynamic Adaptation To Application Sizes canlı veri ve kaynak kullanımına uyum sağlamayı amaçlar. Etkinlik ve varsayılanlar runtime sürümüne bağlıdır."
+        },
+        {
+          "id": "gc-ayar-09",
+          "title": "GC sonrası belleğin işletim sistemine geri verilmesi",
+          "explanation": "Boşalan managed alan hemen working set düşüşü demek değildir. Runtime yeniden kullanım için alan tutabilir ve OS sayfa politikası ayrıca etkilidir."
+        }
+      ],
+      "scenario": "Bir hizmetin gecikmesini azaltırken bellek limitini aşmaması gerekiyor. GC seçimini throughput, p99 ve heap büyüklüğüyle birlikte değerlendir.",
+      "tips": [
+        "GC.Collect çağrısını RAM düşürme düğmesi gibi kullanma.",
+        "No-GC region için başarısızlık ve sonlandırma yolunu tasarla.",
+        "Ayarları aynı yük ve runtime sürümünde karşılaştır."
+      ],
+      "code": "using System.Runtime;\nConsole.WriteLine($\"Server GC: {GCSettings.IsServerGC}\");\nConsole.WriteLine($\"Latency: {GCSettings.LatencyMode}\");\nvar bilgi = GC.GetGCMemoryInfo();\nConsole.WriteLine($\"Heap: {bilgi.HeapSizeBytes}\");\nConsole.WriteLine($\"Fragmentation: {bilgi.FragmentedBytes}\");",
+      "walkthrough": "Örnek ayarları değiştirmeden mevcut modu ve son GC’ye ilişkin bilgileri okur. GCMemoryInfo alanlarının hangi toplamayla ilişkili olduğunu kontrol et.",
+      "exercise": "Varsayılan ayarla başlayıp tek GC ayarını değiştir; bellek ve gecikmeyi karşılaştır.",
+      "acceptance": [
+        "Her deneyde tek değişkeni değiştir",
+        "Runtime sürümü ve kaynak limitlerini kaydet"
+      ],
+      "sources": [
+        {
+          "title": "GC temelleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals"
+        },
+        {
+          "title": "GC ayarları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
+        },
+        {
+          "title": "DATAS",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/datas"
+        }
+      ]
+    },
+    {
+      "id": "gc-referans",
+      "level": 5,
+      "title": "Finalization ve referans türleri",
+      "topics": [
+        {
+          "id": "gc-referans-01",
+          "title": "Finalization queue",
+          "explanation": "Finalizer içeren nesnelerin temizleme akışını destekleyen runtime mekanizmaları vardır. Finalizer’lar ek yaşam süresi ve maliyet doğurabilir."
+        },
+        {
+          "id": "gc-referans-02",
+          "title": "Finalization’ın nesne ömrüne etkisi",
+          "explanation": "Erişilemeyen finalizable nesne finalizer tamamlanana kadar yeniden canlı tutulabilir. Toplama ile native temizliği aynı ana denk gelmeyebilir."
+        },
+        {
+          "id": "gc-referans-03",
+          "title": "Nesne resurrection",
+          "explanation": "Finalizer nesneye yeniden güçlü referans yayınlayabilir. Bu davranış kaynak durumunu karmaşıklaştırır; olağan tasarım tekniği olarak kullanma."
+        },
+        {
+          "id": "gc-referans-04",
+          "title": "GC.KeepAlive",
+          "explanation": "Nesnenin belirtilen noktaya kadar canlı kabul edilmesini sağlar. Managed nesneyle ilişkili native kullanımda erken son kullanım optimizasyonuna karşı gerekebilir."
+        },
+        {
+          "id": "gc-referans-05",
+          "title": "GCHandle türleri",
+          "explanation": "Normal, weak ve pinned handle farklı canlılık/adres sözleşmeleri sağlar. Allocate edilen handle’ın Free sorumluluğunu açıkça yönet."
+        },
+        {
+          "id": "gc-referans-06",
+          "title": "Pinning ve fragmentation",
+          "explanation": "Pinned nesne hareket edemez; uygun heap alanlarının compact edilmesini etkileyebilir. Pin süresini ve pinlenen boyutu sınırla."
+        },
+        {
+          "id": "gc-referans-07",
+          "title": "Weak references",
+          "explanation": "Nesneyi güçlü biçimde hayatta tutmadan izlemeyi sağlar. TryGetTarget sonucunu kullanacağın sürece güçlü yerel referansla koru."
+        },
+        {
+          "id": "gc-referans-08",
+          "title": "ConditionalWeakTable",
+          "explanation": "Anahtarın ömrüne bağlı yardımcı veri saklamayı destekler. Normal dictionary’de weak key taklit etmekle aynı GC semantiğine sahip değildir."
+        },
+        {
+          "id": "gc-referans-09",
+          "title": "Ephemeron mantığı",
+          "explanation": "Koşullu anahtar-değer canlılığında değerin anahtarı tutması tek başına anahtarı kalıcı yapmamalıdır. ConditionalWeakTable bu ilişkiyi GC ile koordine eder."
+        },
+        {
+          "id": "gc-referans-10",
+          "title": "Native memory pressure",
+          "explanation": "Managed wrapper küçükken tuttuğu native kaynak büyük olabilir. GC yalnız wrapper boyutundan tüm baskıyı göremeyebilir."
+        },
+        {
+          "id": "gc-referans-11",
+          "title": "GC.AddMemoryPressure",
+          "explanation": "GC’ye native kullanım hakkında ek bilgi verir; native bellek ayırmaz veya serbest bırakmaz. RemoveMemoryPressure ile dengeli ve doğru miktarda kullanılmalıdır."
+        }
+      ],
+      "scenario": "Büyük native görüntü buffer’ını küçük managed wrapper tutuyor. Sahipliği SafeHandle ile yönet ve gerekiyorsa bellek baskısını doğru bildir.",
+      "tips": [
+        "Weak reference güvenilir kalıcı cache değildir.",
+        "Pinned handle’ı unutmamak için finally kullan.",
+        "AddMemoryPressure allocation API’si değildir."
+      ],
+      "code": "var hedef = new object();\nvar zayif = new WeakReference<object>(hedef);\nif (zayif.TryGetTarget(out object? bulunan)\n    Console.WriteLine(bulunan is not null); // True\nGC.KeepAlive(hedef);\n// GC zorlanmadığı için toplanma sonucu hakkında tahmin yapılmaz.",
+      "walkthrough": "TryGetTarget başarılı olunca bulunan yerel referans güçlüdür. KeepAlive örneğin sonuna kadar asıl nesnenin canlılığını korur.",
+      "exercise": "Weak reference ile nesne kaybolduğunda yeniden üretilebilen cache örneği kur.",
+      "acceptance": [
+        "Kaybolmuş target güvenli işlenir",
+        "GC zamanlamasına bağımlı test yazma"
+      ],
+      "sources": [
+        {
+          "title": "GC temelleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals"
+        }
+      ]
+    },
+    {
+      "id": "gc-leak",
+      "level": 5,
+      "title": "Bellek sorunlarını araştırma",
+      "topics": [
+        {
+          "id": "gc-leak-01",
+          "title": "Managed memory leak",
+          "explanation": "Uygulama artık ihtiyaç duymadığı nesneleri güçlü referanslarla tutuyorsa managed leak oluşur. GC erişilebilir nesneyi gereksiz olduğunu bilerek silemez."
+        },
+        {
+          "id": "gc-leak-02",
+          "title": "Event abonelikleriyle tutulan nesneler",
+          "explanation": "Uzun ömürlü publisher delegate üzerinden subscriber’ı tutabilir. Abonelik yaşam süresini ekran veya oturum ömrüyle eşleştir."
+        },
+        {
+          "id": "gc-leak-03",
+          "title": "Static referanslar ve sınırsız cache",
+          "explanation": "Static alanlar geniş ömürlü root olur. Cache’e boyut, süre veya eviction politikası koymadan büyümeyi kontrol edemezsin."
+        },
+        {
+          "id": "gc-leak-04",
+          "title": "Closure kaynaklı retention",
+          "explanation": "Küçük lambda büyük nesne grafiğine erişimi koruyabilir. Yalnız gerekli değeri yakalamak ve callback’i zamanında bırakmak önemlidir."
+        },
+        {
+          "id": "gc-leak-05",
+          "title": "GC ölçümleri",
+          "explanation": "Allocation rate, canlı heap, nesil sayıları ve pause metriklerini birlikte oku. Tek bir sayaç leak veya darboğaz kanıtı değildir."
+        },
+        {
+          "id": "gc-leak-06",
+          "title": "Heap dump inceleme",
+          "explanation": "Dump tip sayıları ve referans grafiğinin anlık görüntüsüdür. Aynı iş yükünün farklı noktalarındaki dump’ları karşılaştır."
+        },
+        {
+          "id": "gc-leak-07",
+          "title": "Nesneleri tutan referans zincirleri",
+          "explanation": "gcroot ile nesneden root’a giden zinciri bul. Düzeltme root’un gerekli sahiplik ilişkisini ortadan kaldırmalıdır."
+        },
+        {
+          "id": "gc-leak-08",
+          "title": "Normal GC davranışı ile bellek sızıntısını ayırt etme",
+          "explanation": "Heap’in test boyunca büyümesi tek başına leak değildir. İş yükü dengelendikten sonra canlı kümenin neden sürekli arttığını araştır."
+        }
+      ],
+      "scenario": "Her rapor talebi callback’i static listede saklıyor. Dump üzerinden listeden rapor nesnesine giden zinciri gösterip yaşam süresini düzelt.",
+      "tips": [
+        "Dump hassas uygulama verileri içerebilir; örneklerde sentetik veri kullan.",
+        "Nesne sayısını sabit iş yüküyle karşılaştır.",
+        "GC zorlamak root kaynaklı leak’i düzeltmez."
+      ],
+      "code": "// Teşhis terminalinde; <PID> çalışan örnek process kimliği:\n// dotnet-counters monitor --process-id <PID> --counters System.Runtime\n// dotnet-dump collect --process-id <PID>\n// dotnet-dump analyze <dump-yolu>\n// SOS içinde: dumpheap -stat\n// Belirli nesne için: gcroot <adres>",
+      "walkthrough": "Komutlar örnek uygulama çalışırken ayrı terminalde yürütülür. Adresler her dump’ta değişir; heap özeti tek başına root zincirini göstermez.",
+      "exercise": "Sentetik leak oluştur; önce/sonra dump ve root zincirini raporla.",
+      "acceptance": [
+        "Tutucu alanı belirle",
+        "Düzeltme sonrası aynı döngüde büyüme durur"
+      ],
+      "sources": [
+        {
+          "title": "GC temelleri",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals"
+        },
+        {
+          "title": "Bellek sızıntısı teşhisi",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-memory-leak"
+        }
+      ]
+    },
+    {
+      "id": "ref-guvenlik",
+      "level": 6,
+      "title": "Referanslar ve yaşam süresi kuralları",
+      "topics": [
+        {
+          "id": "ref-guvenlik-01",
+          "title": "ref, out ve in",
+          "explanation": "Ref çağıranın değişkenine alias sağlar; out metotta atama gerektirir; in readonly referans sözleşmesidir. In her çağrıda kopyasız ve hızlı olma garantisi değildir."
+        },
+        {
+          "id": "ref-guvenlik-02",
+          "title": "Ref locals ve ref returns",
+          "explanation": "Bir depolama konumuna referans tutmayı ve döndürmeyi sağlar. Yaşam süresi dolacak yerel değişkene referans döndürülemez."
+        },
+        {
+          "id": "ref-guvenlik-03",
+          "title": "ref readonly",
+          "explanation": "Referans üzerinden değişikliği sınırlar. Hedefin başka alias üzerinden değişmesini engellemez."
+        },
+        {
+          "id": "ref-guvenlik-04",
+          "title": "readonly struct ve defensive copies",
+          "explanation": "Readonly bağlamda mutable struct üyesi çağrısı savunmacı kopya oluşturabilir. Readonly üyelerle tasarımı ve generated code’u karşılaştır."
+        },
+        {
+          "id": "ref-guvenlik-05",
+          "title": "ref struct",
+          "explanation": "Stack-only/ref-safe kullanım sınırlarına sahip tiptir. Heap alanı, boxing ve closure gibi kaçış yolları derleyici tarafından kısıtlanır."
+        },
+        {
+          "id": "ref-guvenlik-06",
+          "title": "Ref fields",
+          "explanation": "Ref struct içinde referans alanlarıyla başka depolamaya görünüm tutulabilir. Ref atama ile referansın gösterdiği değere atamayı ayır."
+        },
+        {
+          "id": "ref-guvenlik-07",
+          "title": "scoped",
+          "explanation": "Referansın veya ref-like değerin kaçış sınırını daraltır. Depolama ömrünü uzatmaz; derleyiciye güvenlik sözleşmesi verir."
+        },
+        {
+          "id": "ref-guvenlik-08",
+          "title": "Referans güvenliği ve escape kuralları",
+          "explanation": "Derleyici alias’ın geçersiz depolamaya erişmesini engeller. Unsafe ile bu korumaları aşarsan doğruluk sorumluluğu sende olur."
+        },
+        {
+          "id": "ref-guvenlik-09",
+          "title": "Async ve iterator içinde ref kullanım sınırları",
+          "explanation": "Desteklenen sürümlerde bazı ref yereller kullanılabilir; await/yield sınırını geçen yaşam süreleri kısıtlanır. Sürüm ve kullanım konumunu birlikte incele."
+        }
+      ],
+      "scenario": "Büyük struct dizisindeki bir elemanı kopyalamadan güncellemek gerekiyor. Ref alias’ın diziye bağlı yaşam süresini koru.",
+      "tips": [
+        "In kullanmak mutable struct’ta defensive copy yaratabilir.",
+        "Ref readonly derin değişmezlik sağlamaz.",
+        "Yerel stack verisine referans döndürmeye çalışma."
+      ],
+      "code": "int[] sayilar = [10, 20, 30];\nref int ikinci = ref sayilar[1];\nikinci += 5;\nConsole.WriteLine(sayilar[1]); // 25\nref readonly int gorunum = ref sayilar[1];\nConsole.WriteLine(gorunum); // 25",
+      "walkthrough": "İkinci ayrı kopya değildir; aynı dizi elemanına alias’tır. Readonly görünüm üzerinden atama yapılamaz.",
+      "exercise": "Büyük struct koleksiyonunda kopya ve ref sürümünü karşılaştır.",
+      "acceptance": [
+        "Alias’ın hangi veriye bağlı olduğunu açıkla",
+        "Ref güvenliği ihlal eden örneği derleyici reddeder"
+      ],
+      "sources": [
+        {
+          "title": "Memory ve Span kullanım kuralları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "span-buffer",
+      "level": 6,
+      "title": "Span ve buffer işlemleri",
+      "topics": [
+        {
+          "id": "span-buffer-01",
+          "title": "Span<T> ve ReadOnlySpan<T>",
+          "explanation": "Ardışık belleğe kısa ömürlü görünüm sağlar; managed, stack veya uygun native belleği temsil edebilir. ReadOnlySpan alttaki veriyi tüm alias’lar için değişmez yapmaz."
+        },
+        {
+          "id": "span-buffer-02",
+          "title": "Memory<T> ve ReadOnlyMemory<T>",
+          "explanation": "Heap üzerinde saklanabilen görünüm temsilleridir; async API’lere uygundur. Gerçek buffer sahipliği ve kullanım süresi ayrıca belirlenir."
+        },
+        {
+          "id": "span-buffer-03",
+          "title": "Slicing ve kopyalamadan veri işleme",
+          "explanation": "Span.Slice aynı belleğe yeni görünüm üretir. ToArray ise kopyalar; allocation’sız hedefte farkı bilinçli kullan."
+        },
+        {
+          "id": "span-buffer-04",
+          "title": "stackalloc ve kullanım sınırları",
+          "explanation": "Stack üzerinde geçici alan ayırır. Boyutu sınırla, döngü içinde kontrolsüz kullanma ve başlangıç içeriğini varsayma."
+        },
+        {
+          "id": "span-buffer-05",
+          "title": "Inline arrays",
+          "explanation": "Struct içinde sabit uzunluklu ardışık öğe alanı tanımlar. Yerleşim ve erişim kuralları dil/runtime sürümüne bağlıdır."
+        },
+        {
+          "id": "span-buffer-06",
+          "title": "Fixed-size buffers",
+          "explanation": "Unsafe struct içinde sabit boyutlu buffer sağlar. Pinning ve bounds kontrolü sorumluluklarını incele."
+        },
+        {
+          "id": "span-buffer-07",
+          "title": "MemoryMarshal",
+          "explanation": "Span ve bellek temsilleri arasında düşük seviye dönüşümler sağlar. Boyut, hizalama ve referans içeriği varsayımlarını doğrula."
+        },
+        {
+          "id": "span-buffer-08",
+          "title": "CollectionsMarshal",
+          "explanation": "Koleksiyonun iç depolamasına özel erişim sağlayabilir. Görünüm kullanılırken koleksiyon büyümesi gibi işlemler referansları geçersiz kılabilir."
+        },
+        {
+          "id": "span-buffer-09",
+          "title": "Unsafe",
+          "explanation": "Tip/ref güvenliğinin bazı kontrollerini atlayan düşük seviye araçlar sunar. Önce güvenli sürümü kur; performans gerekçesi olmadan kullanma."
+        }
+      ],
+      "scenario": "Ağ mesajının yalnız header kısmını incelemek için tüm byte dizisini kopyalama. Span dilimiyle aynı buffer üzerinden parse et.",
+      "tips": [
+        "Span dilimi kopyasızdır; array range kopya üretebilir.",
+        "Stackalloc boyutunu kullanıcı girdisine doğrudan bağlama.",
+        "CollectionsMarshal görünümü açıkken koleksiyonu yapısal olarak değiştirme."
+      ],
+      "code": "byte[] paket = [1, 2, 3, 4];\nSpan<byte> govde = paket.AsSpan(1, 2);\ngovde[0] = 9;\nConsole.WriteLine(paket[1]); // 9\nbyte[] kopya = govde.ToArray();\nkopya[0] = 7;\nConsole.WriteLine(paket[1]); // hâlâ 9",
+      "walkthrough": "Span aynı depolamaya bakar; ToArray bağımsız kopya üretir. Her iki davranışın sahiplik etkisi farklıdır.",
+      "exercise": "Header alanlarını Span üzerinden oku; array slicing sürümüyle allocation farkını ölç.",
+      "acceptance": [
+        "Sonuçlar eşit olur",
+        "Kopyanın nerede oluştuğunu göster"
+      ],
+      "sources": [
+        {
+          "title": "Memory ve Span kullanım kuralları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "sahiplik-pool",
+      "level": 6,
+      "title": "Sahiplik ve pooling",
+      "topics": [
+        {
+          "id": "sahiplik-pool-01",
+          "title": "Buffer ownership ve borrowing",
+          "explanation": "Owner kaynağı serbest bırakır; borrower belirlenen süre boyunca kullanır. API’de bu ayrım belgelenmezse erken iade veya leak oluşur."
+        },
+        {
+          "id": "sahiplik-pool-02",
+          "title": "Kullanım süresi sözleşmeleri",
+          "explanation": "Buffer’ın çağrı bitimine, async tamamlanmaya veya açık Dispose’a kadar geçerli olması farklı sözleşmelerdir. Çağıran süreyi bilmelidir."
+        },
+        {
+          "id": "sahiplik-pool-03",
+          "title": "IMemoryOwner<T> ve sahiplik aktarımı",
+          "explanation": "Owner nesnesi dispose sorumluluğunu taşır. Sahipliği devreden bileşen eski memory görünümünü kullanmaya devam etmemelidir."
+        },
+        {
+          "id": "sahiplik-pool-04",
+          "title": "ArrayPool<T> ve MemoryPool<T>",
+          "explanation": "Tekrar kullanılabilir depolama sağlar. Rent en az istenen uzunluğu verebilir; yalnız kullanılan bölümü işle."
+        },
+        {
+          "id": "sahiplik-pool-05",
+          "title": "Buffer tekrar kullanımı",
+          "explanation": "Aynı depolamayı işler arasında paylaşmak allocation azaltır. Önceki içeriğin geçerli veya temiz olduğunu varsayma."
+        },
+        {
+          "id": "sahiplik-pool-06",
+          "title": "Object pooling",
+          "explanation": "Yeniden kullanılabilir nesneler tutar; her nesne için avantajlı değildir. Reset, boyut sınırı ve thread-safety maliyetini ölç."
+        },
+        {
+          "id": "sahiplik-pool-07",
+          "title": "Buffer’ın zamanından önce iade edilmesi",
+          "explanation": "Async iş tamamlanmadan Return etmek başka kullanıcının aynı alanı değiştirmesine izin verebilir. Await edilen işin yaşam süresini sahiplikle eşleştir."
+        },
+        {
+          "id": "sahiplik-pool-08",
+          "title": "Use-after-return ve double-return",
+          "explanation": "İade edilmiş buffer’a erişim veya iki kez iade veri bozulmasına yol açabilir. Sahipliği tek temizleme yolu ile takip et."
+        },
+        {
+          "id": "sahiplik-pool-09",
+          "title": "Temizlenmemiş buffer sorunları",
+          "explanation": "Pool verisi önceki kullanımdan kalabilir. Gizlilik ve doğruluk için gerekli alanları temizle; temizleme maliyetini hesaba kat."
+        },
+        {
+          "id": "sahiplik-pool-10",
+          "title": "NativeMemory ile allocation/free eşleştirmesi",
+          "explanation": "Native allocation GC tarafından otomatik serbest bırakılmaz. Doğru allocator/free çiftini, exception yolunu ve boyut sınırlarını yönet."
+        }
+      ],
+      "scenario": "Dosya yükleme işi buffer’ı pool’dan alıyor; ağ yazımı tamamlanmadan iade edilirse başka istek veriyi değiştirebilir.",
+      "tips": [
+        "Rent edilen dizinin Length değeri istenen boyut olmayabilir.",
+        "Return sonrasında hiçbir alias kullanılamaz.",
+        "Pool kapasitesi ve tutulan büyük buffer’lar için limit belirle."
+      ],
+      "code": "using System.Buffers;\nbyte[] buffer = ArrayPool<byte>.Shared.Rent(1024);\ntry\n{\n    Span<byte> kullanilan = buffer.AsSpan(0, 1024);\n    kullanilan.Clear();\n    kullanilan[0] = 42;\n    Console.WriteLine(kullanilan[0]); // 42\n}\nfinally\n{\n    ArrayPool<byte>.Shared.Return(buffer, clearArray: true);\n}",
+      "walkthrough": "Try/finally iadenin tek yerde yapılmasını sağlar. Kullanılan dilim 1024 byte’tır; gerçek dizi daha büyük olabilir.",
+      "exercise": "Async yazma örneğinde Return’u await sonrasına taşı ve hata yolunu doğrula.",
+      "acceptance": [
+        "Tamamlanmadan iade yok",
+        "Her Rent için tam bir Return var"
+      ],
+      "sources": [
+        {
+          "title": "Memory ve Span kullanım kuralları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "verimli-veri",
+      "level": 6,
+      "title": "Verimli veri işleme",
+      "topics": [
+        {
+          "id": "verimli-veri-01",
+          "title": "ArrayBufferWriter<T>",
+          "explanation": "Büyüyen buffer yazıcısıdır; yazılabilir alan alıp Advance ile kullanılan miktarı bildirirsin. Ayrılan kapasite ile yazılmış uzunluğu ayır."
+        },
+        {
+          "id": "verimli-veri-02",
+          "title": "IBufferWriter<T>",
+          "explanation": "Tüketiciden bağımsız buffer üretim sözleşmesidir. GetSpan/GetMemory sonrası bildirilen alan sınırına uy ve Advance miktarını doğru ver."
+        },
+        {
+          "id": "verimli-veri-03",
+          "title": "Pipelines",
+          "explanation": "Parçalı I/O ve buffer yönetimini koordine eder. AdvanceTo consumed/examined konumları yanlışsa veri kaybı veya bellek büyümesi oluşabilir."
+        },
+        {
+          "id": "verimli-veri-04",
+          "title": "ReadOnlySequence<T> ve SequenceReader<T>",
+          "explanation": "Birden çok segmenti tek mantıksal dizi gibi işler. Alanların segment sınırında bölünebileceğini varsay."
+        },
+        {
+          "id": "verimli-veri-05",
+          "title": "Düşük allocation ile parsing ve biçimlendirme",
+          "explanation": "Span tabanlı TryParse/TryFormat geçici string ihtiyacını azaltabilir. Başarısızlık ve yetersiz hedef alanı ele al."
+        },
+        {
+          "id": "verimli-veri-06",
+          "title": "UTF-8 ve byte işlemleri",
+          "explanation": "Protokol bytes ile metnin karakter temsili farklıdır. Decode/encode sınırlarını ve bozuk byte politikasını açık belirle."
+        },
+        {
+          "id": "verimli-veri-07",
+          "title": "Binary veri okuma ve yazma",
+          "explanation": "Alan boyutu, işaret, sürüm ve sınır kontrollerini protokol sözleşmesine göre yap. Struct belleğini doğrudan dosya formatı sanma."
+        },
+        {
+          "id": "verimli-veri-08",
+          "title": "Endianness ve BinaryPrimitives",
+          "explanation": "Byte sırası protokolün parçasıdır. Platformun doğal sırasına güvenmek yerine açık little/big-endian API kullan."
+        },
+        {
+          "id": "verimli-veri-09",
+          "title": "Streaming ile büyük veri işleme",
+          "explanation": "Veriyi küçük parçalar halinde tüketmek toplam dosya boyutundan bağımsız çalışma belleği sağlayabilir. Ara sonuçları sınırsız listede biriktirme."
+        },
+        {
+          "id": "verimli-veri-10",
+          "title": "Cache sınırları ve bellek bütçeleri",
+          "explanation": "Cache için öğe sayısı kadar byte büyüklüğü ve eviction politikasını da belirle. Kısa süreli büyük girdiler pool/cache boyutunu kalıcı şişirmesin."
+        },
+        {
+          "id": "verimli-veri-11",
+          "title": "Array-of-structs ve struct-of-arrays",
+          "explanation": "AoS nesne başına alanları, SoA aynı alanları ardışık tutar. Erişim desenine göre cache locality ve SIMD uygunluğu değişir."
+        },
+        {
+          "id": "verimli-veri-12",
+          "title": "FrozenDictionary ve FrozenSet",
+          "explanation": "Okuma ağırlıklı sabit veri için oluşturma maliyeti karşılığında optimize arama sunar. Sık yeniden oluşturulan küçük veri için kazancı ölç."
+        },
+        {
+          "id": "verimli-veri-13",
+          "title": "Immutable koleksiyonların maliyetleri",
+          "explanation": "Değişiklikler yeni sürüm üretir ve yapısal paylaşım kullanabilir. Construction ve iteration maliyetleri mutable tiplerle aynı değildir."
+        }
+      ],
+      "scenario": "Çok büyük binary sensör akışında uzunluk alanı farklı segmentlere bölünüyor. Eksik veriyi bekleyip tam frame geldiğinde tüket.",
+      "tips": [
+        "Pipelines’ta consumed ve examined konumlarını karıştırma.",
+        "Protokol endianness’ini açık yaz.",
+        "Streaming sonrası tüm sonuçları listelemek bellek avantajını ortadan kaldırabilir."
+      ],
+      "code": "using System.Buffers.Binary;\nReadOnlySpan<byte> header = new byte[] { 0, 0, 1, 0 };\nint uzunluk = BinaryPrimitives.ReadInt32BigEndian(header);\nConsole.WriteLine(uzunluk); // 256\n// Gerçek parser: önce header uzunluğunu ve payload üst sınırını doğrular.",
+      "walkthrough": "Açık big-endian API mimariden bağımsız sonucu tanımlar. Örnekte tam header var; gerçek akış eksik header’ı ele almalıdır.",
+      "exercise": "Parçalı header ve fazla büyük payload bildirimini güvenli işleyen parser tasarla.",
+      "acceptance": [
+        "Eksik girdi için daha fazla veri bekle",
+        "Uzunluk üst sınırını allocation öncesinde doğrula"
+      ],
+      "sources": [
+        {
+          "title": "Memory ve Span kullanım kuralları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "async-akis",
+      "level": 7,
+      "title": "Asenkron programlama",
+      "topics": [
+        {
+          "id": "async-akis-01",
+          "title": "Task, Task<T>, async ve await",
+          "explanation": "Task işlemin tamamlanmasını temsil eder; thread ile aynı şey değildir. Await tamamlanmamış işi beklerken async metodu askıya alabilir."
+        },
+        {
+          "id": "async-akis-02",
+          "title": "Async metotların state machine dönüşümü",
+          "explanation": "Derleyici await noktaları ve gerekli yerel durum için state machine üretir. Await boyunca tutulması gereken nesneler daha uzun yaşayabilir."
+        },
+        {
+          "id": "async-akis-03",
+          "title": "I/O ve CPU ağırlıklı işlerin ayrımı",
+          "explanation": "I/O bekleme işi doğal async API ile; CPU işi uygun paralellik/scheduling ile ele alınır. Her async metodu Task.Run içine koyma."
+        },
+        {
+          "id": "async-akis-04",
+          "title": "Async lambda",
+          "explanation": "Task döndüren delegate ile tamamlanma gözlemlenebilir. Action hedefinde async lambda async void olabilir ve hata takibini zorlaştırır."
+        },
+        {
+          "id": "async-akis-05",
+          "title": "Continuation davranışı",
+          "explanation": "Await sonrası bölüm bir continuation’dır; aynı thread’e dönmek zorunda değildir. Hangi context ve scheduler’ın kullanıldığını bil."
+        },
+        {
+          "id": "async-akis-06",
+          "title": "Synchronization context",
+          "explanation": "UI gibi ortamlarda devamın nereye gönderileceğini belirleyebilir. Console uygulamasındaki davranışı tüm ortamlara genelleme."
+        },
+        {
+          "id": "async-akis-07",
+          "title": "Execution context",
+          "explanation": "AsyncLocal gibi mantıksal bağlamın akışını taşır. SynchronizationContext ile görevi farklıdır."
+        },
+        {
+          "id": "async-akis-08",
+          "title": "ConfigureAwait",
+          "explanation": "Await’in context yakalama tercihini etkiler. False yeni thread veya ExecutionContext akışının durması garantisi değildir."
+        },
+        {
+          "id": "async-akis-09",
+          "title": "AsyncLocal<T> ve ThreadLocal<T>",
+          "explanation": "AsyncLocal mantıksal async akışa, ThreadLocal fiziksel thread’e bağlı durum taşır. Thread değişen async işte ThreadLocal istek bağlamı için uygun olmayabilir."
+        },
+        {
+          "id": "async-akis-10",
+          "title": "Context akışı",
+          "explanation": "Bağlam aktarımı izleme ve kimlik bilgisi için yararlı, büyük nesnelerde retention/maliyet kaynağı olabilir. SuppressFlow kullanımı özel dikkat ister."
+        },
+        {
+          "id": "async-akis-11",
+          "title": "CancellationToken",
+          "explanation": "İşbirlikçi iptal bildirir; işlemi zorla öldürmez. Token’ı alt işlemlere aktar ve iptal edilebilir noktalarda kontrol et."
+        },
+        {
+          "id": "async-akis-12",
+          "title": "Cancellation callback yarışları ve kaynak temizliği",
+          "explanation": "Callback kayıtları dispose ve iptal ile yarışabilir. Callback’in hangi kaynaklara eriştiğini ve kilit sırasını belirle."
+        },
+        {
+          "id": "async-akis-13",
+          "title": "Asenkron exception akışı",
+          "explanation": "Task hatayı taşır; await hata akışını gözlemler. Fire-and-forget işlemlerde hata ve yaşam süresi sahibini açık belirle."
+        },
+        {
+          "id": "async-akis-14",
+          "title": "WhenAll ve WhenAny",
+          "explanation": "WhenAll tüm işleri, WhenAny ilk tamamlanan işi koordine eder. Kaybeden işler otomatik iptal olmaz; çok sayıda işi başlatmak concurrency sınırı değildir."
+        },
+        {
+          "id": "async-akis-15",
+          "title": "Async streams ve IAsyncEnumerable<T>",
+          "explanation": "Öğeler asenkron beklemelerle akabilir. Enumerator ömrü, cancellation ve kaynağın temizliği sözleşmenin parçasıdır."
+        },
+        {
+          "id": "async-akis-16",
+          "title": "await foreach",
+          "explanation": "Async enumerator’ı tüketir. Erken çıkışta temizleme yolunu ve token aktarımını incele."
+        },
+        {
+          "id": "async-akis-17",
+          "title": "Asenkron kaynak temizliği",
+          "explanation": "DisposeAsync tamamlanmadan kaynak bırakılmış sayılmaz. Await using temizliğin yaşam süresini çağrı akışına bağlar."
+        }
+      ],
+      "scenario": "Bir masaüstü ekranı dosya okurken donmamalı; ekrandan çıkınca okuma iptal edilmeli ve hata gözlemlenmelidir.",
+      "tips": [
+        "Task thread değildir.",
+        "WhenAny diğer işleri durdurmaz.",
+        "Async void yalnız zorunlu event handler senaryolarında kullan; diğer API’lerde Task döndür."
+      ],
+      "code": "static async Task<int> OkuAsync(string yol, CancellationToken token)\n{\n    string metin = await File.ReadAllTextAsync(yol, token)\n        .ConfigureAwait(false);\n    return metin.Length;\n}\n// Çağıran: int uzunluk = await OkuAsync(yol, token);",
+      "walkthrough": "Dosya okuma doğal async I/O’dur. Token alta aktarılır; continuation’ın aynı thread’de çalışacağı varsayılmaz.",
+      "exercise": "Token iptalinde sonucu ve temizlemeyi gözlemle; .Result ile bloklama sürümünü karşılaştır.",
+      "acceptance": [
+        "İptal gözlemlenir",
+        "Task hata akışı kaybolmaz"
+      ],
+      "sources": [
+        {
+          "title": "Async programlama",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"
+        }
+      ]
+    },
+    {
+      "id": "async-altyapi",
+      "level": 7,
+      "title": "İleri async altyapısı",
+      "topics": [
+        {
+          "id": "async-altyapi-01",
+          "title": "ValueTask ve ValueTask<T>",
+          "explanation": "Senkron tamamlanan sıcak yollarda Task allocation maliyetini azaltabilir. Daha büyük temsil ve tüketim kısıtları nedeniyle varsayılan seçim olarak dayatma."
+        },
+        {
+          "id": "async-altyapi-02",
+          "title": "ValueTask kullanım kısıtları ve yanlış kullanımlar",
+          "explanation": "Kaynak tabanlı ValueTask tek tüketim bekleyebilir. Tekrar await, eş zamanlı tüketim ve kontrolsüz AsTask çağrılarını sözleşmeye göre değerlendir."
+        },
+        {
+          "id": "async-altyapi-03",
+          "title": "TaskCompletionSource<T>",
+          "explanation": "Harici callback’i Task tamamlanmasına bağlar. Sonuç, hata ve iptal yarışlarını TrySet yöntemleriyle yönet."
+        },
+        {
+          "id": "async-altyapi-04",
+          "title": "Continuation’ların çalıştırılma biçimi",
+          "explanation": "Tamamlama sırasında continuation inline çalışabilir ve kilit/yeniden giriş sorunları doğurabilir. RunContinuationsAsynchronously seçeneğini bilinçli değerlendir."
+        },
+        {
+          "id": "async-altyapi-05",
+          "title": "Custom awaiter ve awaitable tasarımı",
+          "explanation": "GetAwaiter, IsCompleted, OnCompleted ve GetResult sözleşmeleri await davranışını belirler. Hata ve context akışını doğru kurmak zordur."
+        },
+        {
+          "id": "async-altyapi-06",
+          "title": "IValueTaskSource<T>",
+          "explanation": "ValueTask tamamlanmasını tekrar kullanılabilir kaynak üzerinden temsil eder. Token/version ve tüketim protokolü doğruluğun parçasıdır."
+        },
+        {
+          "id": "async-altyapi-07",
+          "title": "ManualResetValueTaskSourceCore<T>",
+          "explanation": "Kaynak tabanlı async işlemlerde yardımcı altyapıdır. Reset, version ve tek aktif işlem yaşam döngüsünü dikkatle uygula."
+        },
+        {
+          "id": "async-altyapi-08",
+          "title": "TaskScheduler",
+          "explanation": "Task yürütme yerleşimini kontrol eden soyutlamadır. Await context seçimiyle birebir aynı mekanizma değildir."
+        },
+        {
+          "id": "async-altyapi-09",
+          "title": "Özel scheduling",
+          "explanation": "Sıralı veya sınırlı yürütme için özel politika kurulabilir. Fairness, starvation ve disposal davranışlarını test et."
+        }
+      ],
+      "scenario": "Eski callback tabanlı cihaz API’sini await edilebilir hale getir; callback iki kez gelirse ikinci tamamlanma güvenli işlenmeli.",
+      "tips": [
+        "TaskCompletionSource tamamlamasını kilit altında yaparken inline continuation riskini düşün.",
+        "ValueTask optimizasyonunu önce ölç.",
+        "Kaynak tabanlı ValueTask örneğini üretim kullanımından önce yoğun stres testine sok."
+      ],
+      "code": "static Task<int> CallbackOrnegi()\n{\n    var tcs = new TaskCompletionSource<int>(\n        TaskCreationOptions.RunContinuationsAsynchronously);\n    ThreadPool.QueueUserWorkItem(_ => tcs.TrySetResult(42));\n    return tcs.Task;\n}\nConsole.WriteLine(await CallbackOrnegi()); // 42",
+      "walkthrough": "Callback işi Task üzerinden görünür hale gelir. RunContinuationsAsynchronously inline devam riskini azaltır; TrySetResult tekrar tamamlama yarışını exception olmadan ele alır.",
+      "exercise": "Callback sarmalayıcıya hata ve cancellation yolları ekle.",
+      "acceptance": [
+        "Tek sonuç yayınlanır",
+        "Registration ve kaynak ömrü temizlenir"
+      ],
+      "sources": [
+        {
+          "title": "Async programlama",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"
+        }
+      ]
+    },
+    {
+      "id": "thread-kilit",
+      "level": 7,
+      "title": "Thread ve senkronizasyon",
+      "topics": [
+        {
+          "id": "thread-kilit-01",
+          "title": "Thread ve ThreadPool",
+          "explanation": "Thread bağımsız yürütme kaynağıdır; pool thread’leri tekrar kullanır. Uzun bloklama pool kapasitesini tüketebilir."
+        },
+        {
+          "id": "thread-kilit-02",
+          "title": "ThreadPool starvation",
+          "explanation": "Kullanılabilir işçi eksikliği işleri geciktirir. Queue büyümesi, thread sayısı ve bloklayan stack’leri birlikte incele."
+        },
+        {
+          "id": "thread-kilit-03",
+          "title": "Sync-over-async problemleri",
+          "explanation": "Result veya Wait ile async işi bloklamak context deadlock’u veya starvation üretebilir. Çağrı zincirini mümkün olduğunca async tut."
+        },
+        {
+          "id": "thread-kilit-04",
+          "title": "Race condition",
+          "explanation": "Sonuç yürütme zamanlamasına bağlı olduğunda yarış vardır. Tek tek güvenli işlemlerden oluşan kontrol-et-sonra-yap dizisi yine yarışabilir."
+        },
+        {
+          "id": "thread-kilit-05",
+          "title": "Deadlock ve livelock",
+          "explanation": "Deadlock karşılıklı bekleme; livelock ilerleme olmadan etkinliktir. Kaynak sıralaması ve ilerleme koşullarını tasarla."
+        },
+        {
+          "id": "thread-kilit-06",
+          "title": "lock ve Monitor",
+          "explanation": "Karşılıklı dışlama ve görünürlük sağlar. Kilidi dışarıya açık nesne veya string üzerinde kurma; await lock gövdesinde kullanılamaz."
+        },
+        {
+          "id": "thread-kilit-07",
+          "title": "System.Threading.Lock",
+          "explanation": "Uygun sürümlerde lock sözdizimiyle özel kapsam semantiği sağlar. Object’e dönüştürmek farklı kilit yoluna bağlanabilir."
+        },
+        {
+          "id": "thread-kilit-08",
+          "title": "Interlocked",
+          "explanation": "Tek atomik read-modify-write işlemlerini sunar. Birden fazla alan invariantını tek başına otomatik korumaz."
+        },
+        {
+          "id": "thread-kilit-09",
+          "title": "SemaphoreSlim",
+          "explanation": "Sınırlı sayıda eş zamanlı giriş ve async bekleme sağlar. Release yalnız giriş başarıyla alındıktan sonra yapılmalıdır."
+        },
+        {
+          "id": "thread-kilit-10",
+          "title": "ReaderWriterLockSlim",
+          "explanation": "Okuyucu/yazıcı ayrımı sağlar. Kısa kritik bölgelerde ek koordinasyon maliyeti basit lock’tan pahalı olabilir."
+        },
+        {
+          "id": "thread-kilit-11",
+          "title": "SpinWait",
+          "explanation": "Kısa beklemelerde kontrollü spin/yield stratejisi sunar. Uzun beklemeyi CPU yakarak çözmeye çalışma."
+        },
+        {
+          "id": "thread-kilit-12",
+          "title": "Thread-safe koleksiyonlar",
+          "explanation": "Tekil işlemler güvenli olabilir; birden çok işlem atomik transaction değildir. GetOrAdd factory birden fazla çağrılabilir."
+        }
+      ],
+      "scenario": "Paralel işçiler aynı sayacı artırıyor; sayı eksik çıkıyor. Atomik artış ile doğru sonucu üret ve farklı kilitleme stratejilerinin maliyetini ölç.",
+      "tips": [
+        "count++ atomik değildir.",
+        "SemaphoreSlim.Release’i finally içinde yalnız başarılı Wait sonrası çağır.",
+        "ConcurrentDictionary factory’sinde tek seferlik yan etki varsayma."
+      ],
+      "code": "int sayac = 0;\nParallel.For(0, 10_000, _ => Interlocked.Increment(ref sayac));\nConsole.WriteLine(sayac); // 10000",
+      "walkthrough": "Interlocked her artırmayı atomik yapar. Aynı örnek sayac++ ile çalıştırıldığında doğru sonuç garanti edilmez.",
+      "exercise": "İki alanın toplam invariantını lock ile koruyan örnek yaz.",
+      "acceptance": [
+        "Tek alan atomikliği ile çok alan invariantını ayır",
+        "Hata yolunda kilit/semaphore bırakılır"
+      ],
+      "sources": [
+        {
+          "title": "Async programlama",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"
+        }
+      ]
+    },
+    {
+      "id": "bellek-paralellik",
+      "level": 7,
+      "title": "Bellek modeli ve paralellik",
+      "topics": [
+        {
+          "id": "bellek-paralellik-01",
+          "title": "C#/.NET bellek modeli",
+          "explanation": "Thread’ler arası görünürlük ve sıralama izinlerini tanımlar. Tek thread’de doğru kod paylaşılan durumda otomatik doğru olmaz."
+        },
+        {
+          "id": "bellek-paralellik-02",
+          "title": "Atomiklik, görünürlük ve işlem sıralaması",
+          "explanation": "Bölünmez erişim, başka thread’in değişikliği görmesi ve işlemlerin sıralanması ayrı özelliklerdir. Çözümü ihtiyacın üçüne göre tasarla."
+        },
+        {
+          "id": "bellek-paralellik-03",
+          "title": "volatile",
+          "explanation": "Belirli erişimlerde görünürlük/sıralama semantiği sağlar. Artırma gibi birleşik işlemleri atomik yapmaz ve genel kilit yerine geçmez."
+        },
+        {
+          "id": "bellek-paralellik-04",
+          "title": "Memory barriers",
+          "explanation": "Bellek işlemlerinin yeniden sıralanmasını belirli kurallarla sınırlar. Standart senkronizasyon primitive’lerini tercih et; düşük seviye bariyeri kanıtsız ekleme."
+        },
+        {
+          "id": "bellek-paralellik-05",
+          "title": "Compare-and-swap döngüleri",
+          "explanation": "Beklenen değer hâlâ geçerliyse yeni değeri atomik yayınlar. Başarısızlıkta tekrar hesaplama ve contention maliyeti vardır."
+        },
+        {
+          "id": "bellek-paralellik-06",
+          "title": "Lock-free ve wait-free farkı",
+          "explanation": "Lock-free sistem genelinde ilerleme, wait-free her işlem için sınırlı ilerleme garantisi hedefler. Kilit kullanmamak tek başına bu garantileri vermez."
+        },
+        {
+          "id": "bellek-paralellik-07",
+          "title": "ABA problemi",
+          "explanation": "Değer A’dan B’ye ve tekrar A’ya döndüğünde yalnız eşitlik kontrolü aradaki değişimi kaçırabilir. Version/tag ve yaşam süresi tasarımı gerekebilir."
+        },
+        {
+          "id": "bellek-paralellik-08",
+          "title": "False sharing",
+          "explanation": "Farklı thread’lerin farklı alanları aynı cache line üzerinde yazması cache trafiğini artırabilir. Padding çözümünü ölçerek doğrula."
+        },
+        {
+          "id": "bellek-paralellik-09",
+          "title": "Paylaşılan durumu azaltma",
+          "explanation": "Local accumulation, partitioning ve immutable mesajlar koordinasyonu azaltabilir. Son birleştirme aşamasının doğruluğunu koru."
+        },
+        {
+          "id": "bellek-paralellik-10",
+          "title": "Channels ve producer–consumer modeli",
+          "explanation": "Üretici ve tüketiciyi mesaj akışıyla ayırır. Complete, hata ve cancellation yollarını tanımla."
+        },
+        {
+          "id": "bellek-paralellik-11",
+          "title": "Backpressure",
+          "explanation": "Tüketici yavaşsa üreticinin hızını veya bekleyen işi sınırlamaktır. Sınırsız queue gecikme ve bellek büyümesini gizler."
+        },
+        {
+          "id": "bellek-paralellik-12",
+          "title": "Bounded concurrency",
+          "explanation": "Aynı anda aktif iş sayısını sınırlar. Task.WhenAll öncesi tüm işleri başlatmak bu sınırı sağlamaz."
+        },
+        {
+          "id": "bellek-paralellik-13",
+          "title": "Adalet ve contention ölçümü",
+          "explanation": "Ortalama throughput iyi olsa da bazı işler aç kalabilir. Bekleme dağılımı, lock süresi ve kuyruk yaşını incele."
+        },
+        {
+          "id": "bellek-paralellik-14",
+          "title": "Parallel işlemler",
+          "explanation": "CPU işini parçalara ayırır; scheduling ve birleştirme ek maliyeti vardır. Küçük işler paralel sürümde yavaşlayabilir."
+        },
+        {
+          "id": "bellek-paralellik-15",
+          "title": "PLINQ ve paralelleştirme maliyetleri",
+          "explanation": "Sorgu paralelliği sıralama, paylaşım ve birleştirme maliyetleri getirir. Yan etkisiz işler ve uygun veri boyutlarında ölç."
+        }
+      ],
+      "scenario": "Hızlı üretici yavaş disk tüketicisine veri gönderiyor. Bounded channel ile üreticiye bekleme uygulayıp RAM büyümesini sınırla.",
+      "tips": [
+        "Volatile count++ işlemini güvenli yapmaz.",
+        "Lock-free çözümün retry döngüsü de CPU maliyetidir.",
+        "Queue limiti ile aktif iş limiti farklıdır."
+      ],
+      "code": "using System.Threading.Channels;\nvar kanal = Channel.CreateBounded<int>(new BoundedChannelOptions(2)\n{\n    FullMode = BoundedChannelFullMode.Wait\n});\nTask uretici = Task.Run(async () =>\n{\n    try { for (int i = 0; i < 5; i++) await kanal.Writer.WriteAsync(i); }\n    finally { kanal.Writer.TryComplete(); }\n});\nawait foreach (int veri in kanal.Reader.ReadAllAsync()\n    Console.WriteLine(veri); // tek üretici/tüketici: 0..4\nawait uretici;",
+      "walkthrough": "Kapasite dolunca WriteAsync bekler. Gerçek uygulamada hata TryComplete(exception) ile okuyucuya da aktarılmalı ve iptal tasarlanmalıdır.",
+      "exercise": "İşleyiciye cancellation ve üretici hatasının tüketiciye aktarımını ekle.",
+      "acceptance": [
+        "Tüm görevler gözlemlenir",
+        "Kuyruk ve aktif işler ayrı sınırlandırılır"
+      ],
+      "sources": [
+        {
+          "title": "Async programlama",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"
+        }
+      ]
+    },
+    {
+      "id": "il-jit",
+      "level": 8,
+      "title": "Derlemeden yürütmeye",
+      "topics": [
+        {
+          "id": "il-jit-01",
+          "title": "C# → IL → makine kodu",
+          "explanation": "C# derleyicisi çoğunlukla IL/metadata üretir; runtime JIT veya AOT yolu ile yürütülebilir kod sağlar. Kaynak satırı makine komutuyla birebir eşleşmez."
+        },
+        {
+          "id": "il-jit-02",
+          "title": "CLR’nin görevleri",
+          "explanation": "Tip yükleme, yürütme, GC, exception ve interop gibi hizmetleri sağlar. Dil kuralı ile runtime uygulama ayrıntısını ayır."
+        },
+        {
+          "id": "il-jit-03",
+          "title": "Assembly ve metadata",
+          "explanation": "Assembly kod ve tip tanımlarını taşır. Metadata üye imzaları ve referansların runtime tarafından çözülmesini sağlar."
+        },
+        {
+          "id": "il-jit-04",
+          "title": "Tip yükleme",
+          "explanation": "Runtime tipleri ihtiyaç ve bağımlılıklarına göre çözer. Yükleme, static başlatma ve instance oluşturma aynı aşama değildir."
+        },
+        {
+          "id": "il-jit-05",
+          "title": "IL okuma",
+          "explanation": "ldarg, call, callvirt, box ve branch gibi talimatlar kaynak davranışını açığa çıkarır. Callvirt her zaman kaynakta virtual çağrı var demek değildir."
+        },
+        {
+          "id": "il-jit-06",
+          "title": "Derleyicinin ürettiği kodu inceleme",
+          "explanation": "Closure, iterator, async ve record için sentezlenen üyeleri incele. Compiler lowering ile JIT optimizasyonunu ayrı değerlendir."
+        },
+        {
+          "id": "il-jit-07",
+          "title": "JIT compilation",
+          "explanation": "IL metotları çalışırken native koda dönüştürülür. İlk çağrı maliyeti ile ısınmış çalışma maliyeti farklıdır."
+        },
+        {
+          "id": "il-jit-08",
+          "title": "Tiered compilation",
+          "explanation": "Kod farklı optimizasyon seviyelerinde yeniden derlenebilir. Kısa deney ilk tier davranışına takılabilir."
+        },
+        {
+          "id": "il-jit-09",
+          "title": "Dynamic PGO",
+          "explanation": "Runtime gözlemlerini optimizasyon kararlarında kullanır. İş yükü şekli üretilen kodu etkileyebilir."
+        },
+        {
+          "id": "il-jit-10",
+          "title": "ReadyToRun",
+          "explanation": "Önceden hazırlanmış native kod başlangıç maliyetlerini azaltabilir. JIT’in tamamen ortadan kalktığı anlamına gelmez."
+        },
+        {
+          "id": "il-jit-11",
+          "title": "JIT ve AOT karşılaştırması",
+          "explanation": "JIT runtime bilgisiyle uyarlanır; AOT önceden kod üretir ve farklı deployment kısıtları taşır. Başlangıç, boyut ve steady-state maliyetlerini birlikte ölç."
+        },
+        {
+          "id": "il-jit-12",
+          "title": "Native AOT",
+          "explanation": "Yerel yürütülebilir çıktı sağlar; dinamik kod üretimi gibi özellikleri kısıtlar. Reflection için metadata gereksinimini belirt."
+        },
+        {
+          "id": "il-jit-13",
+          "title": "Trimming",
+          "explanation": "Kullanılmadığı belirlenen kodu yayından çıkarır. Dinamik erişim analizle görülemiyorsa gerekli üyeler kaybolabilir."
+        },
+        {
+          "id": "il-jit-14",
+          "title": "Reflection ve dinamik kod üretimi sınırlamaları",
+          "explanation": "AOT ve trimming altında keyfi runtime kod üretimine güvenme. Desteklenen reflection yollarını annotation veya source generation ile açıkla."
+        }
+      ],
+      "scenario": "Uygulamanın ilk çağrısı yavaş, sonraki çağrıları hızlı. Başlangıç maliyetini JIT ısınması ve tip başlatmadan ayır.",
+      "tips": [
+        "Disassembly sonucunu SDK/runtime ve CPU bilgisiyle kaydet.",
+        "ReadyToRun bütün JIT kullanımını kapatmaz.",
+        "Trimming warning’lerini yalnız susturmak yerine dinamik erişim sözleşmesini düzelt."
+      ],
+      "code": "public static class Ornek\n{\n    public static int Topla(int a, int b) => a + b;\n}\n// Tipik IL biçimi (compiler çıktısıyla doğrula):\n// ldarg.0\n// ldarg.1\n// add\n// ret",
+      "walkthrough": "IL platformdan bağımsız ara temsildir; nihai makine kodu inlining ve JIT optimizasyonlarıyla farklılaşabilir.",
+      "exercise": "Topla çağrısının inline edildiği ve edilmediği çıktıları incele.",
+      "acceptance": [
+        "IL ile native kodu ayır",
+        "Cold start ve steady-state ayrı ölçülür"
+      ],
+      "sources": [
+        {
+          "title": ".NET runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        }
+      ]
+    },
+    {
+      "id": "jit-mekanik",
+      "level": 8,
+      "title": "Runtime ve JIT mekanikleri",
+      "topics": [
+        {
+          "id": "jit-mekanik-01",
+          "title": "Method tables",
+          "explanation": "Runtime tip/dispatch bilgileri taşır. Kaynak düzeyinde public sözleşme olmayan layout ayrıntılarına kalıcı API bağımlılığı kurma."
+        },
+        {
+          "id": "jit-mekanik-02",
+          "title": "Virtual ve interface dispatch",
+          "explanation": "Hedef davranış runtime tipine göre çözülebilir. JIT bazı çağrıları somutlaştırarak maliyeti azaltabilir."
+        },
+        {
+          "id": "jit-mekanik-03",
+          "title": "Constrained calls",
+          "explanation": "Generic/değer tipi çağrılarında uygun dispatch ve boxing davranışını destekler. IL’de constrained. ön ekini ilgili çağrıyla birlikte incele."
+        },
+        {
+          "id": "jit-mekanik-04",
+          "title": "Generic tiplerin çalışma zamanındaki temsili",
+          "explanation": "Generic tanım ve kapalı tip örneklerinin runtime temsilleri farklı düzeyde paylaşım kullanabilir. Her T için tüm kodun ayrı kopyalandığını varsayma."
+        },
+        {
+          "id": "jit-mekanik-05",
+          "title": "Generic code sharing ve specialization",
+          "explanation": "Bazı generic örnekler kod paylaşırken değer tipi veya optimizasyon bağlamında özel kod üretilebilir. Boyut ve hız etkisini ölç."
+        },
+        {
+          "id": "jit-mekanik-06",
+          "title": "Inlining",
+          "explanation": "Metot gövdesinin çağrı yerine alınması çağrı maliyetini ve başka optimizasyonları etkiler. AggressiveInlining kesin emir değildir."
+        },
+        {
+          "id": "jit-mekanik-07",
+          "title": "Devirtualization",
+          "explanation": "JIT hedef tipi belirleyince sanal çağrıyı doğrudan çağrıya çevirebilir. Sealed, profiling ve çağrı bağlamı kararı etkileyebilir."
+        },
+        {
+          "id": "jit-mekanik-08",
+          "title": "Bounds-check elimination",
+          "explanation": "JIT bazı sınır kontrollerini güvenli olduğunu kanıtlayınca kaldırabilir. Unsafe kullanmadan önce generated code’u kontrol et."
+        },
+        {
+          "id": "jit-mekanik-09",
+          "title": "Escape analysis",
+          "explanation": "Bir değerin referanslarının nereye kaçtığını analiz eder. Allocation kaldırılması veya temsili runtime/sürüm bağlamına göre değişir."
+        },
+        {
+          "id": "jit-mekanik-10",
+          "title": "Sürüme bağlı allocation optimizasyonları",
+          "explanation": "Aynı C# kodu yeni JIT ile farklı allocation davranışı gösterebilir. Kaynakta new görüp kesin heap maliyeti söyleme."
+        },
+        {
+          "id": "jit-mekanik-11",
+          "title": "Exception handling maliyetleri",
+          "explanation": "Try bloğunun normal yol maliyeti ile exception fırlatıp yakalama maliyeti farklıdır. Sık exception üretimini normal kontrol akışı olarak kullanma."
+        }
+      ],
+      "scenario": "Sıcak generic döngüde interface çağrısı ve boxing şüphesi var. IL, disassembly ve allocation sonuçlarını birlikte incele.",
+      "tips": [
+        "Inlining’i attribute adından kesin varsayma.",
+        "Unsafe önce değil kanıtlanmış ihtiyaçtan sonra gelir.",
+        "Runtime yükseltmesi benchmark sonuçlarını değiştirebilir."
+      ],
+      "code": "static bool Esit<T>(T a, T b) where T : IEquatable<T>\n    => a.Equals(b);\nConsole.WriteLine(Esit(42, 42)); // True\n// IL ve disassembly üzerinden constrained call ve boxing durumunu incele.",
+      "walkthrough": "Constraint tipli eşitlik çağrısını mümkün kılar. Gerçek kod üretimi ve allocation farklı T’lerle ölçülmelidir.",
+      "exercise": "Object tabanlı ve generic sürümü int ile karşılaştır.",
+      "acceptance": [
+        "Çıktı aynı olur",
+        "Boxing ve dispatch’i generated code ile açıkla"
+      ],
+      "sources": [
+        {
+          "title": ".NET runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        }
+      ]
+    },
+    {
+      "id": "assembly-yukleme",
+      "level": 8,
+      "title": "Assembly yükleme",
+      "topics": [
+        {
+          "id": "assembly-yukleme-01",
+          "title": "AssemblyLoadContext",
+          "explanation": "Assembly yükleme ve bağımlılık izolasyonu bağlamı sağlar. Güvenlik sandbox’ı değildir."
+        },
+        {
+          "id": "assembly-yukleme-02",
+          "title": "Dependency resolution",
+          "explanation": "Bağımlılıkların hangi dosya/bağlamdan çözüleceğini belirler. Host ile plugin arasında ortak sözleşmeleri bilinçli paylaş."
+        },
+        {
+          "id": "assembly-yukleme-03",
+          "title": "Type identity",
+          "explanation": "Tip adı aynı olsa da assembly ve load context farkı nedeniyle iki tip farklı kimliğe sahip olabilir. Cast hatasını yalnız isim eşitliğine bakarak çözemezsin."
+        },
+        {
+          "id": "assembly-yukleme-04",
+          "title": "Collectible assembly yükleme",
+          "explanation": "Collectible context yüklenen assembly grubunun sonradan bırakılmasına izin verir. Dış root’lar ve çalışan kod yine unloading’i engelleyebilir."
+        },
+        {
+          "id": "assembly-yukleme-05",
+          "title": "Assembly unload",
+          "explanation": "Unload isteği kooperatiftir; çağrı döndüğünde tüm alan hemen serbest kalmış olmak zorunda değildir. Tamamlanmayı weak reference ve teşhisle incele."
+        },
+        {
+          "id": "assembly-yukleme-06",
+          "title": "Unload işlemini engelleyen referanslar",
+          "explanation": "Static cache, delegate, event, thread ve reflection nesneleri context’i tutabilir. Root zincirinde LoaderAllocator dahil bağlantıları araştır."
+        }
+      ],
+      "scenario": "Bir rapor eklentisi güncellenecek; eski plugin assembly’si static reflection cache’i nedeniyle unload olamıyor.",
+      "tips": [
+        "AssemblyLoadContext güvenlik sınırı değildir.",
+        "Unload() senkron zorla kaldırma değildir.",
+        "Plugin Type veya MethodInfo cache’i context’i hayatta tutabilir."
+      ],
+      "code": "using System.Runtime.Loader;\nvar baglam = new AssemblyLoadContext(\"rapor\", isCollectible: true);\n// var assembly = baglam.LoadFromAssemblyPath(tamDosyaYolu);\nbaglam.Unload();\n// Tüm dış referanslar ve çalışan işler bırakılmadan unloading tamamlanmayabilir.",
+      "walkthrough": "Örnek collectible bağlamı oluşturur. Gerçek plugin yüklemede shared contract ve dependency resolver ayrıca tasarlanmalıdır.",
+      "exercise": "Plugin nesnesini static alanda tutarak unload sorununu üret ve root’u kaldır.",
+      "acceptance": [
+        "Tip kimliği farkını açıkla",
+        "Unloading sonrasında kalan root’ları kontrol et"
+      ],
+      "sources": [
+        {
+          "title": ".NET runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        },
+        {
+          "title": "Assembly unloadability",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/unloadability"
+        }
+      ]
+    },
+    {
+      "id": "cpu-veri",
+      "level": 8,
+      "title": "CPU ve veri yerleşimi",
+      "topics": [
+        {
+          "id": "cpu-veri-01",
+          "title": "CPU cache",
+          "explanation": "CPU sık kullanılan veriyi cache katmanlarında tutar. Belleğe rastgele erişim, aritmetik işlemden daha pahalı hale gelebilir."
+        },
+        {
+          "id": "cpu-veri-02",
+          "title": "Locality",
+          "explanation": "Ardışık konumlara ve yakın zamanda kullanılan veriye erişim cache kullanımını iyileştirebilir. Veri yerleşimini erişim desenine göre tasarla."
+        },
+        {
+          "id": "cpu-veri-03",
+          "title": "Veri yerleşimi",
+          "explanation": "İç içe referans grafikleri pointer chasing maliyeti yaratabilir. Ardışık diziler bazı işlerde daha iyi locality sağlar."
+        },
+        {
+          "id": "cpu-veri-04",
+          "title": "SIMD",
+          "explanation": "Tek talimatla birden fazla veri öğesini işler. Veri bağımlılığı, alignment ve kalan elemanlar vektörleştirmeyi etkiler."
+        },
+        {
+          "id": "cpu-veri-05",
+          "title": "Vector<T>",
+          "explanation": "Taşınabilir SIMD soyutlaması sağlar. Vector.Count donanıma göre değişebilir; sabit genişlik varsayma."
+        },
+        {
+          "id": "cpu-veri-06",
+          "title": "Hardware intrinsics",
+          "explanation": "Mimariye özgü vektör talimatlarına erişir. IsSupported kontrolü ve doğru fallback yolu sağla."
+        },
+        {
+          "id": "cpu-veri-07",
+          "title": "x64 ve ARM64 farkları",
+          "explanation": "Talimat seti, ordering ve JIT çıktısı farklılaşır. Bir mimaride doğru/hızlı gözlenen davranışı diğerine körlemesine taşıma."
+        },
+        {
+          "id": "cpu-veri-08",
+          "title": "Platforma bağlı davranışlar",
+          "explanation": "Pointer genişliği, native ABI ve OS araçları değişebilir. Binary formatı platforma özgü bellek layout’una bağlama."
+        }
+      ],
+      "scenario": "Milyonlarca sensör değerinin yalnız sıcaklık alanı toplanıyor. AoS ve SoA düzenlerini cache ve SIMD açısından karşılaştır.",
+      "tips": [
+        "Vector.Count için sabit sayı kullanma.",
+        "Intrinsic için destek kontrolü ve scalar fallback ekle.",
+        "Cache kazancını yalnız küçük L1’e sığan veriyle ölçme."
+      ],
+      "code": "using System.Numerics;\nConsole.WriteLine(Vector.IsHardwareAccelerated);\nConsole.WriteLine(Vector<float>.Count);\n// Sayılar ve destek platforma bağlıdır.\nfloat[] veriler = [1, 2, 3, 4];\nfloat toplam = 0;\nforeach (float x in veriler) toplam += x;\nConsole.WriteLine(toplam); // 10",
+      "walkthrough": "Scalar sürüm doğruluk referansıdır. SIMD sürümünde floating-point toplama sırası sonucu etkileyebilir; uygun tolerans kullanılır.",
+      "exercise": "Scalar ve SIMD toplama sürümlerini farklı veri boyutlarında ölç.",
+      "acceptance": [
+        "Kalan elemanlar işlenir",
+        "Tolerans ve donanım bilgisi raporlanır"
+      ],
+      "sources": [
+        {
+          "title": ".NET runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        }
+      ]
+    },
+    {
+      "id": "native-interop",
+      "level": 8,
+      "title": "Unsafe ve native interoperability",
+      "topics": [
+        {
+          "id": "native-interop-01",
+          "title": "Unsafe kod",
+          "explanation": "Pointer ve düşük seviye işlemlere izin verir; proje ayarı gerektirir. Managed güvenlik kontrolleri dışındaki doğruluğu sen sağlarsın."
+        },
+        {
+          "id": "native-interop-02",
+          "title": "Pointer ve pointer arithmetic",
+          "explanation": "Adres ve eleman boyutuna göre ilerleme sağlar. Buffer sınırı ve geçerli yaşam süresi ihlali bellek bozulması doğurabilir."
+        },
+        {
+          "id": "native-interop-03",
+          "title": "fixed",
+          "explanation": "Managed nesnenin adresini belirli scope boyunca sabitler. Adresi scope dışındaki async/native işe veriyorsan ömrü ayrıca yönet."
+        },
+        {
+          "id": "native-interop-04",
+          "title": "Function pointers",
+          "explanation": "Fonksiyon adresini delegate dışında temsil eder. Calling convention ve hedef yaşam süresi tam eşleşmelidir."
+        },
+        {
+          "id": "native-interop-05",
+          "title": "StructLayout",
+          "explanation": "Native yerleşime uygun alan sırası/layout tanımlar. Managed tip düzenini protokol formatıyla otomatik eşitlemez."
+        },
+        {
+          "id": "native-interop-06",
+          "title": "Packing ve blittability",
+          "explanation": "Packing hizalamayı; blittability temsil dönüşümü ihtiyacını etkiler. Bool/char gibi alanların native temsili bağlama göre değişebilir."
+        },
+        {
+          "id": "native-interop-07",
+          "title": "ABI ve calling conventions",
+          "explanation": "Argüman, dönüş ve stack/register kullanım sözleşmeleridir. Yanlış convention native sınırda ciddi arıza doğurabilir."
+        },
+        {
+          "id": "native-interop-08",
+          "title": "Native interop",
+          "explanation": "Managed ve native kod arasında çağrı kurar. Thread, hata, sahiplik ve buffer sözleşmelerini birlikte tanımla."
+        },
+        {
+          "id": "native-interop-09",
+          "title": "Marshalling",
+          "explanation": "Tipleri sınırın öteki tarafına uygun temsile çevirir. Kopyalama ve allocation maliyetini ölç."
+        },
+        {
+          "id": "native-interop-10",
+          "title": "Native bellek ömrü",
+          "explanation": "GC native allocation’ı otomatik bırakmaz. Sahiplik transferi ve hangi free fonksiyonunun kullanılacağı açık olmalıdır."
+        },
+        {
+          "id": "native-interop-11",
+          "title": "LibraryImport",
+          "explanation": "Desteklenen senaryolarda source-generated P/Invoke sağlar. Partial metot ve marshalling kurallarını gözet."
+        },
+        {
+          "id": "native-interop-12",
+          "title": "Reverse P/Invoke",
+          "explanation": "Native kodun managed callback çağırmasıdır. Callback’in runtime giriş ve hata sözleşmelerini tanımla."
+        },
+        {
+          "id": "native-interop-13",
+          "title": "UnmanagedCallersOnly",
+          "explanation": "Uygun statik managed metodu unmanaged çağrıya açar. Parametre, convention ve çağrı kısıtlarını kontrol et."
+        },
+        {
+          "id": "native-interop-14",
+          "title": "Native callback ve delegate yaşam süresi",
+          "explanation": "Native kod adresi saklıyorsa delegate’in GC tarafından bırakılmaması gerekir. Kayıt ve unregister yaşam döngüsünü eşleştir."
+        },
+        {
+          "id": "native-interop-15",
+          "title": "Reflection.Emit ve dinamik kod üretimi",
+          "explanation": "Runtime’da IL/tip üretmeyi sağlar. Native AOT gibi ortamlarda desteklenmeyebilir; source generation alternatifini değerlendir."
+        }
+      ],
+      "scenario": "Native kütüphane callback’i ileride çağırmak için saklıyor. Delegate’e güçlü referans tutulmazsa callback ömrü bozulabilir.",
+      "tips": [
+        "Native sınırından kontrolsüz exception geçirme.",
+        "Native allocation’ı doğru kütüphanenin free API’siyle bırak.",
+        "Pinned adres fixed scope’u bitince geçerli kabul edilemez."
+      ],
+      "code": "// csproj: <AllowUnsafeBlocks>true</AllowUnsafeBlocks>\nusing System.Runtime.InteropServices;\nunsafe\n{\n    void* alan = NativeMemory.Alloc(16);\n    try\n    {\n        if (alan == null) throw new OutOfMemoryException();\n        new Span<byte>(alan, 16).Clear();\n    }\n    finally { NativeMemory.Free(alan); }\n}",
+      "walkthrough": "Native allocation’ın temizliği finally ile eşlenir. Bu örnek unsafe ayarı ister; web arayüzünde çalıştırılmaz.",
+      "exercise": "Native kaynak için SafeHandle tabanlı sahiplik sarmalayıcı tasarla.",
+      "acceptance": [
+        "Başarılı ve hatalı yolda tek temizleme var",
+        "ABI ve buffer uzunluğu belgelenir"
+      ],
+      "sources": [
+        {
+          "title": ".NET runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        },
+        {
+          "title": "Native interop uygulamaları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/standard/native-interop/best-practices"
+        }
+      ]
+    },
+    {
+      "id": "benchmark",
+      "level": 9,
+      "title": "Performans hedefleri ve benchmark",
+      "topics": [
+        {
+          "id": "benchmark-01",
+          "title": "Çalışma süresi, throughput, latency ve bellek hedefleri",
+          "explanation": "İstek süresi, iş/saniye ve bellek farklı amaçlardır. Optimizasyondan önce kabul edilebilir hedef ve yük koşulunu tanımla."
+        },
+        {
+          "id": "benchmark-02",
+          "title": "BenchmarkDotNet",
+          "explanation": "Isınma, tekrar ve istatistik için benchmark altyapısı sağlar. Ayrı paket ve benchmark projesi gerekir; sonuçları ortamla birlikte oku."
+        },
+        {
+          "id": "benchmark-03",
+          "title": "Güvenilir benchmark hazırlama",
+          "explanation": "Aynı işi yapan baseline ve aday oluştur. Setup maliyeti, girdi üretimi ve ölçülen işi birbirinden ayır."
+        },
+        {
+          "id": "benchmark-04",
+          "title": "Warmup ve JIT etkileri",
+          "explanation": "İlk çağrılar kod üretimi ve cache ısınması içerir. Steady-state ölçümde warmup’ı, başlangıç testinde ilk maliyeti koru."
+        },
+        {
+          "id": "benchmark-05",
+          "title": "Dead-code elimination",
+          "explanation": "Kullanılmayan hesap compiler/JIT tarafından kaldırılabilir. Sonucu benchmark altyapısının tüketebileceği biçimde döndür."
+        },
+        {
+          "id": "benchmark-06",
+          "title": "Benchmark varyansı",
+          "explanation": "OS scheduling, güç yönetimi ve arka plan işleri ölçümü oynatır. Tek koşunun sonucunu kesin hız oranı gibi sunma."
+        },
+        {
+          "id": "benchmark-07",
+          "title": "Dağılımlar ve ölçüm belirsizliği",
+          "explanation": "Ortalama tek başına kuyruk uçlarını göstermez. Tekrarlar, hata aralıkları ve outlier politikasını incele."
+        },
+        {
+          "id": "benchmark-08",
+          "title": "Ortalama, p95 ve p99 gecikme",
+          "explanation": "Yüzdelikler çoğu isteğin ve uç örneklerin süresini farklı gösterir. Uygun örnek sayısı olmadan p99 yorumu yapma."
+        },
+        {
+          "id": "benchmark-09",
+          "title": "Cold start ve steady state",
+          "explanation": "Başlangıç ve ısınmış çalışma farklı kullanıcı deneyimleridir. İkisinin ölçüm tasarımı ve optimizasyonu ayrı olabilir."
+        },
+        {
+          "id": "benchmark-10",
+          "title": "Uzun süreli soak testleri",
+          "explanation": "Cache büyümesi, leak, fragmentation ve yavaş birikimli hataları ortaya çıkarabilir. Test süresini gerçek kullanım ömrüne göre seç."
+        }
+      ],
+      "scenario": "İki parser arasında seçim yapılıyor. Küçük microbenchmark kazancının büyük dosya iş yükünde de doğrulanması gerekiyor.",
+      "tips": [
+        "Benchmark Release ve debugger olmadan çalıştırılmalı.",
+        "Sonucu tüket; ölü kod ölçme.",
+        "Yalnız ortalama değil dağılım ve allocation raporla."
+      ],
+      "code": "// Ayrı benchmark projesi; BenchmarkDotNet paketi gerekir.\nusing BenchmarkDotNet.Attributes;\nusing BenchmarkDotNet.Running;\nBenchmarkRunner.Run<Toplama>();\n[MemoryDiagnoser]\npublic class Toplama\n{\n    private readonly int[] veri = Enumerable.Range(0, 1000).ToArray();\n    [Benchmark(Baseline = true)] public int Linq() => veri.Sum();\n    [Benchmark] public int Dongu()\n    {\n        int toplam = 0;\n        foreach (int n in veri) toplam += n;\n        return toplam;\n    }\n}",
+      "walkthrough": "Setup alanı ölçülen çağrının dışında kurulur; sonuç döndürülür. Hangi sürümün daha hızlı olduğu burada varsayılmaz, ölçülür.",
+      "exercise": "Farklı girdi boyutları için benchmark parametreleri ekle.",
+      "acceptance": [
+        "Sonuçlar eşit olur",
+        "Runtime, CPU ve allocation raporlanır"
+      ],
+      "sources": [
+        {
+          "title": ".NET teşhis araçları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+        },
+        {
+          "title": "BenchmarkDotNet belgeleri",
+          "url": "https://benchmarkdotnet.org/articles/overview.html"
+        }
+      ]
+    },
+    {
+      "id": "cpu-bellek-olcum",
+      "level": 9,
+      "title": "CPU ve bellek ölçümü",
+      "topics": [
+        {
+          "id": "cpu-bellek-olcum-01",
+          "title": "Allocation miktarı ve allocation hızı",
+          "explanation": "Bir işte ayrılan byte ile saniye başına allocation farklıdır. Throughput yükselince iş başına maliyet sabitken toplam allocation hızı artabilir."
+        },
+        {
+          "id": "cpu-bellek-olcum-02",
+          "title": "GC süresi ve pause ölçümü",
+          "explanation": "Toplam GC işi, CPU maliyeti ve uygulamanın durduğu süre ayrı ölçümlerdir. Gecikme tepesini GC olay zamanlarıyla eşleştir."
+        },
+        {
+          "id": "cpu-bellek-olcum-03",
+          "title": "CPU sampling",
+          "explanation": "Örneklenen stack’ler CPU zamanının nereye gittiğine yaklaşım sağlar. Bekleme süresini CPU hotspot olarak doğrudan göstermez."
+        },
+        {
+          "id": "cpu-bellek-olcum-04",
+          "title": "Trace inceleme",
+          "explanation": "Zaman çizgisi olayların ilişkisini gösterir. İstek sınırı, thread ve GC olaylarını birlikte ilişkilendir."
+        },
+        {
+          "id": "cpu-bellek-olcum-05",
+          "title": "Heap analizi",
+          "explanation": "Tip boyutları ve referans grafiği canlı veri hakkında bilgi verir. Allocation geçmişinin tamamını heap snapshot’tan çıkaramazsın."
+        },
+        {
+          "id": "cpu-bellek-olcum-06",
+          "title": "Heap snapshot karşılaştırma",
+          "explanation": "Benzer yük noktalarında tip sayısı ve boyut farkını incele. Farklı fazları karşılaştırmak yanlış leak sonucu verebilir."
+        },
+        {
+          "id": "cpu-bellek-olcum-07",
+          "title": "Retention analizi",
+          "explanation": "Nesnelerin neden hâlâ erişilebilir olduğunu araştırır. Büyük nesne kadar onu tutan küçük root’u da bul."
+        },
+        {
+          "id": "cpu-bellek-olcum-08",
+          "title": "Managed allocation ile native bellek artışını ayırt etme",
+          "explanation": "Managed heap sabitken process büyüyorsa native, stack veya kod alanlarını incele. Gerekli platform araçlarını ekle."
+        },
+        {
+          "id": "cpu-bellek-olcum-09",
+          "title": "Bellek ile hız arasındaki ödünleşimler",
+          "explanation": "Cache, pooling ve precomputation zamanı azaltıp retained memory’yi artırabilir. Hedef bütçeye göre denge kur."
+        }
+      ],
+      "scenario": "Bir dönüşüm cache’i işlem süresini düşürürken RAM’i büyütüyor. Kazancı iş başına süre ve tutulan byte ile birlikte değerlendir.",
+      "tips": [
+        "Heap dump allocation geçmişi değildir.",
+        "CPU düşükken latency yüksekse bloklama ve I/O’yu araştır.",
+        "İş başına allocation ile saniyelik allocation hızını ayır."
+      ],
+      "code": "using System.Diagnostics;\nlong once = GC.GetAllocatedBytesForCurrentThread();\nvar saat = Stopwatch.StartNew();\nvar sonuc = Enumerable.Range(0, 1000).ToArray();\nsaat.Stop();\nlong byteFarki = GC.GetAllocatedBytesForCurrentThread() - once;\nGC.KeepAlive(sonuc);\nConsole.WriteLine($\"{saat.ElapsedTicks} tick, {byteFarki} byte\");\n// Tanıtım ölçümü; güvenilir karşılaştırma için benchmark kullan.",
+      "walkthrough": "Stopwatch ve sorgu oluşturma gibi maliyetler de bu aralıkta yer alır. Tek ölçüm benchmark sonucu sayılmaz.",
+      "exercise": "Sıcak yolun önce/sonra trace’ini aynı yükle karşılaştır.",
+      "acceptance": [
+        "İş yükü ve ölçüm kapsamı aynıdır",
+        "Retention ve allocation ayrı yorumlanır"
+      ],
+      "sources": [
+        {
+          "title": ".NET teşhis araçları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+        }
+      ]
+    },
+    {
+      "id": "teshis-araclari",
+      "level": 9,
+      "title": "Teşhis araçları",
+      "topics": [
+        {
+          "id": "teshis-araclari-01",
+          "title": "dotnet-counters",
+          "explanation": "Runtime sayaçlarını hızlı gözlemlemeyi sağlar. Sayaç adları ve mevcut metrikler runtime/tool sürümüne göre değişebilir."
+        },
+        {
+          "id": "teshis-araclari-02",
+          "title": "dotnet-trace",
+          "explanation": "EventPipe tabanlı olay ve sampling trace’i toplar. Gerekli provider ve süreyi iş yüküne göre seç."
+        },
+        {
+          "id": "teshis-araclari-03",
+          "title": "dotnet-dump",
+          "explanation": "Dump toplama ve analiz sunar. Process erişim izinleri, platform ve dump boyutunu hesaba kat."
+        },
+        {
+          "id": "teshis-araclari-04",
+          "title": "Profiler kullanımı",
+          "explanation": "CPU, allocation ve bekleme analizleri için uygun modu seç. Profiler’ın ek yükünün sonucu etkileyebileceğini değerlendir."
+        },
+        {
+          "id": "teshis-araclari-05",
+          "title": "SOS",
+          "explanation": "Managed runtime durumunu debugger/dump üzerinden inceleyen komutlar sağlar. Sürüm eşleşmesi ve semboller teşhisi etkiler."
+        },
+        {
+          "id": "teshis-araclari-06",
+          "title": "dumpheap",
+          "explanation": "Heap nesnelerini ve tip istatistiklerini gösterir. -stat ile önce toplam dağılıma bak, sonra şüpheli nesnelere in."
+        },
+        {
+          "id": "teshis-araclari-07",
+          "title": "gcroot",
+          "explanation": "Belirli nesneyi hayatta tutan root zincirini arar. Birden fazla root olabilir; ilk zinciri kaldırmak her zaman yeterli olmaz."
+        },
+        {
+          "id": "teshis-araclari-08",
+          "title": "clrstack",
+          "explanation": "Managed çağrı stack’ini gösterir. Stack üzerinde bekleyen işleri hangi kaynağın durdurduğunu incele."
+        },
+        {
+          "id": "teshis-araclari-09",
+          "title": "syncblk",
+          "explanation": "Monitor/synchronization bilgileri sağlar. Tüm async beklemeleri veya tüm kilit türlerini bu komuttan bekleme."
+        },
+        {
+          "id": "teshis-araclari-10",
+          "title": "Thread dump inceleme",
+          "explanation": "Thread durumları ve stack’leri üzerinden bloklama deseni bulunur. Bir anlık görüntüyü zaman içinde örneklerle destekle."
+        },
+        {
+          "id": "teshis-araclari-11",
+          "title": "Deadlock ve starvation teşhisi",
+          "explanation": "Deadlock için bekleme döngüsü, starvation için ilerleyemeyen kuyruk ve işçi durumunu araştır. İkisini aynı sorun sayma."
+        },
+        {
+          "id": "teshis-araclari-12",
+          "title": "EventPipe",
+          "explanation": "Çapraz platform .NET olay toplama altyapısıdır. Etkin provider’lar veri hacmini ve ek yükü değiştirir."
+        },
+        {
+          "id": "teshis-araclari-13",
+          "title": "ETW",
+          "explanation": "Windows olay izleme altyapısıdır. OS ve runtime olaylarını birlikte ilişkilendirmek için kullanılabilir; platforma özgüdür."
+        },
+        {
+          "id": "teshis-araclari-14",
+          "title": "Özel EventSource olayları",
+          "explanation": "Uygulamanın anlamlı aşamalarını trace’e ekler. Yüksek hacimli olaylarda payload maliyeti ve hassas veriyi düşün."
+        }
+      ],
+      "scenario": "Üretim benzeri yükte iş kuyruğu büyüyor. Counters ile şüpheyi bul, trace ve thread stack’leriyle sebebi doğrula.",
+      "tips": [
+        "Teşhis araçları kurulum ve process erişimi gerektirir.",
+        "Komut yer tutucularını gerçek PID/yolla değiştir.",
+        "syncblk tüm async koordinasyon sorunlarını açıklamaz."
+      ],
+      "code": "// Terminal; araçların kurulmuş olması gerekir:\n// dotnet-counters monitor --process-id <PID> --counters System.Runtime\n// dotnet-trace collect --process-id <PID>\n// dotnet-dump collect --process-id <PID>\n// dotnet-dump analyze <dump-yolu>\n// SOS: dumpheap -stat\n// SOS: gcroot <nesne-adresi>\n// SOS: clrstack\n// SOS: syncblk",
+      "walkthrough": "Önce düşük maliyetli gözlemle hipotez kurulur; sonra hedefli veri toplanır. Komutlar tarayıcı içinde yürütülmez.",
+      "exercise": "Bir bloklama ve bir retention sorunu için hangi araçların neden seçildiğini raporla.",
+      "acceptance": [
+        "Her hipotez kanıtla ilişkilendirilir",
+        "Araç/platform sınırları belirtilir"
+      ],
+      "sources": [
+        {
+          "title": ".NET teşhis araçları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+        }
+      ]
+    },
+    {
+      "id": "optimizasyon-analizi",
+      "level": 9,
+      "title": "İleri optimizasyon analizi",
+      "topics": [
+        {
+          "id": "optimizasyon-analizi-01",
+          "title": "Disassembly üzerinden benchmark sonuçlarını açıklama",
+          "explanation": "Süre farkını generated code ile ilişkilendir. Tek bir instruction farkının gerçek iş yükünde baskın olduğunu otomatik varsayma."
+        },
+        {
+          "id": "optimizasyon-analizi-02",
+          "title": "Hardware counters",
+          "explanation": "CPU olayları hakkında düşük seviye veri sağlar. Destek, izinler ve araç kapsamı platforma göre değişir."
+        },
+        {
+          "id": "optimizasyon-analizi-03",
+          "title": "Cache miss",
+          "explanation": "Gerekli veri ilgili cache katmanında bulunmayınca daha pahalı erişim gerekir. Veri boyutu ve erişim düzeniyle ilişkilendir."
+        },
+        {
+          "id": "optimizasyon-analizi-04",
+          "title": "Branch misprediction",
+          "explanation": "Tahmin edilemeyen dallar pipeline maliyeti oluşturabilir. Branchless çözüm her zaman daha hızlı değildir."
+        },
+        {
+          "id": "optimizasyon-analizi-05",
+          "title": "LINQ maliyetlerini ölçme",
+          "explanation": "Delegate, iterator, buffering ve tekrar enumeration maliyetlerini gerçek sorgu biçimiyle ölç. Her LINQ ifadesini tek sonuçla genelleme."
+        },
+        {
+          "id": "optimizasyon-analizi-06",
+          "title": "Koleksiyon maliyetlerini ölçme",
+          "explanation": "Arama, ekleme, resize, iteration ve comparer maliyetlerini ayrı senaryolarda incele. Veri boyutu seçimi değiştirir."
+        },
+        {
+          "id": "optimizasyon-analizi-07",
+          "title": "String işlemlerini ölçme",
+          "explanation": "Encoding, culture, substring ve formatlama maliyetlerini ayır. Aynı çıktıyı ve karşılaştırma semantiğini koru."
+        },
+        {
+          "id": "optimizasyon-analizi-08",
+          "title": "Async maliyetlerini ölçme",
+          "explanation": "Senkron tamamlanma oranı, continuation ve state retention sonuçları etkiler. Sadece Task.Delay ile gerçek I/O performansını modelleme."
+        },
+        {
+          "id": "optimizasyon-analizi-09",
+          "title": "Microbenchmark sonuçlarını gerçek iş yükünde doğrulama",
+          "explanation": "İzole kazanç bütün uygulamada görünmeyebilir. Yük testi ve uçtan uca metriklerle sonucu doğrula."
+        },
+        {
+          "id": "optimizasyon-analizi-10",
+          "title": "Optimizasyon öncesi ve sonrası doğruluk kontrolü",
+          "explanation": "Daha hızlı yanlış sonuç iyileştirme değildir. Boş, sınır, bozuk ve concurrency girdilerini karşılaştır."
+        },
+        {
+          "id": "optimizasyon-analizi-11",
+          "title": "Performans regresyonlarını otomatik takip etme",
+          "explanation": "Baseline, tolerans ve tutarlı ortamla değişimleri izle. Gürültülü ölçümlere katı tek-koşu eşikleri koyma."
+        },
+        {
+          "id": "optimizasyon-analizi-12",
+          "title": "Darboğaz bulma ve kanıta dayalı optimizasyon",
+          "explanation": "Önce en büyük maliyeti bul; hipotez kur, tek değişiklik yap, tekrar ölç. Karmaşıklığı yalnız kanıtlanan kazanç için artır."
+        }
+      ],
+      "scenario": "String karşılaştırmayı hızlandırmak için kültürel semantik ordinal’e çevrilirse davranış değişebilir. Aynı sözleşmeyi koruyan seçenekleri karşılaştır.",
+      "tips": [
+        "Branchless daha hızlıdır gibi evrensel kurallar yoktur.",
+        "Optimizasyon testleri sınır değerleri kapsamalı.",
+        "Performans eşiği ölçüm gürültüsünden büyük ve gerekçeli olmalı."
+      ],
+      "code": "// Optimizasyon doğruluğu için basit differential kontrol:\nstatic int Baseline(int[] xs) => xs.Sum();\nstatic int Aday(int[] xs)\n{\n    int toplam = 0;\n    foreach (int x in xs) toplam = checked(toplam + x);\n    return toplam;\n}\nint[] veri = [1, -2, 3];\nConsole.WriteLine(Baseline(veri) == Aday(veri)); // True",
+      "walkthrough": "Checked kullanımı Sum’ın taşma beklentisini korumayı amaçlar. Daha geniş test kümesi ve benchmark olmadan hız iddiası yapılmaz.",
+      "exercise": "Baseline/adayı rastgele ve sınır girdilerde doğrula; ardından benchmark çalıştır.",
+      "acceptance": [
+        "Taşma ve boş girdi sözleşmeleri eşleşir",
+        "Uçtan uca kazanç ayrıca ölçülür"
+      ],
+      "sources": [
+        {
+          "title": ".NET teşhis araçları",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+        }
+      ]
+    },
+    {
+      "id": "dil-arastirma",
+      "level": 10,
+      "title": "Dil ve kaynak kod araştırması",
+      "topics": [
+        {
+          "id": "dil-arastirma-01",
+          "title": "C# dil spesifikasyonunu okuma",
+          "explanation": "Normatif kurallar dil davranışını açıklar. Standardın kapsamadığı yeni özellikler için ilgili feature specification’ı ayrıca oku."
+        },
+        {
+          "id": "dil-arastirma-02",
+          "title": "Belirsiz dil davranışlarını spesifikasyonla çözme",
+          "explanation": "Önce küçük örnek ve tam compiler sürümüyle gözlemi kaydet. Sonra ilgili kuralı bularak yorumunu kanıtla."
+        },
+        {
+          "id": "dil-arastirma-03",
+          "title": "Dil spesifikasyonu, IL ve runtime kaynak kodunu birlikte inceleme",
+          "explanation": "Dil neyi garanti eder, compiler nasıl indirger, runtime nasıl yürütür sorularını ayır. Bir katmanın uygulama ayrıntısını diğerinin garantisi sanma."
+        },
+        {
+          "id": "dil-arastirma-04",
+          "title": "Runtime kaynak kodunu inceleme",
+          "explanation": "GC, JIT ve CoreCLR kodu davranışın uygulamasını gösterir. Çalışan sürüme karşılık gelen tag/commit üzerinden oku."
+        },
+        {
+          "id": "dil-arastirma-05",
+          "title": "Temel kütüphane kaynak kodunu inceleme",
+          "explanation": "Koleksiyon ve Task gibi tiplerin maliyetlerini kaynakta izle. Public sözleşmeyle implementation detail ayrımını koru."
+        },
+        {
+          "id": "dil-arastirma-06",
+          "title": "Runtime davranışını minimal örnekle yeniden üretme",
+          "explanation": "Gereksiz bağımlılıkları kaldırarak sorunun compiler, runtime veya uygulama katmanını daralt. Tek değişkenli örnek hata raporunu güçlendirir."
+        },
+        {
+          "id": "dil-arastirma-07",
+          "title": "Zor bellek, concurrency ve performans hatalarını teşhis etme",
+          "explanation": "Deterministik olmayan arızalarda birden fazla kanıt türü gerekir. Stack, trace, heap ve minimal reproduction sonuçlarını birleştir."
+        }
+      ],
+      "scenario": "SDK güncellemesinden sonra overload sonucu değiştiği düşünülüyor. Minimal örnekle doğrula ve kural ile implementation’ı ayır.",
+      "tips": [
+        "Runtime main branch’i kurulu runtime’ın aynısı değildir.",
+        "Feature specification ile yayınlanmış sürümü birlikte kontrol et.",
+        "Tek başarılı koşu concurrency doğruluğunu kanıtlamaz."
+      ],
+      "code": "// Araştırma kayıt şablonu:\n// 1. dotnet --info ve LangVersion\n// 2. En küçük Program.cs ve csproj\n// 3. Beklenen ve gözlenen davranış\n// 4. İlgili dil kuralı / feature specification\n// 5. IL / trace / runtime tag bağlantısı\n// 6. Tekrar üretme adımları",
+      "walkthrough": "Araştırma kaydı iddiayı başka geliştiricinin yeniden denemesini sağlar. Kod, sürüm ve gözlem aynı raporda bulunur.",
+      "exercise": "Belirsiz bir overload veya closure örneği için bu şablonda rapor oluştur.",
+      "acceptance": [
+        "Örnek bağımsız tekrar üretilebilir",
+        "Garanti ve implementation detail ayrı işaretlenir"
+      ],
+      "sources": [
+        {
+          "title": "Roslyn ve derleyici API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/"
+        },
+        {
+          "title": "C# standardı",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/"
+        },
+        {
+          "title": "Runtime kaynakları",
+          "url": "https://github.com/dotnet/runtime"
+        }
+      ]
+    },
+    {
+      "id": "roslyn",
+      "level": 10,
+      "title": "Roslyn ve geliştirme araçları",
+      "topics": [
+        {
+          "id": "roslyn-01",
+          "title": "Roslyn syntax tree",
+          "explanation": "Kaynağın sözdizimsel yapısını düğüm/token/trivia olarak temsil eder. Aynı görünen ismin hangi üyeye bağlandığını tek başına söylemez."
+        },
+        {
+          "id": "roslyn-02",
+          "title": "Semantic model",
+          "explanation": "Sözdiziminin tip ve symbol anlamını çözer. Yalnız token metniyle karar veren analyzer alias ve overload durumlarında yanlış sonuç verebilir."
+        },
+        {
+          "id": "roslyn-03",
+          "title": "Symbol API",
+          "explanation": "Tip, metot ve üyelerin semantik kimliğini sağlar. Symbol karşılaştırmasında uygun SymbolEqualityComparer kullan."
+        },
+        {
+          "id": "roslyn-04",
+          "title": "Operation tree",
+          "explanation": "Sözdiziminden daha semantik işlem temsili sunar. Aynı davranışın farklı sözdizimlerini ortak analizde ele almayı kolaylaştırır."
+        },
+        {
+          "id": "roslyn-05",
+          "title": "Control-flow analizi",
+          "explanation": "Branch, erişilebilirlik ve veri akışını inceler. Analyzer’da path-sensitive kural gereksinimini belirle."
+        },
+        {
+          "id": "roslyn-06",
+          "title": "Analyzer geliştirme",
+          "explanation": "Diagnostic descriptor, kayıt noktası ve analiz gövdesiyle derleme sırasında tanı üretir. Generated code ve cancellation politikasını tanımla."
+        },
+        {
+          "id": "roslyn-07",
+          "title": "Code fix geliştirme",
+          "explanation": "Tanıya uygulanabilir kaynak dönüşümü sunar. Formatting, trivia ve FixAll davranışını koru."
+        },
+        {
+          "id": "roslyn-08",
+          "title": "Incremental source generator geliştirme",
+          "explanation": "Girdi bağımlılıklarını açık pipeline’larla modelleyerek tekrar üretimi azaltır. Gereksiz geniş girdilere bağımlılık kurma."
+        },
+        {
+          "id": "roslyn-09",
+          "title": "Analyzer ve source generator testleri",
+          "explanation": "Pozitif/negatif örnekler, dil sürümleri ve generated output doğrulanmalıdır. Code fix sonucu da derlenmelidir."
+        },
+        {
+          "id": "roslyn-10",
+          "title": "Analyzer ve source generator performansı",
+          "explanation": "IDE her düzenlemede analiz çalıştırabilir. Tüm compilation’ı gereksiz tarama; allocation, cancellation ve eşzamanlı erişimi düşün."
+        },
+        {
+          "id": "roslyn-11",
+          "title": "Reflection ile üretilen kodun maliyetlerini karşılaştırma",
+          "explanation": "Source generation runtime arama işini build zamanına taşıyabilir. Assembly boyutu ve build süresi artışını da ölç."
+        }
+      ],
+      "scenario": "Bir analyzer async metot içindeki .Result kullanımını tespit ediyor. Aynı isimli alakasız property’ye yanlış tanı vermemek için semantic model kullan.",
+      "tips": [
+        "Analyzer’da metin eşleşmesiyle Task üyelerini tanıma.",
+        "Generator çıktılarını deterministik tut.",
+        "Analyzer içinde global mutable state compilation’lar arasında hata yaratabilir."
+      ],
+      "code": "// Roslyn projesinde; Microsoft.CodeAnalysis.CSharp paketi gerekir.\nusing Microsoft.CodeAnalysis;\nusing Microsoft.CodeAnalysis.CSharp;\nvar tree = CSharpSyntaxTree.ParseText(\"class C { int X => 1; }\");\nvar root = tree.GetRoot();\nforeach (var token in root.DescendantTokens()\n    Console.WriteLine($\"{token.Kind()}: {token.Text}\");",
+      "walkthrough": "Syntax tree sözdizimini açar. Tip/symbol çözümlemesi için referansları olan Compilation ve SemanticModel ayrıca gerekir.",
+      "exercise": "Task.Result için semantic analyzer ve await öneren güvenli code fix tasarla.",
+      "acceptance": [
+        "Alakasız Result property’sinde tanı yok",
+        "Dönüşüm sonrası kod derlenir"
+      ],
+      "sources": [
+        {
+          "title": "Roslyn ve derleyici API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/"
+        }
+      ]
+    },
+    {
+      "id": "kutuphane-api",
+      "level": 10,
+      "title": "İleri API ve kütüphane tasarımı",
+      "topics": [
+        {
+          "id": "kutuphane-api-01",
+          "title": "İleri generic tasarımı",
+          "explanation": "Constraint, variance ve tip çıkarımını API kullanım kolaylığıyla dengele. Kullanıcının gereksiz açık tip argümanı yazmasını ve belirsiz overload’ları test et."
+        },
+        {
+          "id": "kutuphane-api-02",
+          "title": "Generic math",
+          "explanation": "Statik interface sözleşmeleri üzerinden sayısal algoritma kurar. Taşma, hassasiyet ve işlemlerin her sayısal tipte aynı anlamda olmadığını koru."
+        },
+        {
+          "id": "kutuphane-api-03",
+          "title": "Allocation davranışı açık API tasarımı",
+          "explanation": "Dönen değer yeni allocation mı, görünüm mü, cached nesne mi belirt. Sıcak yolda caller-provided buffer seçeneğini değerlendir."
+        },
+        {
+          "id": "kutuphane-api-04",
+          "title": "Kaynak ve bellek sahipliği açık API tasarımı",
+          "explanation": "Stream, buffer ve native handle’ı kimin kapatacağını belgeler. Borrowed kaynakları yanlışlıkla dispose etme."
+        },
+        {
+          "id": "kutuphane-api-05",
+          "title": "Nullable annotations ile sözleşme tasarımı",
+          "explanation": "Girdi/çıktı yokluk durumlarını derleyiciyle görünür kılar. Annotation gövde ve gerçek hata davranışıyla uyumlu olmalıdır."
+        },
+        {
+          "id": "kutuphane-api-06",
+          "title": "Generic constraints ile sözleşme tasarımı",
+          "explanation": "Kullanılabilir T kümesini tanımlar. Daha sıkı constraint eklemek tüketici kaynak kodunu bozabilir."
+        },
+        {
+          "id": "kutuphane-api-07",
+          "title": "Source compatibility",
+          "explanation": "Eski kaynak yeni sürüme karşı yeniden derlendiğinde çalışmaya devam etmelidir. Overload ve optional parametre değişiklikleri sonucu etkileyebilir."
+        },
+        {
+          "id": "kutuphane-api-08",
+          "title": "Binary compatibility",
+          "explanation": "Önceden derlenmiş tüketicinin yeni kütüphaneyle çalışabilmesidir. Üye imzası ve assembly sözleşmesi değişikliklerini kontrol et."
+        },
+        {
+          "id": "kutuphane-api-09",
+          "title": "Public API değişikliklerinin overload resolution’a etkisi",
+          "explanation": "Yeni overload kaynak kodun seçimini değiştirebilir veya belirsiz yapabilir. Gerçek çağrı örneklerini uyumluluk testinde yeniden derle."
+        },
+        {
+          "id": "kutuphane-api-10",
+          "title": "AOT uyumlu kütüphane geliştirme",
+          "explanation": "Runtime kod üretimini azaltıp desteklenmeyen yolları ayır. Hedef senaryoda publish ve yürütme doğrulaması yap."
+        },
+        {
+          "id": "kutuphane-api-11",
+          "title": "Trimming uyumlu kütüphane geliştirme",
+          "explanation": "Dinamik erişim için analiz edilebilir sözleşme kur. Trimmed yayında gerekli üyelerin korunduğunu doğrula."
+        },
+        {
+          "id": "kutuphane-api-12",
+          "title": "Reflection gereksinimlerini bildiren annotations",
+          "explanation": "DynamicallyAccessedMembers ve benzeri bildirimler analiz aracına gereksinimi iletir. Warning bastırmak üyeleri otomatik korumaz."
+        },
+        {
+          "id": "kutuphane-api-13",
+          "title": "Allocation bütçesi olan kütüphane geliştirme",
+          "explanation": "Kritik operasyonlar için byte/op hedefi tanımla. Setup ve cache ısınmasını steady-state bütçesinden ayır."
+        },
+        {
+          "id": "kutuphane-api-14",
+          "title": "Performans bütçesi olan kütüphane geliştirme",
+          "explanation": "Throughput, gecikme, bellek ve build/runtime maliyetleri için kabul sınırları belirle. Ölçüm gürültüsünü toleransa dahil et."
+        }
+      ],
+      "scenario": "Bir parsing kütüphanesinin yeni sürümü eski tüketicilerle uyumlu olmalı ve başarılı parse başına allocation bütçesini aşmamalı.",
+      "tips": [
+        "Yeni overload eklemek kaynak uyumunu bozabilir.",
+        "ReadOnlyMemory sahiplik aktarımı anlamına gelmez.",
+        "AOT uyumu yalnız warning sayısıyla değil yayınlanmış çıktı çalıştırılarak doğrulanır."
+      ],
+      "code": "using System.Numerics;\nstatic T Topla<T>(ReadOnlySpan<T> veriler) where T : INumber<T>\n{\n    T toplam = T.Zero;\n    foreach (T x in veriler) toplam += x;\n    return toplam;\n}\nConsole.WriteLine(Topla<int>(new int[] { 1, 2, 3 })); // 6",
+      "walkthrough": "Generic math statik operatör sözleşmesini kullanır. Bu örnek her T için aynı taşma veya hassasiyet garantisini vermez.",
+      "exercise": "Span tabanlı TryParse API’si için sahiplik, null ve allocation sözleşmesini yaz.",
+      "acceptance": [
+        "Hatalı girdi sözleşmesi nettir",
+        "Uyumluluk ve AOT test planı vardır"
+      ],
+      "sources": [
+        {
+          "title": "Roslyn ve derleyici API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/"
+        }
+      ]
+    },
+    {
+      "id": "uzman-dogrulama",
+      "level": 10,
+      "title": "Uzman düzeyinde doğrulama",
+      "topics": [
+        {
+          "id": "uzman-dogrulama-01",
+          "title": "Property-based testing",
+          "explanation": "Tek tek örnekler yerine geniş girdi kümelerinde değişmez özellikleri sınar. Round-trip ve eşitlik sözleşmeleri uygun başlangıçtır."
+        },
+        {
+          "id": "uzman-dogrulama-02",
+          "title": "Fuzzing",
+          "explanation": "Bozuk, rastgele veya yönlendirilmiş girdilerle parser ve native sınırlarını zorlar. Süre, bellek ve kaynak sınırlarını test harness’te uygula."
+        },
+        {
+          "id": "uzman-dogrulama-03",
+          "title": "Concurrency stres testleri",
+          "explanation": "Çok sayıda zamanlama ve yük altında invariantları kontrol eder. Hatanın görünmemesi tüm yürütmelerin doğruluğunu kanıtlamaz."
+        },
+        {
+          "id": "uzman-dogrulama-04",
+          "title": "Kaynak sahipliği ve yaşam süresi hatalarını doğrulama",
+          "explanation": "Erken return, exception, cancellation ve double dispose yollarını sınar. Pool buffer’ının kullanım süresini ayrıca takip et."
+        },
+        {
+          "id": "uzman-dogrulama-05",
+          "title": "Doğruluk, bellek ve performansı birlikte değerlendirme",
+          "explanation": "Hız kazancının sonucu, güvenliği veya bellek bütçesini bozmadığını doğrula. Kabul raporu bu üç ekseni birlikte göstermelidir."
+        }
+      ],
+      "scenario": "Binary parser rastgele uzunluk alanlarıyla aşırı allocation yapabiliyor. Fuzzing ile girdiyi küçült ve üst sınır denetimini doğrula.",
+      "tips": [
+        "Fuzzing’de üretim verisi yerine sentetik girdi kullan.",
+        "Concurrency testinin seed ve ortamını kaydet.",
+        "Performans testi doğruluk testinin yerine geçmez."
+      ],
+      "code": "// Basit round-trip özelliği; tam fuzzing altyapısı değildir.\nusing System.Buffers.Binary;\nvar rastgele = new Random(42);\nbyte[] alan = new byte[4];\nfor (int i = 0; i < 1000; i++)\n{\n    int sayi = rastgele.Next();\n    BinaryPrimitives.WriteInt32BigEndian(alan, sayi);\n    if (BinaryPrimitives.ReadInt32BigEndian(alan) != sayi)\n        throw new InvalidOperationException(\"Round-trip bozuldu\");\n}\nConsole.WriteLine(\"1000 örnek doğrulandı\");",
+      "walkthrough": "Sabit seed tekrar üretilebilir girdi sağlar. Test sadece seçilen round-trip özelliğini ve pozitif int örneklerini kapsar; tüm doğruluğu kanıtlamaz.",
+      "exercise": "Negatif/sınır sayıları, eksik buffer ve bozuk frame’ler için testleri genişlet.",
+      "acceptance": [
+        "Seed kaydedilir",
+        "Başarısız girdi küçültülüp saklanır",
+        "Bellek, süre ve doğruluk sınırları birlikte izlenir"
+      ],
+      "sources": [
+        {
+          "title": "Roslyn ve derleyici API",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/"
+        }
+      ]
+    }
+  ]
+}

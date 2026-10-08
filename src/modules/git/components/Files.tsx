@@ -1,0 +1,13 @@
+import { useState } from 'react';
+import { X, FileCode2, Plus } from 'lucide-react';
+import { useLab } from '../../../stores/useLab';
+import { stagedFiles, workingFiles } from '../engine/git';
+export function FileAreas() {
+  const s = useLab(l => l.state); const working = workingFiles(s), staged = stagedFiles(s);
+  return <div className="file-areas"><div><div className="file-area-heading"><FileCode2 size={15}/><strong>Çalışma dizini</strong><span>{working.length}</span></div><div className="file-area-body">{working.length ? working.map(p => <span className="file-chip" key={p}><i/>{p}{!(p in s.working) && ' (silindi)'}</span>) : <span className="muted">Bekleyen değişiklik yok</span>}</div></div><div><div className="file-area-heading"><Plus size={15}/><strong>Hazırlık alanı (staging)</strong><span>{staged.length}</span></div><div className="file-area-body">{staged.length ? staged.map(p => <span className="file-chip staged" key={p}><i/>{p}</span>) : <span className="muted">Hazırlanmış değişiklik yok</span>}</div></div></div>;
+}
+export function Files({ close }: { close: () => void }) {
+  const state = useLab(l => l.state); const stepIndex = useLab(l => l.stepIndex); const paths = Object.keys(state.working);
+  const [selected, setSelected] = useState(paths[0] ?? '');
+  return <div className="modal-backdrop" onClick={close}><section className="file-editor" role="dialog" aria-modal="true" aria-labelledby="files-title" onClick={e => e.stopPropagation()} onKeyDown={e => { if (e.key === 'Escape') close(); }}><div className="panel-heading"><span id="files-title"><FileCode2 size={17}/> Bu adımdaki dosyalar</span><button autoFocus className="icon-button" aria-label="Dosya görünümünü kapat" onClick={close}><X size={18}/></button></div><p className="editor-note">Çalışma dizininin bu adımdaki içeriği. Bir dosya seçerek okuyabilir, adımlar arasında içeriğin nasıl değiştiğini takip edebilirsin.</p><div className="editor-layout"><nav aria-label="Dosyalar">{paths.map(p => <button className={p === selected ? 'selected' : ''} key={p} onClick={() => setSelected(p)}><FileCode2 size={14}/>{p}</button>)}</nav><div className="editor-content">{selected in state.working ? <><div className="editor-filename"><code>{selected}</code><span className="small-tag">Salt okunur</span></div><pre className="file-preview" aria-label={`${selected} içeriği`}>{state.working[selected] || 'Bu dosya boş.'}</pre></> : <p className="muted">İncelemek için bir dosya seç.</p>}</div></div><div className="editor-footer">Adım {stepIndex + 1} · Çalışma dizini görünümü<button className="button primary" onClick={close}>Kapat</button></div></section></div>;
+}
